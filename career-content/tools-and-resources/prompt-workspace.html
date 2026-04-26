@@ -8,14 +8,14 @@
   <meta name="author" content="C. Pete Connor">
 
   <!-- Canonical URL -->
-  <link rel="canonical" href="https://airealitycheck.org/career-content/resources/prompt-workspace.html">
+  <link rel="canonical" href="https://airealitycheck.org/career-content/tools-and-resources/prompt-workspace.html">
 
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="AI Reality Check">
   <meta property="og:title" content="AI Reality Check | Prompt Engineering Workspace">
   <meta property="og:description" content="Interactive prompt engineering workspace for crafting, testing, and refining LLM prompts. Save templates, compare outputs, and iterate on AI workflows.">
-  <meta property="og:url" content="https://airealitycheck.org/career-content/resources/prompt-workspace.html">
+  <meta property="og:url" content="https://airealitycheck.org/career-content/tools-and-resources/prompt-workspace.html">
   <meta property="og:image" content="https://airealitycheck.org/images/profile.jpeg">
   <meta property="og:image:alt" content="AI Reality Check banner">
   <meta property="og:locale" content="en_US">
@@ -434,17 +434,123 @@
     ::-webkit-scrollbar-thumb:hover {
       background: var(--bg-hover);
     }
+
+    /* Hide WordPress-leftover skip-link and site-bridge — replaced by our top-nav */
+    .skip-link, .site-bridge { display: none !important; }
+
+    /* Top nav matching the rest of the site (uses page accent vars) */
+    .arc-top-nav {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 10px 16px; border-bottom: 1px solid var(--border);
+      font-family: var(--font-mono); font-size: 11px;
+      background: var(--bg-secondary);
+      position: relative; z-index: 100;
+    }
+    .arc-top-nav .brand { color: #34d399; font-weight: 600; letter-spacing: 0.5px; text-decoration: none; }
+    .arc-top-nav nav { display: flex; gap: 14px; }
+    .arc-top-nav nav a { color: var(--text-secondary); text-decoration: none; transition: color 0.15s; }
+    .arc-top-nav nav a:hover { color: #34d399; }
+    .arc-top-nav nav a.active { color: var(--text-primary); }
+
+    /* Mobile gate — shown only on narrow viewports */
+    .mobile-gate { display: none; }
+    @media (max-width: 900px) {
+      body { overflow: auto; }
+      .workspace-container { display: none !important; }
+      .arc-top-nav { padding: 10px 14px; flex-wrap: wrap; gap: 10px; }
+      .arc-top-nav nav { gap: 12px; flex-wrap: wrap; font-size: 10px; }
+
+      .mobile-gate {
+        display: flex !important;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: calc(100vh - 60px);
+        padding: 40px 28px;
+        text-align: center;
+      }
+      .mobile-gate .mg-icon {
+        width: 56px; height: 56px;
+        border: 2px solid #34d399; border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        margin-bottom: 18px;
+        background: rgba(52,211,153,0.08);
+      }
+      .mobile-gate .mg-icon svg { width: 28px; height: 28px; }
+      .mobile-gate h2 {
+        font-size: 20px; font-weight: 700; color: var(--text-primary);
+        margin-bottom: 10px; letter-spacing: -0.3px;
+        font-family: var(--font-sans);
+      }
+      .mobile-gate p {
+        font-size: 14px; color: var(--text-secondary);
+        line-height: 1.6; max-width: 320px; margin-bottom: 20px;
+      }
+      .mobile-gate .mg-detail {
+        font-family: var(--font-mono); font-size: 11px;
+        color: var(--text-secondary); margin-bottom: 26px;
+        padding: 10px 14px; background: var(--bg-secondary);
+        border: 1px solid var(--border); border-radius: 6px;
+      }
+      .mobile-gate .mg-buttons {
+        display: flex; flex-direction: column; gap: 10px; width: 100%;
+        max-width: 280px;
+      }
+      .mobile-gate .mg-btn {
+        display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+        background: rgba(52,211,153,0.12); border: 1.5px solid #34d399; color: #34d399;
+        font-family: var(--font-mono); font-size: 12px; font-weight: 600;
+        padding: 11px 18px; border-radius: 6px;
+        text-decoration: none;
+      }
+      .mobile-gate .mg-btn.alt {
+        background: transparent; border-color: var(--border); color: var(--text-primary);
+      }
+    }
+    /* Override: if user clicks "Continue anyway" we hide the gate via class */
+    body.force-mobile .mobile-gate { display: none !important; }
+    body.force-mobile .workspace-container { display: grid !important; }
+    body.force-mobile { overflow-x: auto; }
+    @media (max-width: 900px) {
+      body.force-mobile .workspace-container {
+        grid-template-columns: 280px 1fr;
+        min-width: 980px;
+      }
+    }
   </style>
 </head>
 <body>
-    <a href="#main-content" class="skip-link">Skip to main content</a>
-<!-- Site Bridge — connects to main site -->
-<div class="site-bridge">
-    <div class="container">
-        <a href="https://airealitycheck.org" class="site-bridge-brand">ARC</a>
-        <span class="site-bridge-label">Career Portfolio</span>
+    <!-- Top nav — keeps user oriented inside the larger site -->
+    <div class="arc-top-nav">
+      <a href="/" class="brand">ARC // AI REALITY CHECK</a>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/career-content/">About</a>
+        <a href="/career-content/articles/">Articles</a>
+        <a href="/career-content/portfolio/">Portfolio</a>
+        <a href="/career-content/creativity/">Creativity</a>
+        <a href="/career-content/tools-and-resources/" class="active">Tools &amp; Resources</a>
+      </nav>
     </div>
-</div>
+
+    <!-- Mobile gate — only shown on narrow viewports -->
+    <div class="mobile-gate">
+      <div class="mg-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+          <line x1="8" y1="21" x2="16" y2="21"></line>
+          <line x1="12" y1="17" x2="12" y2="21"></line>
+        </svg>
+      </div>
+      <h2>Best on desktop</h2>
+      <p>The Prompt Workspace is a two-pane editor that needs more screen than your phone has. Open it on a laptop or larger tablet for the full experience.</p>
+      <div class="mg-detail">airealitycheck.org/career-content/tools-and-resources/prompt-workspace.html</div>
+      <div class="mg-buttons">
+        <a href="/career-content/tools-and-resources/" class="mg-btn">← back to tools</a>
+        <a href="#" class="mg-btn alt" onclick="document.body.classList.add('force-mobile'); return false;">continue anyway →</a>
+      </div>
+    </div>
+
   <div id="main-content" class="workspace-container">
     <!-- Sidebar -->
     <div class="sidebar">

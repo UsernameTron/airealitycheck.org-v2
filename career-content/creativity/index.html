@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.youtube.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: blob: https://img.youtube.com https://i.ytimg.com; frame-src https://www.youtube.com; connect-src 'self' https://raw.githubusercontent.com; object-src 'none'">
+
+  <title>Creativity — AI Reality Check</title>
+  <meta name="description" content="Video, visual, and creative work by C. Pete Connor. AI-assisted production, generative experiments, and other things worth watching.">
+  <meta name="author" content="C. Pete Connor">
+  <meta name="robots" content="index, follow">
+
+  <link rel="canonical" href="https://airealitycheck.org/career-content/creativity/">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="AI Reality Check">
+  <meta property="og:title" content="Creativity — AI Reality Check">
+  <meta property="og:description" content="Video, visual, and creative work. AI-assisted production and generative experiments.">
+  <meta property="og:url" content="https://airealitycheck.org/career-content/creativity/">
+  <meta property="og:image" content="https://airealitycheck.org/images/profile.jpeg">
+  <meta property="og:image:alt" content="AI Reality Check banner">
+  <meta property="og:locale" content="en_US">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Creativity — AI Reality Check">
+  <meta name="twitter:description" content="Video, visual, and creative work.">
+  <meta name="twitter:image" content="https://airealitycheck.org/images/profile.jpeg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #09090b; --surface: #111113; --surface-2: #18181b; --border: #27272a;
+      --text: #e4e4e7; --muted: #71717a; --dim: #a1a1aa;
+      --green: #34d399; --green-dim: rgba(52,211,153,0.12); --green-glow: rgba(52,211,153,0.25);
+      --cyan: #22d3ee; --cyan-dim: rgba(34,211,238,0.1);
+      --amber: #f59e0b; --amber-dim: rgba(245,158,11,0.1);
+      --red: #f87171; --red-dim: rgba(248,113,113,0.1);
+      --purple: #a78bfa; --purple-dim: rgba(167,139,250,0.1);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg); color: var(--text);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      min-height: 100vh; padding: 18px 20px 24px; overflow-x: hidden;
+    }
+    body::before {
+      content: ''; position: fixed; inset: 0;
+      background-image:
+        linear-gradient(rgba(52,211,153,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(52,211,153,0.02) 1px, transparent 1px);
+      background-size: 48px 48px; pointer-events: none; z-index: 0;
+    }
+    .wrapper { position: relative; z-index: 1; max-width: 880px; margin: 0 auto; }
+    a { color: var(--green); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .top-nav {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 8px 0 16px; border-bottom: 1px solid var(--border); margin-bottom: 28px;
+      font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    }
+    .top-nav .brand { color: var(--green); font-weight: 600; letter-spacing: 0.5px; }
+    .top-nav nav { display: flex; gap: 18px; }
+    .top-nav nav a { color: var(--muted); text-decoration: none; transition: color 0.15s; }
+    .top-nav nav a:hover { color: var(--green); }
+    .top-nav nav a.active { color: var(--text); }
+
+    .header {
+      text-align: center; margin-bottom: 28px;
+      padding: 16px 0 20px; position: relative;
+    }
+    .header::after {
+      content: ''; display: block; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--amber), transparent);
+      margin-top: 24px; opacity: 0.4;
+    }
+    .header h1 {
+      font-size: 28px; font-weight: 800; letter-spacing: -0.5px;
+      color: var(--text); margin-top: 12px;
+    }
+    .header h1 .accent { color: var(--amber); }
+    .header p {
+      font-size: 12px; color: var(--muted); margin-top: 6px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .header .lede {
+      font-size: 15px; color: var(--text); margin-top: 18px;
+      max-width: 600px; margin-left: auto; margin-right: auto;
+      line-height: 1.6; font-weight: 500;
+    }
+
+    .glow-orb {
+      position: absolute; width: 380px; height: 140px;
+      background: radial-gradient(ellipse at center, rgba(245,158,11,0.08) 0%, transparent 70%);
+      top: 0; left: 50%; transform: translateX(-50%); pointer-events: none;
+    }
+
+    .version-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--amber-dim); border: 1px solid var(--amber); color: var(--amber);
+      font-family: 'JetBrains Mono', monospace; font-size: 10px;
+      padding: 3px 10px; border-radius: 99px;
+    }
+
+    .section { margin-bottom: 28px; position: relative; }
+    .section-label { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; flex-wrap: wrap; }
+    .section-label .tag {
+      font-size: 10px; font-weight: 700; letter-spacing: 1.8px;
+      color: var(--amber); text-transform: uppercase;
+    }
+    .section-label .note { font-size: 11px; color: var(--muted); }
+    .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); margin-left: 4px; }
+
+    /* VIDEO GRID */
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+    .video-card {
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      color: inherit;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+    }
+    .video-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--amber);
+      box-shadow: 0 0 18px rgba(245,158,11,0.25);
+      text-decoration: none;
+    }
+    .video-thumb {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%; /* 16:9 aspect ratio */
+      background: var(--surface-2);
+      overflow: hidden;
+    }
+    .video-thumb img {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s;
+    }
+    .video-card:hover .video-thumb img { transform: scale(1.04); }
+    .video-thumb::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 0%, transparent 60%, rgba(9,9,11,0.85) 100%);
+      pointer-events: none;
+    }
+    .video-thumb .play-icon {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 56px; height: 56px;
+      background: rgba(9,9,11,0.7);
+      border: 2px solid var(--amber);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.15s, transform 0.15s;
+      z-index: 1;
+    }
+    .video-card:hover .play-icon {
+      background: var(--amber);
+      transform: translate(-50%, -50%) scale(1.05);
+    }
+    .play-icon svg { width: 22px; height: 22px; margin-left: 3px; }
+    .video-card:hover .play-icon svg path { fill: var(--bg); }
+
+    .video-meta {
+      padding: 14px 16px 16px;
+    }
+    .video-meta .vtype {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px; letter-spacing: 1.2px;
+      text-transform: uppercase; color: var(--amber);
+      margin-bottom: 6px;
+    }
+    .video-meta .vtitle {
+      font-size: 14px; font-weight: 700;
+      color: var(--text); line-height: 1.35;
+      margin-bottom: 6px;
+    }
+    .video-meta .vdesc {
+      font-size: 11.5px; color: var(--dim);
+      line-height: 1.55;
+    }
+    .video-meta .vcta {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px; font-weight: 600; color: var(--amber);
+      margin-top: 10px;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .video-card .vcta .arrow { transition: transform 0.18s; display: inline-block; }
+    .video-card:hover .vcta .arrow { transform: translateX(3px); }
+
+    /* HOW TO ADD */
+    .helper-box {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px 22px;
+    }
+    .helper-box .htitle {
+      font-size: 13px; color: var(--text); font-weight: 600; margin-bottom: 12px;
+    }
+    .helper-box ol {
+      font-size: 12.5px; color: var(--dim);
+      line-height: 1.8; padding-left: 22px;
+    }
+    .helper-box li { margin-bottom: 4px; }
+    .helper-box code {
+      color: var(--cyan); background: var(--surface);
+      padding: 1px 6px; border-radius: 3px;
+      font-family: 'JetBrains Mono', monospace; font-size: 11.5px;
+    }
+    .helper-box strong { color: var(--text); }
+
+    .stats-bar {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 8px; padding: 12px 20px;
+      text-align: center;
+      font-family: 'JetBrains Mono', monospace; font-size: 10.5px;
+      color: var(--amber); letter-spacing: 0.4px;
+      margin-top: 24px;
+    }
+
+    .footer { text-align: center; margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--border); }
+    .footer .org { font-size: 11px; color: var(--muted); margin-bottom: 4px; }
+    .footer .by { font-size: 10px; color: var(--muted); }
+    .footer .by .name { color: var(--text); font-weight: 600; }
+    .footer .quote { font-size: 9px; color: var(--muted); margin-top: 8px; font-family: 'JetBrains Mono', monospace; }
+    .footer .social { margin-top: 14px; display: flex; gap: 18px; justify-content: center; font-family: 'JetBrains Mono', monospace; font-size: 10px; }
+    .footer .social a { color: var(--muted); text-decoration: none; transition: color 0.15s; }
+    .footer .social a:hover { color: var(--green); }
+
+    @media (max-width: 720px) {
+      .video-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      body { padding: 12px 14px 18px; }
+      .header h1 { font-size: 24px; }
+      .top-nav { font-size: 10px; }
+      .top-nav nav { gap: 12px; flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+
+    <!-- TOP NAV -->
+    <div class="top-nav">
+      <a href="/" class="brand">ARC // AI REALITY CHECK</a>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/career-content/">About</a>
+        <a href="/career-content/articles/">Articles</a>
+        <a href="/career-content/portfolio/">Portfolio</a>
+        <a href="/career-content/creativity/" class="active">Creativity</a>
+        <a href="/career-content/tools-and-resources/">Tools &amp; Resources</a>
+      </nav>
+    </div>
+
+    <!-- HEADER -->
+    <div class="header">
+      <div class="glow-orb"></div>
+      <div class="version-badge">creativity / video / generative</div>
+      <h1><span class="accent">The</span> Studio</h1>
+      <p>video work // visual experiments // ai-assisted production</p>
+      <div class="lede">
+        Working footage from the creative side of the practice — AI-assisted video production,
+        generative experiments, and the kind of output that doesn't fit on a slide.
+      </div>
+    </div>
+
+    <!-- VIDEOS -->
+    <div class="section">
+      <div class="section-label">
+        <span class="tag">Video Work</span>
+        <span class="note">— click to watch on youtube</span>
+      </div>
+      <div class="video-grid">
+
+        <!-- ====================================================== -->
+        <!-- TEMPLATE — VIDEO CARD                                   -->
+        <!-- 1. Get YouTube video ID (the part after youtu.be/)      -->
+        <!-- 2. Copy this card block                                 -->
+        <!-- 3. Replace VIDEO_ID in href and img src                 -->
+        <!-- 4. Update vtype, vtitle, vdesc                          -->
+        <!-- Thumbnail auto-generated by YouTube                     -->
+        <!-- ====================================================== -->
+
+        <a href="https://youtu.be/HwWH6pnNs1o" target="_blank" rel="noopener" class="video-card">
+          <div class="video-thumb">
+            <img src="https://img.youtube.com/vi/HwWH6pnNs1o/maxresdefault.jpg" alt="Video thumbnail" loading="lazy" onerror="this.src='https://img.youtube.com/vi/HwWH6pnNs1o/hqdefault.jpg'">
+            <div class="play-icon">
+              <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="#f59e0b"/></svg>
+            </div>
+          </div>
+          <div class="video-meta">
+            <div class="vtype">Short Film · Satire</div>
+            <div class="vtitle">I'm A Little Short of Caps (But I'm a Good Good Neighbor)</div>
+            <div class="vdesc">A short on neighborly economics and the awkward arithmetic of borrowed cups.</div>
+            <div class="vcta">watch on youtube <span class="arrow">↗</span></div>
+          </div>
+        </a>
+
+        <a href="https://youtu.be/szaZH2RGQuE" target="_blank" rel="noopener" class="video-card">
+          <div class="video-thumb">
+            <img src="https://img.youtube.com/vi/szaZH2RGQuE/maxresdefault.jpg" alt="Video thumbnail" loading="lazy" onerror="this.src='https://img.youtube.com/vi/szaZH2RGQuE/hqdefault.jpg'">
+            <div class="play-icon">
+              <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="#f59e0b"/></svg>
+            </div>
+          </div>
+          <div class="video-meta">
+            <div class="vtype">Short Film · Character Study</div>
+            <div class="vtitle">The Ballad of Jimmy the Boob</div>
+            <div class="vdesc">A character ballad. The kind of story that earns its title and then keeps going.</div>
+            <div class="vcta">watch on youtube <span class="arrow">↗</span></div>
+          </div>
+        </a>
+
+        <a href="https://youtu.be/JXpVgkgSKhw" target="_blank" rel="noopener" class="video-card">
+          <div class="video-thumb">
+            <img src="https://img.youtube.com/vi/JXpVgkgSKhw/maxresdefault.jpg" alt="Video thumbnail" loading="lazy" onerror="this.src='https://img.youtube.com/vi/JXpVgkgSKhw/hqdefault.jpg'">
+            <div class="play-icon">
+              <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="#f59e0b"/></svg>
+            </div>
+          </div>
+          <div class="video-meta">
+            <div class="vtype">AI Concept Piece</div>
+            <div class="vtitle">The Reflective Engine</div>
+            <div class="vdesc">A meditation on machine self-reference and what reflection actually buys you.</div>
+            <div class="vcta">watch on youtube <span class="arrow">↗</span></div>
+          </div>
+        </a>
+
+        <a href="https://youtu.be/5EMscUGemdM" target="_blank" rel="noopener" class="video-card">
+          <div class="video-thumb">
+            <img src="https://img.youtube.com/vi/5EMscUGemdM/maxresdefault.jpg" alt="Video thumbnail" loading="lazy" onerror="this.src='https://img.youtube.com/vi/5EMscUGemdM/hqdefault.jpg'">
+            <div class="play-icon">
+              <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="#f59e0b"/></svg>
+            </div>
+          </div>
+          <div class="video-meta">
+            <div class="vtype">Short Film · Satire</div>
+            <div class="vtitle">The Hunt for Blue November</div>
+            <div class="vdesc">An expedition piece in the spirit of Cold-War procedurals, played for sharper laughs.</div>
+            <div class="vcta">watch on youtube <span class="arrow">↗</span></div>
+          </div>
+        </a>
+
+        <a href="https://youtu.be/sr1k7xZl0O0" target="_blank" rel="noopener" class="video-card">
+          <div class="video-thumb">
+            <img src="https://img.youtube.com/vi/sr1k7xZl0O0/maxresdefault.jpg" alt="Video thumbnail" loading="lazy" onerror="this.src='https://img.youtube.com/vi/sr1k7xZl0O0/hqdefault.jpg'">
+            <div class="play-icon">
+              <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="#f59e0b"/></svg>
+            </div>
+          </div>
+          <div class="video-meta">
+            <div class="vtype">Short Film · Comedy</div>
+            <div class="vtitle">The Game Changer "Bored Game"</div>
+            <div class="vdesc">A play on what counts as innovation when the rules quietly stop mattering.</div>
+            <div class="vcta">watch on youtube <span class="arrow">↗</span></div>
+          </div>
+        </a>
+
+        <a href="https://youtu.be/f745hLbSXAQ" target="_blank" rel="noopener" class="video-card">
+          <div class="video-thumb">
+            <img src="https://img.youtube.com/vi/f745hLbSXAQ/maxresdefault.jpg" alt="Video thumbnail" loading="lazy" onerror="this.src='https://img.youtube.com/vi/f745hLbSXAQ/hqdefault.jpg'">
+            <div class="play-icon">
+              <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="#f59e0b"/></svg>
+            </div>
+          </div>
+          <div class="video-meta">
+            <div class="vtype">AI Satire</div>
+            <div class="vtitle">Converscapé and The Social Ghoster 3000™</div>
+            <div class="vdesc">A faux-product launch built around the discourse-engagement loop. Satire with a UX deck.</div>
+            <div class="vcta">watch on youtube <span class="arrow">↗</span></div>
+          </div>
+        </a>
+
+        <a href="https://youtu.be/bV8DwSvcS1k" target="_blank" rel="noopener" class="video-card">
+          <div class="video-thumb">
+            <img src="https://img.youtube.com/vi/bV8DwSvcS1k/maxresdefault.jpg" alt="Video thumbnail" loading="lazy" onerror="this.src='https://img.youtube.com/vi/bV8DwSvcS1k/hqdefault.jpg'">
+            <div class="play-icon">
+              <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="#f59e0b"/></svg>
+            </div>
+          </div>
+          <div class="video-meta">
+            <div class="vtype">AI Industry Critique</div>
+            <div class="vtitle">The AI Grifters Court — The $999 AI Course Scam: Just Vibes, No Value</div>
+            <div class="vdesc">Holding the AI-influencer course economy to a standard. Spoiler: most don't clear it.</div>
+            <div class="vcta">watch on youtube <span class="arrow">↗</span></div>
+          </div>
+        </a>
+
+      </div>
+    </div>
+
+    <!-- HOW TO ADD MORE -->
+    <div class="section">
+      <div class="section-label">
+        <span class="tag">Adding More Videos</span>
+        <span class="note">— scaffold reference</span>
+      </div>
+      <div class="helper-box">
+        <div class="htitle">To add a new video to this page:</div>
+        <ol>
+          <li>Get the <strong>YouTube video ID</strong> (the string after <code>youtu.be/</code> in the share URL).</li>
+          <li>In this file's source, find the comment block labeled <em>TEMPLATE — VIDEO CARD</em>.</li>
+          <li>Copy any existing <code>&lt;a class="video-card"&gt;</code> block and paste it next to the others.</li>
+          <li>Replace the video ID in <strong>3 places</strong>: the <code>href</code>, the <code>img src</code> (maxresdefault), and the <code>img onerror src</code> (hqdefault fallback).</li>
+          <li>Update the <code>vtitle</code> with the actual video title and the <code>vdesc</code> with a one-line description.</li>
+          <li>Commit and push. Thumbnails are pulled live from YouTube — no image upload needed.</li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- STATS BAR -->
+    <div class="stats-bar">
+      7 videos &nbsp;•&nbsp; thumbnails live from youtube &nbsp;•&nbsp; click any card to watch
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+      <div class="org">AI Reality Check &nbsp;•&nbsp; Connor Advisors LLC</div>
+      <div class="by">Built by <span class="name">C. Pete Connor</span> &nbsp;•&nbsp; AI/ML CX Consultant</div>
+      <div class="quote">"Turning theory into operational reality."</div>
+      <div class="social">
+        <a href="https://www.linkedin.com/in/peteconnor" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/UsernameTron" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://substack.com/@cpconnor" target="_blank" rel="noopener">Substack</a>
+        <a href="https://medium.com/@cpeteconnor" target="_blank" rel="noopener">Medium</a>
+        <a href="https://www.youtube.com/@CPeteConnor" target="_blank" rel="noopener">YouTube</a>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
