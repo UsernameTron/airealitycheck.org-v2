@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.youtube.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: blob:; frame-src https://www.youtube.com; connect-src 'self' https://raw.githubusercontent.com; object-src 'none'">
+
+  <title>AI Reality Check — C. Pete Connor</title>
+  <meta name="description" content="C. Pete Connor — AI/ML CX Consultant. Turning AI theory into operational reality through CX strategy, ML implementation, and workforce optimization.">
+  <meta name="author" content="C. Pete Connor">
+  <meta name="robots" content="index, follow">
+
+  <link rel="canonical" href="https://airealitycheck.org/">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="AI Reality Check">
+  <meta property="og:title" content="AI Reality Check — C. Pete Connor">
+  <meta property="og:description" content="AI/ML CX Consultant. Turning theory into operational reality.">
+  <meta property="og:url" content="https://airealitycheck.org/">
+  <meta property="og:image" content="https://airealitycheck.org/images/profile.jpeg">
+  <meta property="og:image:alt" content="C. Pete Connor — AI Reality Check">
+  <meta property="og:locale" content="en_US">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AI Reality Check — C. Pete Connor">
+  <meta name="twitter:description" content="AI/ML CX Consultant. Turning theory into operational reality.">
+  <meta name="twitter:image" content="https://airealitycheck.org/images/profile.jpeg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "C. Pete Connor",
+    "url": "https://airealitycheck.org/",
+    "image": "https://airealitycheck.org/images/profile.jpeg",
+    "jobTitle": "AI/ML CX Consultant",
+    "description": "AI implementation specialist turning theory into operational reality.",
+    "alumniOf": "MS in Artificial Intelligence",
+    "knowsAbout": [
+      "Customer Experience",
+      "Artificial Intelligence",
+      "Machine Learning",
+      "Workforce Management",
+      "Contact Center Operations",
+      "Process Automation"
+    ],
+    "sameAs": [
+      "https://www.linkedin.com/in/peteconnor",
+      "https://github.com/UsernameTron",
+      "https://substack.com/@cpconnor",
+      "https://medium.com/@cpeteconnor"
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg: #09090b;
+      --surface: #111113;
+      --surface-2: #18181b;
+      --border: #27272a;
+      --text: #e4e4e7;
+      --muted: #71717a;
+      --dim: #a1a1aa;
+      --green: #34d399;
+      --green-dim: rgba(52,211,153,0.12);
+      --green-glow: rgba(52,211,153,0.25);
+      --cyan: #22d3ee;
+      --cyan-dim: rgba(34,211,238,0.1);
+      --amber: #f59e0b;
+      --amber-dim: rgba(245,158,11,0.1);
+      --purple: #a78bfa;
+      --purple-dim: rgba(167,139,250,0.1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      min-height: 100vh;
+      padding: 18px 20px 24px;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(52,211,153,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(52,211,153,0.02) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .wrapper { position: relative; z-index: 1; max-width: 880px; margin: 0 auto; }
+
+    a { color: var(--green); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .top-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0 16px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 28px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+    }
+    .top-nav .brand { color: var(--green); font-weight: 600; letter-spacing: 0.5px; }
+    .top-nav nav { display: flex; gap: 18px; }
+    .top-nav nav a { color: var(--muted); text-decoration: none; transition: color 0.15s; }
+    .top-nav nav a:hover { color: var(--green); }
+    .top-nav nav a.active { color: var(--text); }
+
+    /* HEADER — generous breathing room */
+    .header {
+      text-align: center;
+      margin-bottom: 28px;
+      padding: 20px 0 24px;
+      position: relative;
+    }
+    .header::after {
+      content: '';
+      display: block;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--green), transparent);
+      margin-top: 28px;
+      opacity: 0.4;
+    }
+    .header h1 {
+      font-size: 32px;
+      font-weight: 800;
+      letter-spacing: -0.6px;
+      color: var(--text);
+      margin-top: 14px;
+    }
+    .header h1 .accent { color: var(--green); }
+    .header p {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 8px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .header .lede {
+      font-size: 16px;
+      color: var(--text);
+      margin-top: 24px;
+      max-width: 620px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.55;
+      font-weight: 500;
+    }
+    .header .sub {
+      font-size: 13px;
+      color: var(--dim);
+      margin-top: 14px;
+      max-width: 620px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.65;
+    }
+
+    .glow-orb {
+      position: absolute; width: 460px; height: 160px;
+      background: radial-gradient(ellipse at center, rgba(52,211,153,0.1) 0%, transparent 70%);
+      top: 0; left: 50%; transform: translateX(-50%); pointer-events: none;
+    }
+
+    .version-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--green-dim); border: 1px solid var(--green); color: var(--green);
+      font-family: 'JetBrains Mono', monospace; font-size: 10px;
+      padding: 3px 10px; border-radius: 99px;
+      position: relative;
+    }
+
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+    .pulse-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); animation: pulse 2s infinite; flex-shrink: 0; }
+
+    /* SECTION — minimal chrome */
+    .section { margin-bottom: 28px; position: relative; }
+    .section-label { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; flex-wrap: wrap; }
+    .section-label .tag {
+      font-size: 10px; font-weight: 700; letter-spacing: 1.8px;
+      color: var(--green); text-transform: uppercase;
+    }
+    .section-label .note { font-size: 11px; color: var(--muted); }
+    .section-label::after {
+      content: ''; flex: 1; height: 1px; background: var(--border); margin-left: 4px;
+    }
+
+    /* CAREER ARC — phase circles */
+    .phase-row {
+      display: flex; align-items: flex-start; gap: 0; overflow-x: auto; padding: 8px 0;
+    }
+    .phase-step {
+      display: flex; flex-direction: column; align-items: center;
+      text-align: center; flex: 1; min-width: 100px;
+    }
+    .phase-circle {
+      width: 44px; height: 44px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; font-weight: 800; margin-bottom: 10px;
+    }
+    .phase-circle.cyan   { background: var(--cyan-dim); color: var(--cyan); border: 1.5px solid var(--cyan); }
+    .phase-circle.amber  { background: var(--amber-dim); color: var(--amber); border: 1.5px solid var(--amber); }
+    .phase-circle.green  { background: var(--green-dim); color: var(--green); border: 1.5px solid var(--green); }
+    .phase-circle.purple { background: var(--purple-dim); color: var(--purple); border: 1.5px solid var(--purple); }
+    .phase-name { font-size: 12px; font-weight: 700; color: var(--text); margin-bottom: 3px; }
+    .phase-cmd { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--muted); }
+    .phase-connector { flex-shrink: 0; display: flex; align-items: center; padding: 0 4px; margin-bottom: 32px; }
+
+    @keyframes flowRight {
+      0%   { stroke-dashoffset: 24; }
+      100% { stroke-dashoffset: 0; }
+    }
+    .flow-line-animated { stroke-dasharray: 4 4; animation: flowRight 0.8s linear infinite; }
+
+    /* THREE DOORS — large route cards */
+    .doors-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .door {
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 22px 22px 20px;
+      color: inherit;
+      text-decoration: none;
+      transition: transform 0.18s, box-shadow 0.18s, border-color 0.18s;
+      display: flex;
+      flex-direction: column;
+      min-height: 200px;
+      position: relative;
+    }
+    .door:hover { transform: translateY(-3px); text-decoration: none; }
+    .door.green:hover  { border-color: var(--green);  box-shadow: 0 0 24px var(--green-glow); }
+    .door.cyan:hover   { border-color: var(--cyan);   box-shadow: 0 0 24px rgba(34,211,238,0.25); }
+    .door.purple:hover { border-color: var(--purple); box-shadow: 0 0 24px rgba(167,139,250,0.25); }
+
+    .door .verb {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .door.green  .verb { color: var(--green); }
+    .door.cyan   .verb { color: var(--cyan); }
+    .door.purple .verb { color: var(--purple); }
+
+    .door .door-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: -0.3px;
+      margin-bottom: 10px;
+      line-height: 1.2;
+    }
+    .door .door-desc {
+      font-size: 13px;
+      color: var(--dim);
+      line-height: 1.6;
+      flex: 1;
+      margin-bottom: 14px;
+    }
+    .door .door-cta {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .door.green  .door-cta { color: var(--green); }
+    .door.cyan   .door-cta { color: var(--cyan); }
+    .door.purple .door-cta { color: var(--purple); }
+    .door .door-cta .arrow { transition: transform 0.18s; display: inline-block; }
+    .door:hover .door-cta .arrow { transform: translateX(4px); }
+
+    /* STATS BAR */
+    .stats-bar {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 20px;
+      text-align: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10.5px;
+      color: var(--green);
+      letter-spacing: 0.4px;
+      margin-top: 24px;
+    }
+
+    /* FOOTER */
+    .footer { text-align: center; margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--border); }
+    .footer .org { font-size: 11px; color: var(--muted); margin-bottom: 4px; }
+    .footer .by { font-size: 10px; color: var(--muted); }
+    .footer .by .name { color: var(--text); font-weight: 600; }
+    .footer .quote { font-size: 9px; color: var(--muted); margin-top: 8px; font-family: 'JetBrains Mono', monospace; }
+    .footer .social { margin-top: 14px; display: flex; gap: 18px; justify-content: center; font-family: 'JetBrains Mono', monospace; font-size: 10px; }
+    .footer .social a { color: var(--muted); text-decoration: none; transition: color 0.15s; }
+    .footer .social a:hover { color: var(--green); }
+
+    @media (max-width: 720px) {
+      .doors-grid { grid-template-columns: 1fr; }
+      .door { min-height: auto; }
+    }
+    @media (max-width: 600px) {
+      body { padding: 12px 14px 18px; }
+      .header h1 { font-size: 26px; }
+      .header .lede { font-size: 14px; }
+      .top-nav { font-size: 10px; }
+      .top-nav nav { gap: 12px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+
+    <!-- TOP NAV -->
+    <div class="top-nav">
+      <a href="/" class="brand">ARC // AI REALITY CHECK</a>
+      <nav>
+        <a href="/" class="active">Home</a>
+        <a href="/career-content/">About</a>
+        <a href="/career-content/articles/">Articles</a>
+        <a href="/career-content/portfolio/">Portfolio</a>
+        <a href="/career-content/tools-and-resources/">Tools &amp; Resources</a>
+      </nav>
+    </div>
+
+    <!-- HEADER -->
+    <div class="header">
+      <div class="glow-orb"></div>
+      <div class="version-badge"><span class="pulse-dot"></span>operational</div>
+      <h1><span class="accent">AI</span> Reality Check</h1>
+      <p>c. pete connor // ai/ml cx consultant</p>
+      <div class="lede">
+        AI implementation specialist turning theory into operational reality.
+      </div>
+      <div class="sub">
+        CX strategy, ML deployment, and workforce optimization for contact center
+        and BPO environments. The work that ships, not the work that sounds good in a deck.
+      </div>
+    </div>
+
+    <!-- CAREER ARC -->
+    <div class="section">
+      <div class="section-label">
+        <span class="tag">Trajectory</span>
+        <span class="note">— operations to AI leadership</span>
+      </div>
+      <div class="phase-row">
+        <div class="phase-step">
+          <div class="phase-circle cyan">1</div>
+          <div class="phase-name">Operations</div>
+          <div class="phase-cmd">contact center</div>
+        </div>
+        <div class="phase-connector">
+          <svg width="32" height="10">
+            <line x1="2" y1="5" x2="26" y2="5" stroke="#52525b" stroke-width="1.5" stroke-dasharray="4 3" class="flow-line-animated"/>
+            <polygon points="24,2 30,5 24,8" fill="#52525b"/>
+          </svg>
+        </div>
+        <div class="phase-step">
+          <div class="phase-circle amber">2</div>
+          <div class="phase-name">CX Strategy</div>
+          <div class="phase-cmd">cx design</div>
+        </div>
+        <div class="phase-connector">
+          <svg width="32" height="10">
+            <line x1="2" y1="5" x2="26" y2="5" stroke="#52525b" stroke-width="1.5" stroke-dasharray="4 3" class="flow-line-animated"/>
+            <polygon points="24,2 30,5 24,8" fill="#52525b"/>
+          </svg>
+        </div>
+        <div class="phase-step">
+          <div class="phase-circle green">3</div>
+          <div class="phase-name">AI/ML Consulting</div>
+          <div class="phase-cmd">implementation</div>
+        </div>
+        <div class="phase-connector">
+          <svg width="32" height="10">
+            <line x1="2" y1="5" x2="26" y2="5" stroke="#34d399" stroke-width="1.5" stroke-dasharray="4 3" class="flow-line-animated"/>
+            <polygon points="24,2 30,5 24,8" fill="#34d399"/>
+          </svg>
+        </div>
+        <div class="phase-step">
+          <div class="phase-circle purple">4</div>
+          <div class="phase-name">Leadership Track</div>
+          <div class="phase-cmd">director+</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- THREE DOORS -->
+    <div class="section">
+      <div class="section-label">
+        <span class="tag">Where to next</span>
+        <span class="note">— pick your path</span>
+      </div>
+      <div class="doors-grid">
+
+        <a href="/career-content/articles/" class="door cyan">
+          <div class="verb">Read</div>
+          <div class="door-title">The analysis</div>
+          <div class="door-desc">
+            Long-form arguments on AI detection, counterfactual reasoning, ML in BPO,
+            and how the LinkedIn algorithm actually works.
+          </div>
+          <div class="door-cta">articles <span class="arrow">→</span></div>
+        </a>
+
+        <a href="/career-content/tools-and-resources/" class="door green">
+          <div class="verb">Use</div>
+          <div class="door-title">The tools</div>
+          <div class="door-desc">
+            Working artifacts. Crushin' Claude PDF, the prompt engineering workspace,
+            and other things you can run today.
+          </div>
+          <div class="door-cta">tools &amp; resources <span class="arrow">→</span></div>
+        </a>
+
+        <a href="/career-content/portfolio/" class="door purple">
+          <div class="verb">Hire</div>
+          <div class="door-title">The work</div>
+          <div class="door-desc">
+            Live projects, source repos, and the case for working together.
+            Cortex, WFM AI, and the rest of the build log.
+          </div>
+          <div class="door-cta">portfolio <span class="arrow">→</span></div>
+        </a>
+
+      </div>
+    </div>
+
+    <!-- STATS BAR -->
+    <div class="stats-bar">
+      MS Artificial Intelligence &nbsp;•&nbsp; CCXP &nbsp;•&nbsp; CCCM &nbsp;•&nbsp; Six Sigma Green Belt &nbsp;•&nbsp; Published Author
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+      <div class="org">AI Reality Check &nbsp;•&nbsp; Connor Advisors LLC</div>
+      <div class="by">Built by <span class="name">C. Pete Connor</span> &nbsp;•&nbsp; AI/ML CX Consultant</div>
+      <div class="quote">"Turning theory into operational reality."</div>
+      <div class="social">
+        <a href="https://www.linkedin.com/in/peteconnor" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/UsernameTron" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://substack.com/@cpconnor" target="_blank" rel="noopener">Substack</a>
+        <a href="https://medium.com/@cpeteconnor" target="_blank" rel="noopener">Medium</a>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

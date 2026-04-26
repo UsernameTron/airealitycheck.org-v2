@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.youtube.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: blob:; frame-src https://www.youtube.com; connect-src 'self' https://raw.githubusercontent.com; object-src 'none'">
+
+  <title>About — AI Reality Check</title>
+  <meta name="description" content="C. Pete Connor — practice pillars, engagement model, and how to work with Connor Advisors. AI/ML CX consulting with comp tied to outcomes.">
+  <meta name="author" content="C. Pete Connor">
+  <meta name="robots" content="index, follow">
+
+  <link rel="canonical" href="https://airealitycheck.org/career-content/">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="AI Reality Check">
+  <meta property="og:title" content="About — AI Reality Check">
+  <meta property="og:description" content="Practice pillars, engagement model, and how to work with Connor Advisors.">
+  <meta property="og:url" content="https://airealitycheck.org/career-content/">
+  <meta property="og:image" content="https://airealitycheck.org/images/profile.jpeg">
+  <meta property="og:image:alt" content="AI Reality Check banner">
+  <meta property="og:locale" content="en_US">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="About — AI Reality Check">
+  <meta name="twitter:description" content="Practice pillars, engagement model, and how to work with Connor Advisors.">
+  <meta name="twitter:image" content="https://airealitycheck.org/images/profile.jpeg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #09090b;
+      --surface: #111113;
+      --surface-2: #18181b;
+      --border: #27272a;
+      --text: #e4e4e7;
+      --muted: #71717a;
+      --dim: #a1a1aa;
+      --green: #34d399;
+      --green-dim: rgba(52,211,153,0.12);
+      --green-glow: rgba(52,211,153,0.25);
+      --cyan: #22d3ee;
+      --cyan-dim: rgba(34,211,238,0.1);
+      --amber: #f59e0b;
+      --amber-dim: rgba(245,158,11,0.1);
+      --purple: #a78bfa;
+      --purple-dim: rgba(167,139,250,0.1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      min-height: 100vh;
+      padding: 18px 20px 24px;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(52,211,153,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(52,211,153,0.02) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .wrapper { position: relative; z-index: 1; max-width: 880px; margin: 0 auto; }
+
+    a { color: var(--green); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .top-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0 16px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 28px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+    }
+    .top-nav .brand { color: var(--green); font-weight: 600; letter-spacing: 0.5px; }
+    .top-nav nav { display: flex; gap: 18px; }
+    .top-nav nav a { color: var(--muted); text-decoration: none; transition: color 0.15s; }
+    .top-nav nav a:hover { color: var(--green); }
+    .top-nav nav a.active { color: var(--text); }
+
+    .header {
+      text-align: center;
+      margin-bottom: 28px;
+      padding: 16px 0 20px;
+      position: relative;
+    }
+    .header::after {
+      content: '';
+      display: block;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--green), transparent);
+      margin-top: 24px;
+      opacity: 0.4;
+    }
+    .header h1 {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: var(--text);
+      margin-top: 12px;
+    }
+    .header h1 .accent { color: var(--green); }
+    .header p {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 6px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .header .lede {
+      font-size: 15px;
+      color: var(--text);
+      margin-top: 18px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+      font-weight: 500;
+    }
+
+    .glow-orb {
+      position: absolute; width: 380px; height: 140px;
+      background: radial-gradient(ellipse at center, rgba(52,211,153,0.08) 0%, transparent 70%);
+      top: 0; left: 50%; transform: translateX(-50%); pointer-events: none;
+    }
+
+    .version-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--green-dim); border: 1px solid var(--green); color: var(--green);
+      font-family: 'JetBrains Mono', monospace; font-size: 10px;
+      padding: 3px 10px; border-radius: 99px;
+    }
+
+    .section { margin-bottom: 32px; position: relative; }
+    .section-label { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; flex-wrap: wrap; }
+    .section-label .tag {
+      font-size: 10px; font-weight: 700; letter-spacing: 1.8px;
+      color: var(--green); text-transform: uppercase;
+    }
+    .section-label .note { font-size: 11px; color: var(--muted); }
+    .section-label::after {
+      content: ''; flex: 1; height: 1px; background: var(--border); margin-left: 4px;
+    }
+
+    /* Prose */
+    .prose {
+      font-size: 14px;
+      color: var(--dim);
+      line-height: 1.75;
+      max-width: 720px;
+    }
+    .prose strong { color: var(--text); font-weight: 600; }
+    .prose p + p { margin-top: 12px; }
+
+    /* PILLARS — 2x2 grid, calm density */
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+    .pillar {
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      padding: 16px 18px;
+      transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+    }
+    .pillar:hover { transform: translateY(-2px); }
+    .pillar.green:hover  { border-color: var(--green);  box-shadow: 0 0 18px var(--green-glow); }
+    .pillar.cyan:hover   { border-color: var(--cyan);   box-shadow: 0 0 18px rgba(34,211,238,0.2); }
+    .pillar.amber:hover  { border-color: var(--amber);  box-shadow: 0 0 18px rgba(245,158,11,0.18); }
+    .pillar.purple:hover { border-color: var(--purple); box-shadow: 0 0 18px rgba(167,139,250,0.2); }
+
+    .pillar .kicker {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .pillar.green  .kicker { color: var(--green); }
+    .pillar.cyan   .kicker { color: var(--cyan); }
+    .pillar.amber  .kicker { color: var(--amber); }
+    .pillar.purple .kicker { color: var(--purple); }
+
+    .pillar .pillar-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 6px;
+      letter-spacing: -0.2px;
+    }
+    .pillar .pillar-desc {
+      font-size: 12px;
+      color: var(--dim);
+      line-height: 1.6;
+    }
+
+    /* ENGAGEMENT FLOW — horizontal pipeline */
+    .flow-row {
+      display: flex; align-items: center; gap: 0; flex-wrap: nowrap; overflow-x: auto; padding: 4px 0;
+    }
+    .flow-card {
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 14px;
+      flex: 1;
+      min-width: 150px;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .flow-card.cyan   { border-color: var(--cyan); }
+    .flow-card.amber  { border-color: var(--amber); }
+    .flow-card.green  { border-color: var(--green); }
+    .flow-card.purple { border-color: var(--purple); }
+    .flow-card .step {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .flow-card.cyan   .step { color: var(--cyan); }
+    .flow-card.amber  .step { color: var(--amber); }
+    .flow-card.green  .step { color: var(--green); }
+    .flow-card.purple .step { color: var(--purple); }
+    .flow-card .step-name { font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+    .flow-card .step-desc { font-size: 10.5px; color: var(--dim); line-height: 1.55; }
+
+    .flow-arrow { display: flex; align-items: center; padding: 0 4px; flex-shrink: 0; }
+    @keyframes flowRight {
+      0%   { stroke-dashoffset: 24; }
+      100% { stroke-dashoffset: 0; }
+    }
+    .flow-line-animated { stroke-dasharray: 4 4; animation: flowRight 0.8s linear infinite; }
+
+    /* WHO I WORK WITH */
+    .partners {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .partner {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px 16px;
+    }
+    .partner .ptype {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      color: var(--muted);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .partner .pname {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .partner .pdesc {
+      font-size: 11px;
+      color: var(--dim);
+      line-height: 1.55;
+    }
+
+    /* CTA BLOCK */
+    .cta-block {
+      background: linear-gradient(135deg, rgba(52,211,153,0.08), rgba(34,211,238,0.04));
+      border: 1px solid rgba(52,211,153,0.25);
+      border-radius: 10px;
+      padding: 22px 24px;
+      text-align: center;
+      margin-top: 8px;
+    }
+    .cta-block .cta-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 8px;
+      letter-spacing: -0.3px;
+    }
+    .cta-block .cta-sub {
+      font-size: 13px;
+      color: var(--dim);
+      line-height: 1.6;
+      max-width: 540px;
+      margin: 0 auto 16px;
+    }
+    .cta-block .cta-buttons {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--green-dim);
+      border: 1.5px solid var(--green);
+      color: var(--green);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 9px 16px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: background 0.15s, box-shadow 0.15s;
+    }
+    .cta-btn:hover {
+      background: rgba(52,211,153,0.2);
+      box-shadow: 0 0 16px var(--green-glow);
+      text-decoration: none;
+    }
+    .cta-btn.secondary {
+      background: transparent;
+      border-color: var(--border);
+      color: var(--text);
+    }
+    .cta-btn.secondary:hover {
+      border-color: var(--cyan);
+      color: var(--cyan);
+      box-shadow: 0 0 16px rgba(34,211,238,0.15);
+      background: transparent;
+    }
+
+    /* STATS BAR */
+    .stats-bar {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 20px;
+      text-align: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10.5px;
+      color: var(--green);
+      letter-spacing: 0.4px;
+      margin-top: 24px;
+    }
+
+    /* FOOTER */
+    .footer { text-align: center; margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--border); }
+    .footer .org { font-size: 11px; color: var(--muted); margin-bottom: 4px; }
+    .footer .by { font-size: 10px; color: var(--muted); }
+    .footer .by .name { color: var(--text); font-weight: 600; }
+    .footer .quote { font-size: 9px; color: var(--muted); margin-top: 8px; font-family: 'JetBrains Mono', monospace; }
+    .footer .social { margin-top: 14px; display: flex; gap: 18px; justify-content: center; font-family: 'JetBrains Mono', monospace; font-size: 10px; }
+    .footer .social a { color: var(--muted); text-decoration: none; transition: color 0.15s; }
+    .footer .social a:hover { color: var(--green); }
+
+    @media (max-width: 720px) {
+      .pillars-grid { grid-template-columns: 1fr; }
+      .partners { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      body { padding: 12px 14px 18px; }
+      .header h1 { font-size: 24px; }
+      .top-nav { font-size: 10px; }
+      .top-nav nav { gap: 12px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+
+    <!-- TOP NAV -->
+    <div class="top-nav">
+      <a href="/" class="brand">ARC // AI REALITY CHECK</a>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/career-content/" class="active">About</a>
+        <a href="/career-content/articles/">Articles</a>
+        <a href="/career-content/portfolio/">Portfolio</a>
+        <a href="/career-content/tools-and-resources/">Tools &amp; Resources</a>
+      </nav>
+    </div>
+
+    <!-- HEADER -->
+    <div class="header">
+      <div class="glow-orb"></div>
+      <div class="version-badge">about / pete connor</div>
+      <h1><span class="accent">About</span> the Practice</h1>
+      <p>connor advisors llc // ai/ml cx consulting</p>
+      <div class="lede">
+        I help operators ship AI that survives contact with their workforce, their data,
+        and their change-management reality.
+      </div>
+    </div>
+
+    <!-- BIO PROSE -->
+    <div class="section">
+      <div class="section-label">
+        <span class="tag">Background</span>
+        <span class="note">— who you'd be working with</span>
+      </div>
+      <div class="prose">
+        <p>
+          I'm <strong>C. Pete Connor</strong> — AI/ML CX Consultant operating through
+          <strong>Connor Advisors LLC</strong>. MS in Artificial Intelligence, CCXP, CCCM,
+          Six Sigma Green Belt, and the author of <em>Crushin' Claude</em>, a practitioner's
+          guide to working with the model.
+        </p>
+        <p>
+          The practice runs out of DFW. Primary engagement is with
+          <strong>Cloud Tech Gurus (CTG)</strong> alongside Fred Stacey and team, where
+          I lead AI implementation work for contact center and BPO clients. Half my comp
+          on those engagements is tied to AI implementation outcomes — the work either
+          ships and produces measurable lift, or it doesn't get paid for. That's the standard
+          everything here meets.
+        </p>
+        <p>
+          Outside CTG I take selective consulting work, write at airealitycheck.org and
+          on Substack, and build the tools you'll find under Tools &amp; Resources. I'm
+          actively targeting CX Director and AI leadership roles in DFW and remote.
+        </p>
+      </div>
+    </div>
+
+    <!-- PRACTICE PILLARS -->
+    <div class="section">
+      <div class="section-label">
+        <span class="tag">Practice Pillars</span>
+        <span class="note">— four domains, one operator</span>
+      </div>
+      <div class="pillars-grid">
+        <div class="pillar green">
+          <div class="kicker">CCXP certified</div>
+          <div class="pillar-title">CX Strategy</div>
+          <div class="pillar-desc">
+            Journey design, voice-of-customer programs, NPS to operational metric translation.
+            The work that makes CX measurable instead of vibes-based.
+          </div>
+        </div>
+        <div class="pillar cyan">
+          <div class="kicker">MS Artificial Intelligence</div>
+          <div class="pillar-title">AI Implementation</div>
+          <div class="pillar-desc">
+            LLM deployments, RAG pipelines, prompt engineering, model evaluation under load.
+            Hands-on the build, not a deck about the build.
+          </div>
+        </div>
+        <div class="pillar amber">
+          <div class="kicker">CCCM certified</div>
+          <div class="pillar-title">WFM &amp; Ops</div>
+          <div class="pillar-desc">
+            Workforce planning, forecasting, contact center automation, BPO optimization.
+            Where AI projects most often die — and where I make them live.
+          </div>
+        </div>
+        <div class="pillar purple">
+          <div class="kicker">Director track</div>
+          <div class="pillar-title">Executive Advisory</div>
+          <div class="pillar-desc">
+            AI roadmaps for CX leaders, board-ready ROI cases, transformation playbooks
+            that hold up under finance scrutiny.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ENGAGEMENT FLOW -->
+    <div class="section">
+      <div class="section-label">
+        <span class="tag">How Engagements Run</span>
+        <span class="note">— diagnose, design, deploy, measure</span>
+      </div>
+      <div class="flow-row">
+        <div class="flow-card cyan">
+          <div class="step">01</div>
+          <div class="step-name">Diagnose</div>
+          <div class="step-desc">Process audit, data inventory, baseline metrics. What's actually broken vs. what people think is broken.</div>
+        </div>
+        <div class="flow-arrow">
+          <svg width="32" height="14">
+            <line x1="2" y1="7" x2="26" y2="7" stroke="#34d399" stroke-width="1.5" stroke-dasharray="4 3" class="flow-line-animated"/>
+            <polygon points="24,4 30,7 24,10" fill="#34d399"/>
+          </svg>
+        </div>
+        <div class="flow-card amber">
+          <div class="step">02</div>
+          <div class="step-name">Design</div>
+          <div class="step-desc">Solution architecture, model selection, integration plan, change-management strategy.</div>
+        </div>
+        <div class="flow-arrow">
+          <svg width="32" height="14">
+            <line x1="2" y1="7" x2="26" y2="7" stroke="#34d399" stroke-width="1.5" stroke-dasharray="4 3" class="flow-line-animated"/>
+            <polygon points="24,4 30,7 24,10" fill="#34d399"/>
+          </svg>
+        </div>
+        <div class="flow-card green">
+          <div class="step">03</div>
+          <div class="step-name">Deploy</div>
+          <div class="step-desc">Pilot, instrument, scale. Hands on the implementation, not just the deck.</div>
+        </div>
+        <div class="flow-arrow">
+          <svg width="32" height="14">
+            <line x1="2" y1="7" x2="26" y2="7" stroke="#34d399" stroke-width="1.5" stroke-dasharray="4 3" class="flow-line-animated"/>
+            <polygon points="24,4 30,7 24,10" fill="#34d399"/>
+          </svg>
+        </div>
+        <div class="flow-card purple">
+          <div class="step">04</div>
+          <div class="step-name">Measure</div>
+          <div class="step-desc">Outcome attribution, comp tied to results. 50% of engagement comp on AI implementation outcomes.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WHO I WORK WITH -->
+    <div class="section">
+      <div class="section-label">
+        <span class="tag">Who I Work With</span>
+        <span class="note">— and what I optimize for</span>
+      </div>
+      <div class="partners">
+        <div class="partner">
+          <div class="ptype">Primary</div>
+          <div class="pname">Cloud Tech Gurus</div>
+          <div class="pdesc">AI implementation consulting alongside Fred Stacey, Darren, and Jessica. Contact center and BPO clients.</div>
+        </div>
+        <div class="partner">
+          <div class="ptype">Selective</div>
+          <div class="pname">Direct CX Engagements</div>
+          <div class="pdesc">Operators who want AI in their CX stack and need someone who has run a contact center before.</div>
+        </div>
+        <div class="partner">
+          <div class="ptype">Open to</div>
+          <div class="pname">Director / Leadership Roles</div>
+          <div class="pdesc">CX Director or AI leadership positions in DFW or remote. Full-time or fractional.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA BLOCK -->
+    <div class="section">
+      <div class="cta-block">
+        <div class="cta-title">If the practice fits the problem</div>
+        <div class="cta-sub">
+          The fastest way to evaluate fit is to read the analysis or run the tools.
+          If you've already done that, here's how to reach me.
+        </div>
+        <div class="cta-buttons">
+          <a href="https://www.linkedin.com/in/peteconnor" target="_blank" rel="noopener" class="cta-btn">
+            connect on linkedin →
+          </a>
+          <a href="/career-content/portfolio/" class="cta-btn secondary">
+            see the work →
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- STATS BAR -->
+    <div class="stats-bar">
+      MS Artificial Intelligence &nbsp;•&nbsp; CCXP &nbsp;•&nbsp; CCCM &nbsp;•&nbsp; Six Sigma Green Belt &nbsp;•&nbsp; Published Author
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+      <div class="org">AI Reality Check &nbsp;•&nbsp; Connor Advisors LLC</div>
+      <div class="by">Built by <span class="name">C. Pete Connor</span> &nbsp;•&nbsp; AI/ML CX Consultant</div>
+      <div class="quote">"Turning theory into operational reality."</div>
+      <div class="social">
+        <a href="https://www.linkedin.com/in/peteconnor" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/UsernameTron" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://substack.com/@cpconnor" target="_blank" rel="noopener">Substack</a>
+        <a href="https://medium.com/@cpeteconnor" target="_blank" rel="noopener">Medium</a>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

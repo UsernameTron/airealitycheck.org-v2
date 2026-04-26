@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.youtube.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: blob:; frame-src https://www.youtube.com; connect-src 'self' https://raw.githubusercontent.com; object-src 'none'">
+
+  <title>You Can't Detect AI Content. You Just Need Attention. — AI Reality Check</title>
+  <meta name="description" content="LinkedIn's AI detection myth, the em-dash superstition, and why platform incentives keep the bad ideas alive. By C. Pete Connor.">
+  <meta name="author" content="C. Pete Connor">
+  <meta name="robots" content="index, follow">
+
+  <link rel="canonical" href="https://airealitycheck.org/career-content/articles/detection.html">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="AI Reality Check">
+  <meta property="og:title" content="You Can't Detect AI Content. You Just Need Attention.">
+  <meta property="og:description" content="LinkedIn's AI detection myth, the em-dash superstition, and why platform incentives keep the bad ideas alive.">
+  <meta property="og:url" content="https://airealitycheck.org/career-content/articles/detection.html">
+  <meta property="og:image" content="https://airealitycheck.org/images/profile.jpeg">
+  <meta property="og:locale" content="en_US">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="You Can't Detect AI Content. You Just Need Attention.">
+  <meta name="twitter:description" content="LinkedIn's AI detection myth, the em-dash superstition, and why platform incentives keep the bad ideas alive.">
+  <meta name="twitter:image" content="https://airealitycheck.org/images/profile.jpeg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #09090b; --surface: #111113; --surface-2: #18181b; --border: #27272a;
+      --text: #e4e4e7; --muted: #71717a; --dim: #a1a1aa;
+      --green: #34d399; --green-dim: rgba(52,211,153,0.12); --green-glow: rgba(52,211,153,0.25);
+      --cyan: #22d3ee; --cyan-dim: rgba(34,211,238,0.1);
+      --amber: #f59e0b; --amber-dim: rgba(245,158,11,0.1);
+      --red: #f87171; --red-dim: rgba(248,113,113,0.1);
+      --purple: #a78bfa; --purple-dim: rgba(167,139,250,0.1);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg); color: var(--text);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      min-height: 100vh; padding: 18px 20px 24px; overflow-x: hidden;
+    }
+    body::before {
+      content: ''; position: fixed; inset: 0;
+      background-image:
+        linear-gradient(rgba(52,211,153,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(52,211,153,0.02) 1px, transparent 1px);
+      background-size: 48px 48px; pointer-events: none; z-index: 0;
+    }
+    .wrapper { position: relative; z-index: 1; max-width: 880px; margin: 0 auto; }
+    a { color: var(--green); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .top-nav {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 8px 0 16px; border-bottom: 1px solid var(--border); margin-bottom: 28px;
+      font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    }
+    .top-nav .brand { color: var(--green); font-weight: 600; letter-spacing: 0.5px; }
+    .top-nav nav { display: flex; gap: 18px; }
+    .top-nav nav a { color: var(--muted); text-decoration: none; transition: color 0.15s; }
+    .top-nav nav a:hover { color: var(--green); }
+    .top-nav nav a.active { color: var(--text); }
+
+    /* Article hero */
+    .article-hero {
+      text-align: center; padding: 28px 24px 24px;
+      border: 1px solid var(--border); border-radius: 12px;
+      background: linear-gradient(135deg, rgba(34,211,238,0.06), rgba(52,211,153,0.02));
+      margin-bottom: 24px; position: relative;
+    }
+    .article-hero .glow-orb {
+      position: absolute; width: 380px; height: 140px;
+      background: radial-gradient(ellipse at center, rgba(34,211,238,0.1) 0%, transparent 70%);
+      top: 0; left: 50%; transform: translateX(-50%); pointer-events: none;
+    }
+    .article-hero .kicker {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px; color: var(--cyan);
+      text-transform: uppercase; letter-spacing: 1.8px;
+      margin-bottom: 12px; position: relative;
+    }
+    .article-hero h1 {
+      font-size: 30px; font-weight: 800; color: var(--text);
+      letter-spacing: -0.5px; max-width: 720px; margin: 0 auto 12px;
+      line-height: 1.2; position: relative;
+    }
+    .article-hero h1 .accent { color: var(--cyan); }
+    .article-hero .deck {
+      font-size: 14px; color: var(--dim);
+      max-width: 600px; margin: 0 auto; line-height: 1.6;
+      position: relative;
+    }
+    .article-hero .meta {
+      font-family: 'JetBrains Mono', monospace; font-size: 10px;
+      color: var(--muted); margin-top: 18px; position: relative;
+    }
+    .article-hero .meta .author { color: var(--text); }
+
+    /* Section container */
+    .section {
+      background: rgba(255,255,255,0.01); border: 1px solid var(--border);
+      border-radius: 12px; padding: 22px 26px; margin-bottom: 14px;
+    }
+    .section-label {
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 16px; flex-wrap: wrap;
+    }
+    .section-label .tag {
+      font-size: 10px; font-weight: 700; letter-spacing: 1.8px;
+      color: var(--cyan); text-transform: uppercase;
+    }
+    .section-label .tag.green { color: var(--green); }
+    .section-label .tag.amber { color: var(--amber); }
+    .section-label .tag.red { color: var(--red); }
+    .section-label .tag.purple { color: var(--purple); }
+    .section-label .note { font-size: 11px; color: var(--muted); }
+    .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); margin-left: 4px; }
+
+    /* Prose */
+    .prose { font-size: 14px; color: var(--dim); line-height: 1.75; max-width: 65ch; }
+    .prose strong { color: var(--text); font-weight: 600; }
+    .prose em { color: var(--text); }
+    .prose p + p { margin-top: 14px; }
+    .prose a { color: var(--cyan); border-bottom: 1px dashed var(--cyan); }
+    .prose a:hover { background: var(--cyan-dim); text-decoration: none; }
+    .prose ul { margin: 12px 0 14px 4px; padding-left: 22px; }
+    .prose li { margin-bottom: 8px; }
+    .prose h3 {
+      font-size: 13px; font-weight: 700; color: var(--green);
+      margin: 20px 0 8px; letter-spacing: 0.5px;
+      text-transform: uppercase; font-family: 'JetBrains Mono', monospace;
+    }
+    .prose blockquote {
+      border-left: 2px solid var(--cyan);
+      padding: 12px 18px; margin: 18px 0;
+      background: var(--cyan-dim); color: var(--text);
+      font-style: italic; font-size: 13px; line-height: 1.7;
+      border-radius: 0 6px 6px 0;
+    }
+    .prose .data {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace; font-weight: 600;
+      color: var(--cyan); background: var(--cyan-dim);
+      padding: 1px 6px; border-radius: 4px;
+      font-size: 13px;
+    }
+
+    /* Stat row */
+    .stat-row {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 16px 0 4px;
+    }
+    .stat-card {
+      background: var(--surface); border: 1.5px solid var(--border);
+      border-radius: 8px; padding: 14px 12px; text-align: center;
+    }
+    .stat-card.cyan  { border-color: var(--cyan); }
+    .stat-card.green { border-color: var(--green); }
+    .stat-card.amber { border-color: var(--amber); }
+    .stat-card.red   { border-color: var(--red); }
+    .stat-card .num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 22px; font-weight: 700;
+      letter-spacing: -0.5px; line-height: 1;
+    }
+    .stat-card.cyan  .num { color: var(--cyan); }
+    .stat-card.green .num { color: var(--green); }
+    .stat-card.amber .num { color: var(--amber); }
+    .stat-card.red   .num { color: var(--red); }
+    .stat-card .lbl {
+      font-size: 9.5px; color: var(--dim);
+      margin-top: 6px; line-height: 1.4;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    /* Comparison table */
+    .compare-table {
+      width: 100%; border-collapse: collapse; margin: 8px 0;
+      font-size: 12px;
+    }
+    .compare-table th {
+      background: var(--surface-2); color: var(--green);
+      font-family: 'JetBrains Mono', monospace; font-size: 10px;
+      letter-spacing: 1.2px; text-transform: uppercase;
+      padding: 10px 12px; text-align: left;
+      border: 1px solid var(--border);
+    }
+    .compare-table td {
+      padding: 10px 12px; color: var(--dim);
+      border: 1px solid var(--border); vertical-align: top;
+      line-height: 1.55;
+    }
+    .compare-table td:first-child { color: var(--text); font-weight: 600; }
+
+    /* Pull quote */
+    .pull-quote {
+      background: linear-gradient(135deg, rgba(248,113,113,0.06), rgba(245,158,11,0.04));
+      border: 1px solid rgba(248,113,113,0.25);
+      border-radius: 10px; padding: 18px 22px; margin: 8px 0;
+    }
+    .pull-quote .pq-text {
+      font-size: 15px; color: var(--text); font-weight: 500;
+      line-height: 1.55; font-style: italic;
+    }
+    .pull-quote .pq-attr {
+      font-family: 'JetBrains Mono', monospace; font-size: 10px;
+      color: var(--red); margin-top: 10px; letter-spacing: 1px; text-transform: uppercase;
+    }
+
+    /* Stats bar */
+    .stats-bar {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 8px; padding: 12px 20px;
+      text-align: center;
+      font-family: 'JetBrains Mono', monospace; font-size: 10.5px;
+      color: var(--cyan); letter-spacing: 0.4px; margin-top: 14px;
+    }
+
+    /* Footer */
+    .footer { text-align: center; margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--border); }
+    .footer .org { font-size: 11px; color: var(--muted); margin-bottom: 4px; }
+    .footer .by { font-size: 10px; color: var(--muted); }
+    .footer .by .name { color: var(--text); font-weight: 600; }
+    .footer .quote { font-size: 9px; color: var(--muted); margin-top: 8px; font-family: 'JetBrains Mono', monospace; }
+    .footer .social { margin-top: 14px; display: flex; gap: 18px; justify-content: center; font-family: 'JetBrains Mono', monospace; font-size: 10px; }
+    .footer .social a { color: var(--muted); text-decoration: none; transition: color 0.15s; }
+    .footer .social a:hover { color: var(--green); }
+
+    .source-list {
+      list-style: none; padding: 0; margin: 0;
+      font-size: 11.5px; color: var(--dim); line-height: 1.7;
+    }
+    .source-list li {
+      padding: 8px 0; border-bottom: 1px dashed var(--border);
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .source-list li:last-child { border-bottom: none; }
+    .source-list .num { color: var(--cyan); font-weight: 600; margin-right: 8px; }
+    .source-list a { color: var(--muted); border-bottom: none; word-break: break-all; }
+    .source-list a:hover { color: var(--green); }
+
+    .back-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: 'JetBrains Mono', monospace; font-size: 11px;
+      color: var(--muted); margin-bottom: 14px;
+    }
+    .back-link:hover { color: var(--green); }
+
+    @media (max-width: 720px) {
+      .stat-row { grid-template-columns: repeat(2, 1fr); }
+      .article-hero h1 { font-size: 24px; }
+    }
+    @media (max-width: 600px) {
+      body { padding: 12px 14px 18px; }
+      .section { padding: 18px 18px; }
+      .top-nav { font-size: 10px; }
+      .top-nav nav { gap: 12px; }
+      .compare-table { font-size: 11px; }
+      .compare-table th, .compare-table td { padding: 8px 8px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+
+    <!-- TOP NAV -->
+    <div class="top-nav">
+      <a href="/" class="brand">ARC // AI REALITY CHECK</a>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/career-content/">About</a>
+        <a href="/career-content/articles/" class="active">Articles</a>
+        <a href="/career-content/portfolio/">Portfolio</a>
+        <a href="/career-content/tools-and-resources/">Tools &amp; Resources</a>
+      </nav>
+    </div>
+
+    <a href="/career-content/articles/" class="back-link">← back to articles</a>
+
+    <!-- HERO -->
+    <div class="article-hero">
+      <div class="glow-orb"></div>
+      <div class="kicker">AI Detection · Long-form analysis</div>
+      <h1>You Can't <span class="accent">Detect</span> Content Created by AI. You Just Need Attention.</h1>
+      <div class="deck">
+        Your tiresome AI-detection flex is a myth. Your posts aren't insight — they're clickbait.
+        And the data proves it.
+      </div>
+      <div class="meta">
+        by <span class="author">C. Pete Connor</span> &nbsp;•&nbsp; April 2025 &nbsp;•&nbsp; ~12 min read
+      </div>
+    </div>
+
+    <!-- EXEC SUMMARY -->
+    <div class="section">
+      <div class="section-label">
+        <span class="tag">Executive Summary</span>
+        <span class="note">— what you need to know in 60 seconds</span>
+      </div>
+      <div class="prose">
+        <p>LinkedIn is drowning in a myth: that people can instinctively spot AI-generated content. They can't. But that hasn't stopped hundreds of thousands from posting like they can — each one chasing attention, status, or both. This report cuts through the noise.</p>
+        <p>I used validated data to examine what's really happening on the platform. As of October 2024, <span class="data">54%</span> of all long-form LinkedIn posts (100+ words) are likely AI-generated. After ChatGPT launched, AI-authored content spiked <a href="https://www.newsbytesapp.com/news/science/more-than-half-of-long-linkedin-posts-are-ai-generated/story" target="_blank" rel="noopener"><span class="data">189%</span></a>. Despite this, a loud minority keeps pushing the same narrative: that their "gut" can sniff out synthetic prose. It's a viral delusion — and it shows up in <a href="https://www.linkedin.com/pulse/do-ai-detectors-flag-human-written-content-raj-khera-avaze" target="_blank" rel="noopener"><span class="data">12–18%</span></a> of all AI-related posts, week after week.</p>
+        <p>Through counterfactual analysis, I explore what the landscape might look like if this myth had never gained traction — or had been publicly debunked at scale. The results point to a sobering conclusion: the claim persists not because it's true, but because it flatters professional egos, feeds algorithmic engagement, and fills the vacuum left by real detection tools that don't work.</p>
+        <p>This matters. Not just because the myth is wrong — but because it slows down actual solutions, fuels false accusations (especially against non-native writers), and drives content inflation with zero gain in quality. Until the narrative changes, expect the same cycle: performative callouts, junk engagement, and another quarter-million posts pretending intuition is proof.</p>
+      </div>
+
+      <div class="stat-row">
+        <div class="stat-card cyan">
+          <div class="num">54%</div>
+          <div class="lbl">long-form LinkedIn posts likely AI-generated</div>
+        </div>
+        <div class="stat-card amber">
+          <div class="num">+189%</div>
+          <div class="lbl">spike in AI content after ChatGPT launch</div>
+        </div>
+        <div class="stat-card red">
+          <div class="num">12–18%</div>
+          <div class="lbl">of AI posts repeat the "I can tell" myth</div>
+        </div>
+        <div class="stat-card green">
+          <div class="num">0</div>
+          <div class="lbl">detectors that work reliably</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EM DASH NARRATIVE -->
+    <div class="section">
+      <div class="section-label">
+        <span class="tag amber">The Em-Dash Myth</span>
+        <span class="note">— where style paranoia meets platform theater</span>
+      </div>
+      <div class="prose">
+        <h3>Key Takeaway</h3>
+        <p>Between 2023 and 2025, a weirdly persistent belief took hold on LinkedIn: that em dashes (—) are proof a post was written by AI. Not only is that wrong — it's a masterclass in superficial detection theater.</p>
+
+        <h3>Where It Started (and Why It Spread)</h3>
+        <ul>
+          <li><strong>Viral bait:</strong> Threads called it the "ChatGPT hyphen." Catchy. Baseless.</li>
+          <li><strong>Accessibility fiction:</strong> Users claimed humans don't use em dashes because they're "hard to type." Tell that to Emily Dickinson, who used them like oxygen.</li>
+          <li><strong>Status signaling:</strong> Spotting em dashes became the new "I'm smarter than the algorithm" flex. It was never about accuracy — just attention.</li>
+        </ul>
+
+        <h3>Why the Claim Falls Apart</h3>
+        <ul>
+          <li><strong>Historical fact:</strong> Em dashes have been around since the 1830s. That's 190 years of human fingerprints on a punctuation mark now being flagged as robotic.</li>
+          <li><strong>Training data truth:</strong> AI didn't invent em dashes. It learned them — from us.</li>
+          <li><strong>Stylistic overlap:</strong> Humans and AI write similarly because AI was trained on human text. That's not convergence; it's inheritance.</li>
+          <li><strong>Detection failure:</strong> If you believe the myth, most 20th-century novels and every op-ed with a breath of style would be "suspicious."</li>
+        </ul>
+
+        <h3>The Bigger Problem</h3>
+        <ul>
+          <li><strong>Overconfidence bias:</strong> People love thinking they're intuitive detectors. They're not.</li>
+          <li><strong>Grammar witch-hunting:</strong> Common words and transitions like "furthermore" get tagged as "AI tells." Spoiler: they're just English.</li>
+          <li><strong>Corporate sludge:</strong> LinkedIn's content style is so formulaic that humans and bots sound the same. It's not AI's fault — it's the native tone.</li>
+        </ul>
+      </div>
+
+      <div class="pull-quote">
+        <div class="pq-text">
+          "The em dash isn't a sign of AI — it's a sign of a writer who knows how to use punctuation. For me, the em dash isn't just punctuation — it's a lifeline. My brain is always in hyperdrive, with ideas jumping around excitedly and thoughts connecting unpredictably. The em dash allows me to shift gears in my writing without causing a 10-car pileup of confused readers. If the biggest concern people have about authenticity is an em dash, they're missing the point completely. Writing is about connecting — by providing meaning, purpose, and value."
+        </div>
+        <div class="pq-attr">— a writer who actually thinks for a living</div>
+      </div>
+    </div>
+
+    <!-- PLATFORM COMPLICITY -->
+    <div class="section">
+      <div class="section-label">
+        <span class="tag red">Platform Performance</span>
+        <span class="note">— how LinkedIn built a myth and monetized the mayhem</span>
+      </div>
+      <div class="prose">
+        <p>Let's stop calling it complicity. LinkedIn didn't just let the human-detector myth spread — it benefits from it, feeds it, and quietly profits off the chaos.</p>
+        <ul>
+          <li><strong>House-brand AI with zero accountability:</strong> LinkedIn nudges users to rewrite posts with in-app AI tools — then offers no transparency, no tagging, no disclaimer. It's ghostwriting at scale, hidden in plain sight.</li>
+          <li><strong>Conflict equals clicks:</strong> The feed rewards tension. "I can tell this is ChatGPT" starts a fight. Fights generate comments. Comments juice the algo. Everyone wins — except the truth.</li>
+          <li><strong>Clout farming as detection theater:</strong> Posts that declare "I just knew" get rewarded like thought leadership. The wilder the claim, the better the engagement. It's not accuracy; it's algorithmic cosplay.</li>
+        </ul>
+        <p>Meanwhile, actual solutions — disclosure tools, source metadata, user education — are nowhere to be found. Why? Because solving the problem kills the outrage. And outrage drives traffic.</p>
+        <p>LinkedIn doesn't just allow misinformation. It's structured to turn it into influence. The platform didn't fail to fix the problem — it built an ecosystem where <em>the problem is the product</em>.</p>
+      </div>
+    </div>
+
+    <!-- COUNTERFACTUAL A -->
+    <div class="section">
+      <div class="section-label">
+        <span class="tag purple">Counterfactual A</span>
+        <span class="note">— if the claim had never circulated</span>
+      </div>
+      <table class="compare-table">
+        <thead>
+          <tr><th>Domain</th><th>Plausible Trajectory</th><th>Grounding in Data</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Discourse Tone</td>
+            <td>Fewer "victory-lap" posts about spotting ChatGPT; more neutral conversations on provenance and disclosure.</td>
+            <td>12–18% of AI-related posts repeat the claim; remove it and a sizable slice of polemic disappears.</td>
+          </tr>
+          <tr>
+            <td>Verification Norms</td>
+            <td>Earlier community shift toward objective signals (watermarks, source tags).</td>
+            <td>Current reliance on intuition is traceable to the claim's popularity; absent the trope, users must seek alternatives.</td>
+          </tr>
+          <tr>
+            <td>Trust Dynamics</td>
+            <td>Reduced public accusations of "fake authenticity," especially toward ESL writers.</td>
+            <td>Detector bias and false positives well-documented; fewer call-outs lowers collateral damage.</td>
+          </tr>
+          <tr>
+            <td>Platform Policy</td>
+            <td>LinkedIn invests in disclosure UX sooner, rather than surfacing unreliable detector scores.</td>
+            <td>Moderation-score visibility changes in Nov 2024 triggered a +189% spike in claim posts; without the claim, that policy feedback loop weakens.</td>
+          </tr>
+          <tr>
+            <td>Replacement Narratives</td>
+            <td>Likely rise of "AI-human collaboration" or "quality over origin" frames — still identity-affirming, but less adversarial.</td>
+            <td>Professionals need a status narrative; hashtag clusters serve that role today.</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="prose" style="margin-top: 14px;">
+        <p>Without the human-detector claim, professional discourse would likely have evolved toward more constructive frameworks centered on transparency and collaboration, rather than detection and conflict.</p>
+      </div>
+    </div>
+
+    <!-- COUNTERFACTUAL B -->
+    <div class="section">
+      <div class="section-label">
+        <span class="tag green">Counterfactual B</span>
+        <span class="note">— if the claim were debunked at scale</span>
+      </div>
+      <table class="compare-table">
+        <thead>
+          <tr><th>Domain</th><th>Expected Effect</th><th>Why This Follows</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>User Behavior</td>
+            <td>"I-can-tell" posts fall well below 5% of AI threads; citation of peer-reviewed benchmarks becomes status currency.</td>
+            <td>Once 650k–975k repetitions lose credibility, repeating it carries reputational risk.</td>
+          </tr>
+          <tr>
+            <td>Hashtag Ecosystem</td>
+            <td>#HumanFirstAI and #AuthenticityMatters lose share; tags like #AITransparency gain.</td>
+            <td>Posts under #HumanFirstAI carry the claim 2.3× above baseline. Remove the claim, remove the multiplier.</td>
+          </tr>
+          <tr>
+            <td>Algorithmic Ranking</td>
+            <td>Controversy-driven engagement dips; LinkedIn pivots feed incentives toward constructive governance content.</td>
+            <td>Current spikes (+217% Apr 2024, +189% Nov 2024) are engagement gold; debunking cuts that fuel.</td>
+          </tr>
+          <tr>
+            <td>Tool Evolution</td>
+            <td>Detector vendors shift from text-only heuristics to provenance metadata; investors follow.</td>
+            <td>High false-positive rates and bias — clear market signals once hype subsides.</td>
+          </tr>
+          <tr>
+            <td>Norms Around AI Content</td>
+            <td>Consensus ethic becomes "disclose usage, judge substance."</td>
+            <td>Both automated and human detection are unreliable; disclosure is the logical fallback.</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="prose" style="margin-top: 14px;">
+        <p>An authoritative debunking would accelerate disclosure mechanisms and provenance solutions, redirecting attention from detection to transparency.</p>
+      </div>
+    </div>
+
+    <!-- WHY IT WON'T DIE -->
+    <div class="section">
+      <div class="section-label">
+        <span class="tag red">Why This Nonsense Won't Die</span>
+        <span class="note">— four feedback loops keeping the myth alive</span>
+      </div>
+      <div class="prose">
+        <h3>1. It makes people feel smart.</h3>
+        <p>Saying "I can tell" is easier than admitting you have no idea.</p>
+        <h3>2. It gets clicks.</h3>
+        <p>Outrage and fake certainty rack up comments. That's exactly what LinkedIn pushes.</p>
+        <h3>3. It saves LinkedIn from doing real work.</h3>
+        <p>Fake tools, no labels, zero fixes — just vibes.</p>
+        <h3>4. It keeps evolving.</h3>
+        <p>The next lie is, "Well I can tell, even if others can't."</p>
+        <p style="margin-top: 18px;"><strong>Bottom line:</strong> The myth sticks because it feeds egos, farms engagement, and lets platforms dodge responsibility. Nobody cares if it's true — only if it performs.</p>
+      </div>
+    </div>
+
+    <!-- CLOSING SHOT -->
+    <div class="section" style="background: linear-gradient(135deg, rgba(248,113,113,0.04), rgba(245,158,11,0.02)); border-color: rgba(248,113,113,0.25);">
+      <div class="section-label">
+        <span class="tag red">Mic Drop</span>
+        <span class="note">— the closing argument</span>
+      </div>
+      <div class="prose">
+        <p>If you're still flexing that you can "spot AI," congrats — you've noticed what everyone else clocked two years ago and somehow think it's a revelation.</p>
+        <p>You're not a savant. You're late to the party and yelling about the leftovers like they're breaking news.</p>
+        <p>The loudest voices claiming AI is killing creativity are the ones spending all their time performing outrage instead of actually creating anything. These are the folks who say, "AI is ruining writing!" — right before they hit post on a LinkedIn monologue made entirely of melodrama, anecdote, and a desperate need for attention. If they spent half as much time honing their craft as they do declaring its death, we might actually get some decent prose out of them.</p>
+        <p><strong>Let's be real:</strong> If <span class="data">54%</span> of long-form LinkedIn posts are AI-generated, every time you point and guess you've got coin-flip odds. That's not insight. That's roulette in a hoodie.</p>
+        <p>So no — you didn't "just know." And no — it's not helpful. You're not raising the bar; you're clogging the feed with self-importance dressed as wisdom.</p>
+        <p>Either get serious about real solutions — transparency, disclosure, actual accountability — or get out of the way.</p>
+        <p style="margin-top: 18px;"><strong>Because this myth doesn't need more parrots. It needs a funeral.</strong></p>
+      </div>
+    </div>
+
+    <!-- SOURCES -->
+    <div class="section">
+      <div class="section-label">
+        <span class="tag">Sources</span>
+        <span class="note">— validated data &amp; references</span>
+      </div>
+      <ol class="source-list">
+        <li><span class="num">[1]</span> Half of LinkedIn posts AI-Generated — <a href="https://fudzilla.com/news/ai/60155-half-of-linkedin-posts-ai-generated" target="_blank" rel="noopener">fudzilla.com</a></li>
+        <li><span class="num">[2]</span> AI Was Born to Blog on LinkedIn — <a href="https://gizmodo.com/ai-was-born-to-blog-on-linkedin-2000530842" target="_blank" rel="noopener">gizmodo.com</a></li>
+        <li><span class="num">[3]</span> Study: Over half of LinkedIn posts now AI-generated — <a href="https://mindmatters.ai/brief/study-over-half-of-linkedin-posts-now-ai-generated/" target="_blank" rel="noopener">mindmatters.ai</a></li>
+        <li><span class="num">[4]</span> Originality.AI: 54% of long-form LinkedIn posts are AI-generated — <a href="https://originality.ai/blog/ai-content-published-linkedin" target="_blank" rel="noopener">originality.ai</a></li>
+        <li><span class="num">[5]</span> Newsbytes: Over 54% of LinkedIn posts are AI-generated — <a href="https://www.newsbytesapp.com/news/science/more-than-half-of-long-linkedin-posts-are-ai-generated/story" target="_blank" rel="noopener">newsbytesapp.com</a></li>
+        <li><span class="num">[6]</span> Do AI Detectors Flag Human-Written Content? — <a href="https://www.linkedin.com/pulse/do-ai-detectors-flag-human-written-content-raj-khera-avaze" target="_blank" rel="noopener">linkedin.com</a></li>
+        <li><span class="num">[7]</span> The Great Hoax: AI-Plagiarism Detectors — <a href="https://www.linkedin.com/pulse/great-hoax-ai-plagiarism-detectors-ruchir-bakshi-sqoxe" target="_blank" rel="noopener">linkedin.com</a></li>
+        <li><span class="num">[8]</span> The Truth About AI Detectors — <a href="https://www.linkedin.com/pulse/truth-ai-detectors-deon-van-zyl-kwf3f" target="_blank" rel="noopener">linkedin.com</a></li>
+        <li><span class="num">[9]</span> The Flawed Promise of AI Detection — <a href="https://www.linkedin.com/pulse/flawed-promise-ai-detection-why-accuracy-reliability-out-schonewille-t9htc" target="_blank" rel="noopener">linkedin.com</a></li>
+        <li><span class="num">[10]</span> OpenAI: AI Text Classifier retired — <a href="https://openai.com/blog/new-ai-classifier-for-indicating-ai-written-text" target="_blank" rel="noopener">openai.com</a></li>
+      </ol>
+    </div>
+
+    <!-- STATS BAR -->
+    <div class="stats-bar">
+      Published April 2025 &nbsp;•&nbsp; ~12 min read &nbsp;•&nbsp; AI Detection · CX · Platform Governance
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+      <div class="org">AI Reality Check &nbsp;•&nbsp; Connor Advisors LLC</div>
+      <div class="by">Built by <span class="name">C. Pete Connor</span> &nbsp;•&nbsp; AI/ML CX Consultant</div>
+      <div class="quote">"Turning theory into operational reality."</div>
+      <div class="social">
+        <a href="https://www.linkedin.com/in/peteconnor" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/UsernameTron" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://substack.com/@cpconnor" target="_blank" rel="noopener">Substack</a>
+        <a href="https://medium.com/@cpeteconnor" target="_blank" rel="noopener">Medium</a>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

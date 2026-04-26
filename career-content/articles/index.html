@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.youtube.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: blob:; frame-src https://www.youtube.com; connect-src 'self' https://raw.githubusercontent.com; object-src 'none'">
+
+  <title>Articles — AI Reality Check</title>
+  <meta name="description" content="Long-form analysis on AI detection, counterfactual reasoning, ML in BPO turnover, and LinkedIn algorithm visibility. By C. Pete Connor.">
+  <meta name="author" content="C. Pete Connor">
+  <meta name="robots" content="index, follow">
+
+  <link rel="canonical" href="https://airealitycheck.org/career-content/articles/">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="AI Reality Check">
+  <meta property="og:title" content="Articles — AI Reality Check">
+  <meta property="og:description" content="Long-form analysis on AI in CX, BPO, and the visibility economy.">
+  <meta property="og:url" content="https://airealitycheck.org/career-content/articles/">
+  <meta property="og:image" content="https://airealitycheck.org/images/profile.jpeg">
+  <meta property="og:image:alt" content="AI Reality Check banner">
+  <meta property="og:locale" content="en_US">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Articles — AI Reality Check">
+  <meta name="twitter:description" content="Long-form analysis on AI in CX, BPO, and the visibility economy.">
+  <meta name="twitter:image" content="https://airealitycheck.org/images/profile.jpeg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #09090b;
+      --surface: #111113;
+      --surface-2: #18181b;
+      --border: #27272a;
+      --text: #e4e4e7;
+      --muted: #71717a;
+      --dim: #a1a1aa;
+      --green: #34d399;
+      --green-dim: rgba(52,211,153,0.12);
+      --green-glow: rgba(52,211,153,0.25);
+      --cyan: #22d3ee;
+      --cyan-dim: rgba(34,211,238,0.1);
+      --amber: #f59e0b;
+      --amber-dim: rgba(245,158,11,0.1);
+      --purple: #a78bfa;
+      --purple-dim: rgba(167,139,250,0.1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg); color: var(--text);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      min-height: 100vh; padding: 18px 20px 24px; overflow-x: hidden;
+    }
+
+    body::before {
+      content: ''; position: fixed; inset: 0;
+      background-image:
+        linear-gradient(rgba(52,211,153,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(52,211,153,0.02) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none; z-index: 0;
+    }
+
+    .wrapper { position: relative; z-index: 1; max-width: 880px; margin: 0 auto; }
+
+    a { color: var(--green); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .top-nav {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 8px 0 16px; border-bottom: 1px solid var(--border);
+      margin-bottom: 28px;
+      font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    }
+    .top-nav .brand { color: var(--green); font-weight: 600; letter-spacing: 0.5px; }
+    .top-nav nav { display: flex; gap: 18px; }
+    .top-nav nav a { color: var(--muted); text-decoration: none; transition: color 0.15s; }
+    .top-nav nav a:hover { color: var(--green); }
+    .top-nav nav a.active { color: var(--text); }
+
+    .header {
+      text-align: center; margin-bottom: 28px;
+      padding: 16px 0 20px; position: relative;
+    }
+    .header::after {
+      content: ''; display: block; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--green), transparent);
+      margin-top: 24px; opacity: 0.4;
+    }
+    .header h1 {
+      font-size: 28px; font-weight: 800; letter-spacing: -0.5px;
+      color: var(--text); margin-top: 12px;
+    }
+    .header h1 .accent { color: var(--cyan); }
+    .header p {
+      font-size: 12px; color: var(--muted); margin-top: 6px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .header .lede {
+      font-size: 15px; color: var(--text); margin-top: 18px;
+      max-width: 600px; margin-left: auto; margin-right: auto;
+      line-height: 1.6; font-weight: 500;
+    }
+
+    .glow-orb {
+      position: absolute; width: 380px; height: 140px;
+      background: radial-gradient(ellipse at center, rgba(34,211,238,0.08) 0%, transparent 70%);
+      top: 0; left: 50%; transform: translateX(-50%); pointer-events: none;
+    }
+
+    .version-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--cyan-dim); border: 1px solid var(--cyan); color: var(--cyan);
+      font-family: 'JetBrains Mono', monospace; font-size: 10px;
+      padding: 3px 10px; border-radius: 99px;
+    }
+
+    .section { margin-bottom: 24px; position: relative; }
+    .section-label { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; flex-wrap: wrap; }
+    .section-label .tag {
+      font-size: 10px; font-weight: 700; letter-spacing: 1.8px;
+      color: var(--cyan); text-transform: uppercase;
+    }
+    .section-label .note { font-size: 11px; color: var(--muted); }
+    .section-label::after {
+      content: ''; flex: 1; height: 1px; background: var(--border); margin-left: 4px;
+    }
+
+    /* ARTICLE LIST */
+    .article-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .article-card {
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      padding: 18px 22px;
+      color: inherit;
+      text-decoration: none;
+      display: block;
+      transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+      position: relative;
+    }
+    .article-card:hover {
+      transform: translateY(-2px);
+      text-decoration: none;
+    }
+    .article-card.cyan:hover   { border-color: var(--cyan);   box-shadow: 0 0 18px rgba(34,211,238,0.2); }
+    .article-card.green:hover  { border-color: var(--green);  box-shadow: 0 0 18px var(--green-glow); }
+    .article-card.amber:hover  { border-color: var(--amber);  box-shadow: 0 0 18px rgba(245,158,11,0.18); }
+    .article-card.purple:hover { border-color: var(--purple); box-shadow: 0 0 18px rgba(167,139,250,0.2); }
+
+    .article-meta {
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 10px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9.5px; letter-spacing: 1px; text-transform: uppercase;
+    }
+    .article-card.cyan   .article-meta .topic { color: var(--cyan); }
+    .article-card.green  .article-meta .topic { color: var(--green); }
+    .article-card.amber  .article-meta .topic { color: var(--amber); }
+    .article-card.purple .article-meta .topic { color: var(--purple); }
+    .article-meta .read-time { color: var(--muted); }
+    .article-meta .dot { color: var(--muted); }
+
+    .article-card h2 {
+      font-size: 18px; font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.3px; line-height: 1.3;
+      margin-bottom: 8px;
+    }
+    .article-card .deck {
+      font-size: 13px; color: var(--dim);
+      line-height: 1.65;
+      max-width: 640px;
+    }
+    .article-card .read-cta {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px; font-weight: 600;
+      margin-top: 12px;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .article-card.cyan   .read-cta { color: var(--cyan); }
+    .article-card.green  .read-cta { color: var(--green); }
+    .article-card.amber  .read-cta { color: var(--amber); }
+    .article-card.purple .read-cta { color: var(--purple); }
+    .article-card .read-cta .arrow { transition: transform 0.18s; display: inline-block; }
+    .article-card:hover .read-cta .arrow { transform: translateX(4px); }
+
+    /* STATS BAR */
+    .stats-bar {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 8px; padding: 12px 20px;
+      text-align: center;
+      font-family: 'JetBrains Mono', monospace; font-size: 10.5px;
+      color: var(--cyan); letter-spacing: 0.4px;
+      margin-top: 24px;
+    }
+
+    /* FOOTER */
+    .footer { text-align: center; margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--border); }
+    .footer .org { font-size: 11px; color: var(--muted); margin-bottom: 4px; }
+    .footer .by { font-size: 10px; color: var(--muted); }
+    .footer .by .name { color: var(--text); font-weight: 600; }
+    .footer .quote { font-size: 9px; color: var(--muted); margin-top: 8px; font-family: 'JetBrains Mono', monospace; }
+    .footer .social { margin-top: 14px; display: flex; gap: 18px; justify-content: center; font-family: 'JetBrains Mono', monospace; font-size: 10px; }
+    .footer .social a { color: var(--muted); text-decoration: none; transition: color 0.15s; }
+    .footer .social a:hover { color: var(--green); }
+
+    @media (max-width: 600px) {
+      body { padding: 12px 14px 18px; }
+      .header h1 { font-size: 24px; }
+      .article-card { padding: 14px 16px; }
+      .article-card h2 { font-size: 16px; }
+      .top-nav { font-size: 10px; }
+      .top-nav nav { gap: 12px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+
+    <!-- TOP NAV -->
+    <div class="top-nav">
+      <a href="/" class="brand">ARC // AI REALITY CHECK</a>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/career-content/">About</a>
+        <a href="/career-content/articles/" class="active">Articles</a>
+        <a href="/career-content/portfolio/">Portfolio</a>
+        <a href="/career-content/tools-and-resources/">Tools &amp; Resources</a>
+      </nav>
+    </div>
+
+    <!-- HEADER -->
+    <div class="header">
+      <div class="glow-orb"></div>
+      <div class="version-badge">articles / long-form analysis</div>
+      <h1><span class="accent">The</span> Analysis</h1>
+      <p>arguments worth making // not opinions worth holding</p>
+      <div class="lede">
+        Long-form arguments on AI detection, counterfactual reasoning, ML in BPO turnover,
+        and how the LinkedIn algorithm actually works.
+      </div>
+    </div>
+
+    <!-- ARTICLE LIST -->
+    <div class="section">
+      <div class="section-label">
+        <span class="tag">Published</span>
+        <span class="note">— newest first</span>
+      </div>
+      <div class="article-list">
+
+        <a href="/career-content/articles/detection.html" class="article-card cyan">
+          <div class="article-meta">
+            <span class="topic">AI Detection</span>
+            <span class="dot">•</span>
+            <span class="read-time">~12 min read</span>
+          </div>
+          <h2>You Can't Detect Content Created by AI. You Just Need Attention.</h2>
+          <div class="deck">
+            Why every AI detection tool on the market is a liability dressed as a solution,
+            and what content authenticity actually requires when the model writes better than the auditor.
+          </div>
+          <div class="read-cta">read the analysis <span class="arrow">→</span></div>
+        </a>
+
+        <a href="/career-content/articles/counterfactual-reasoning-html.html" class="article-card green">
+          <div class="article-meta">
+            <span class="topic">CX Strategy</span>
+            <span class="dot">•</span>
+            <span class="read-time">~14 min read</span>
+          </div>
+          <h2>Unlocking What Didn't Happen</h2>
+          <div class="deck">
+            Applying counterfactual reasoning to fix your customer and employee experience.
+            Most contact centers optimize what already happened. The real value is in the near-misses
+            you never see.
+          </div>
+          <div class="read-cta">read the analysis <span class="arrow">→</span></div>
+        </a>
+
+        <a href="/career-content/articles/ml-bpo-turnover.html" class="article-card amber">
+          <div class="article-meta">
+            <span class="topic">ML in BPO</span>
+            <span class="dot">•</span>
+            <span class="read-time">~10 min read</span>
+          </div>
+          <h2>ML-Driven Turnover Prediction in BPO Environments</h2>
+          <div class="deck">
+            How machine learning models can reduce employee attrition and save millions in BPO
+            environments. Where the data lives, what features actually predict, and what to do
+            with the prediction.
+          </div>
+          <div class="read-cta">read the analysis <span class="arrow">→</span></div>
+        </a>
+
+        <a href="/career-content/articles/linkedin-visibility-google-style.html" class="article-card purple">
+          <div class="article-meta">
+            <span class="topic">Algorithm Analysis</span>
+            <span class="dot">•</span>
+            <span class="read-time">~11 min read</span>
+          </div>
+          <h2>LinkedIn Visibility — A Plain-Language Deep-Dive</h2>
+          <div class="deck">
+            A clear-spoken look at the data behind reach, bias, and the hidden rules of the
+            LinkedIn feed. What gets seen, what gets buried, and why your engagement metrics lie.
+          </div>
+          <div class="read-cta">read the analysis <span class="arrow">→</span></div>
+        </a>
+
+      </div>
+    </div>
+
+    <!-- STATS BAR -->
+    <div class="stats-bar">
+      4 articles &nbsp;•&nbsp; ~47 min total read &nbsp;•&nbsp; AI / CX / BPO / Algorithms
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+      <div class="org">AI Reality Check &nbsp;•&nbsp; Connor Advisors LLC</div>
+      <div class="by">Built by <span class="name">C. Pete Connor</span> &nbsp;•&nbsp; AI/ML CX Consultant</div>
+      <div class="quote">"Turning theory into operational reality."</div>
+      <div class="social">
+        <a href="https://www.linkedin.com/in/peteconnor" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/UsernameTron" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://substack.com/@cpconnor" target="_blank" rel="noopener">Substack</a>
+        <a href="https://medium.com/@cpeteconnor" target="_blank" rel="noopener">Medium</a>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

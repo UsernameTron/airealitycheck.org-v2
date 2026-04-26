@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.youtube.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: blob:; frame-src https://www.youtube.com; connect-src 'self' https://raw.githubusercontent.com; object-src 'none'">
+
+  <title>Portfolio — AI Reality Check</title>
+  <meta name="description" content="Live AI/ML projects, source repositories, and shipped systems. Cortex, WFM AI, AISauce, Fun-With-Sora — working systems by C. Pete Connor.">
+  <meta name="author" content="C. Pete Connor">
+  <meta name="robots" content="index, follow">
+
+  <link rel="canonical" href="https://airealitycheck.org/career-content/portfolio/">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="AI Reality Check">
+  <meta property="og:title" content="Portfolio — AI Reality Check">
+  <meta property="og:description" content="Live AI/ML projects and source repositories.">
+  <meta property="og:url" content="https://airealitycheck.org/career-content/portfolio/">
+  <meta property="og:image" content="https://airealitycheck.org/images/profile.jpeg">
+  <meta property="og:image:alt" content="AI Reality Check banner">
+  <meta property="og:locale" content="en_US">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Portfolio — AI Reality Check">
+  <meta name="twitter:description" content="Live AI/ML projects and source repositories.">
+  <meta name="twitter:image" content="https://airealitycheck.org/images/profile.jpeg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #09090b;
+      --surface: #111113;
+      --surface-2: #18181b;
+      --border: #27272a;
+      --text: #e4e4e7;
+      --muted: #71717a;
+      --dim: #a1a1aa;
+      --green: #34d399;
+      --green-dim: rgba(52,211,153,0.12);
+      --green-glow: rgba(52,211,153,0.25);
+      --cyan: #22d3ee;
+      --cyan-dim: rgba(34,211,238,0.1);
+      --amber: #f59e0b;
+      --amber-dim: rgba(245,158,11,0.1);
+      --purple: #a78bfa;
+      --purple-dim: rgba(167,139,250,0.1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg); color: var(--text);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      min-height: 100vh; padding: 18px 20px 24px; overflow-x: hidden;
+    }
+
+    body::before {
+      content: ''; position: fixed; inset: 0;
+      background-image:
+        linear-gradient(rgba(52,211,153,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(52,211,153,0.02) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none; z-index: 0;
+    }
+
+    .wrapper { position: relative; z-index: 1; max-width: 880px; margin: 0 auto; }
+
+    a { color: var(--green); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .top-nav {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 8px 0 16px; border-bottom: 1px solid var(--border);
+      margin-bottom: 28px;
+      font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    }
+    .top-nav .brand { color: var(--green); font-weight: 600; letter-spacing: 0.5px; }
+    .top-nav nav { display: flex; gap: 18px; }
+    .top-nav nav a { color: var(--muted); text-decoration: none; transition: color 0.15s; }
+    .top-nav nav a:hover { color: var(--green); }
+    .top-nav nav a.active { color: var(--text); }
+
+    .header {
+      text-align: center; margin-bottom: 28px;
+      padding: 16px 0 20px; position: relative;
+    }
+    .header::after {
+      content: ''; display: block; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--purple), transparent);
+      margin-top: 24px; opacity: 0.4;
+    }
+    .header h1 {
+      font-size: 28px; font-weight: 800; letter-spacing: -0.5px;
+      color: var(--text); margin-top: 12px;
+    }
+    .header h1 .accent { color: var(--purple); }
+    .header p {
+      font-size: 12px; color: var(--muted); margin-top: 6px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .header .lede {
+      font-size: 15px; color: var(--text); margin-top: 18px;
+      max-width: 600px; margin-left: auto; margin-right: auto;
+      line-height: 1.6; font-weight: 500;
+    }
+
+    .glow-orb {
+      position: absolute; width: 380px; height: 140px;
+      background: radial-gradient(ellipse at center, rgba(167,139,250,0.08) 0%, transparent 70%);
+      top: 0; left: 50%; transform: translateX(-50%); pointer-events: none;
+    }
+
+    .version-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--purple-dim); border: 1px solid var(--purple); color: var(--purple);
+      font-family: 'JetBrains Mono', monospace; font-size: 10px;
+      padding: 3px 10px; border-radius: 99px;
+    }
+
+    .section { margin-bottom: 28px; position: relative; }
+    .section-label { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; flex-wrap: wrap; }
+    .section-label .tag {
+      font-size: 10px; font-weight: 700; letter-spacing: 1.8px;
+      color: var(--purple); text-transform: uppercase;
+    }
+    .section-label .note { font-size: 11px; color: var(--muted); }
+    .section-label::after {
+      content: ''; flex: 1; height: 1px; background: var(--border); margin-left: 4px;
+    }
+
+    /* PROJECT GRID */
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+    .project-card {
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      padding: 18px 20px;
+      color: inherit;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+      min-height: 180px;
+    }
+    .project-card:hover {
+      transform: translateY(-2px);
+      text-decoration: none;
+    }
+    .project-card.cyan:hover   { border-color: var(--cyan);   box-shadow: 0 0 18px rgba(34,211,238,0.2); }
+    .project-card.green:hover  { border-color: var(--green);  box-shadow: 0 0 18px var(--green-glow); }
+    .project-card.amber:hover  { border-color: var(--amber);  box-shadow: 0 0 18px rgba(245,158,11,0.18); }
+    .project-card.purple:hover { border-color: var(--purple); box-shadow: 0 0 18px rgba(167,139,250,0.2); }
+
+    .project-meta {
+      display: flex; align-items: center; gap: 8px;
+      margin-bottom: 10px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px; letter-spacing: 1.2px; text-transform: uppercase;
+    }
+    .project-card.cyan   .project-meta .type { color: var(--cyan); }
+    .project-card.green  .project-meta .type { color: var(--green); }
+    .project-card.amber  .project-meta .type { color: var(--amber); }
+    .project-card.purple .project-meta .type { color: var(--purple); }
+    .project-meta .stack { color: var(--muted); }
+    .project-meta .dot { color: var(--muted); }
+
+    .project-card .pname {
+      font-size: 17px; font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.2px; line-height: 1.3;
+      margin-bottom: 6px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .project-card .pdesc {
+      font-size: 12.5px; color: var(--dim);
+      line-height: 1.6;
+      flex: 1; margin-bottom: 12px;
+    }
+    .project-card .pcta {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px; font-weight: 600;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .project-card.cyan   .pcta { color: var(--cyan); }
+    .project-card.green  .pcta { color: var(--green); }
+    .project-card.amber  .pcta { color: var(--amber); }
+    .project-card.purple .pcta { color: var(--purple); }
+    .project-card .pcta .arrow { transition: transform 0.18s; display: inline-block; }
+    .project-card:hover .pcta .arrow { transform: translateX(4px); }
+
+    /* HIRING CTA */
+    .hiring-block {
+      background: linear-gradient(135deg, rgba(167,139,250,0.08), rgba(34,211,238,0.04));
+      border: 1px solid rgba(167,139,250,0.25);
+      border-radius: 10px;
+      padding: 20px 24px;
+      text-align: center;
+      margin-top: 8px;
+    }
+    .hiring-block .htitle {
+      font-size: 16px; font-weight: 800;
+      color: var(--text); margin-bottom: 8px;
+      letter-spacing: -0.2px;
+    }
+    .hiring-block .hsub {
+      font-size: 12.5px; color: var(--dim);
+      line-height: 1.6;
+      max-width: 540px; margin: 0 auto 14px;
+    }
+    .hiring-block .hbuttons {
+      display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;
+    }
+    .hbtn {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--purple-dim); border: 1.5px solid var(--purple); color: var(--purple);
+      font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600;
+      padding: 8px 14px; border-radius: 6px;
+      text-decoration: none;
+      transition: background 0.15s, box-shadow 0.15s;
+    }
+    .hbtn:hover { background: rgba(167,139,250,0.2); box-shadow: 0 0 16px rgba(167,139,250,0.25); text-decoration: none; }
+    .hbtn.alt {
+      background: transparent; border-color: var(--border); color: var(--text);
+    }
+    .hbtn.alt:hover { border-color: var(--cyan); color: var(--cyan); box-shadow: 0 0 16px rgba(34,211,238,0.15); background: transparent; }
+
+    /* STATS BAR */
+    .stats-bar {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 8px; padding: 12px 20px;
+      text-align: center;
+      font-family: 'JetBrains Mono', monospace; font-size: 10.5px;
+      color: var(--purple); letter-spacing: 0.4px;
+      margin-top: 24px;
+    }
+
+    /* FOOTER */
+    .footer { text-align: center; margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--border); }
+    .footer .org { font-size: 11px; color: var(--muted); margin-bottom: 4px; }
+    .footer .by { font-size: 10px; color: var(--muted); }
+    .footer .by .name { color: var(--text); font-weight: 600; }
+    .footer .quote { font-size: 9px; color: var(--muted); margin-top: 8px; font-family: 'JetBrains Mono', monospace; }
+    .footer .social { margin-top: 14px; display: flex; gap: 18px; justify-content: center; font-family: 'JetBrains Mono', monospace; font-size: 10px; }
+    .footer .social a { color: var(--muted); text-decoration: none; transition: color 0.15s; }
+    .footer .social a:hover { color: var(--green); }
+
+    @media (max-width: 720px) {
+      .project-grid { grid-template-columns: 1fr; }
+      .project-card { min-height: auto; }
+    }
+    @media (max-width: 600px) {
+      body { padding: 12px 14px 18px; }
+      .header h1 { font-size: 24px; }
+      .top-nav { font-size: 10px; }
+      .top-nav nav { gap: 12px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+
+    <!-- TOP NAV -->
+    <div class="top-nav">
+      <a href="/" class="brand">ARC // AI REALITY CHECK</a>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/career-content/">About</a>
+        <a href="/career-content/articles/">Articles</a>
+        <a href="/career-content/portfolio/" class="active">Portfolio</a>
+        <a href="/career-content/tools-and-resources/">Tools &amp; Resources</a>
+      </nav>
+    </div>
+
+    <!-- HEADER -->
+    <div class="header">
+      <div class="glow-orb"></div>
+      <div class="version-badge">portfolio / shipped systems</div>
+      <h1><span class="accent">The</span> Work</h1>
+      <p>working systems // not concept art</p>
+      <div class="lede">
+        Live demos and source repos. Click through to the working version, not screenshots.
+      </div>
+    </div>
+
+    <!-- LIVE DEMOS -->
+    <div class="section">
+      <div class="section-label">
+        <span class="tag">Live Demos</span>
+        <span class="note">— hosted, click to launch</span>
+      </div>
+      <div class="project-grid">
+
+        <a href="https://cpconnorcortex.netlify.app/" target="_blank" rel="noopener" class="project-card cyan">
+          <div class="project-meta">
+            <span class="type">Live Demo</span>
+            <span class="dot">•</span>
+            <span class="stack">netlify · ai knowledge system</span>
+          </div>
+          <div class="pname">cortex</div>
+          <div class="pdesc">
+            AI-powered knowledge interface. Dark-mode operational design language.
+            Built to demonstrate how AI surfaces the right answer at the right depth
+            without making the user think about retrieval.
+          </div>
+          <div class="pcta">launch demo <span class="arrow">↗</span></div>
+        </a>
+
+        <a href="https://cpconnorwfm.netlify.app/" target="_blank" rel="noopener" class="project-card cyan">
+          <div class="project-meta">
+            <span class="type">Live Demo</span>
+            <span class="dot">•</span>
+            <span class="stack">netlify · workforce ai</span>
+          </div>
+          <div class="pname">wfm-ai</div>
+          <div class="pdesc">
+            Workforce management AI tooling for contact center forecasting and scheduling.
+            The kind of operational AI that gets adopted because it solves the WFM analyst's
+            actual problem, not the vendor's slide.
+          </div>
+          <div class="pcta">launch demo <span class="arrow">↗</span></div>
+        </a>
+
+      </div>
+    </div>
+
+    <!-- SOURCE REPOS -->
+    <div class="section">
+      <div class="section-label">
+        <span class="tag">Source Repositories</span>
+        <span class="note">— github, public</span>
+      </div>
+      <div class="project-grid">
+
+        <a href="https://github.com/UsernameTron/AISauce" target="_blank" rel="noopener" class="project-card purple">
+          <div class="project-meta">
+            <span class="type">Open Source</span>
+            <span class="dot">•</span>
+            <span class="stack">github · python · prompt toolkit</span>
+          </div>
+          <div class="pname">AISauce</div>
+          <div class="pdesc">
+            Open-source AI utilities and prompt engineering toolkit. Reusable patterns
+            for production prompt design, evaluation harnesses, and the boring infrastructure
+            that makes LLMs actually useful.
+          </div>
+          <div class="pcta">view repo <span class="arrow">↗</span></div>
+        </a>
+
+        <a href="https://github.com/UsernameTron/Fun-With-Sora" target="_blank" rel="noopener" class="project-card purple">
+          <div class="project-meta">
+            <span class="type">Open Source</span>
+            <span class="dot">•</span>
+            <span class="stack">github · video · sora prompts</span>
+          </div>
+          <div class="pname">Fun-With-Sora</div>
+          <div class="pdesc">
+            Sora video generation experiments. Prompt patterns, generation pipelines,
+            and the thing nobody talks about — what fails and why. Working notes published openly.
+          </div>
+          <div class="pcta">view repo <span class="arrow">↗</span></div>
+        </a>
+
+      </div>
+    </div>
+
+    <!-- COMING NEXT -->
+    <div class="section">
+      <div class="section-label">
+        <span class="tag">In Progress</span>
+        <span class="note">— shipped soon</span>
+      </div>
+      <div style="background: var(--surface); border: 1.5px dashed var(--border); border-radius: 10px; padding: 20px 24px; text-align: center;">
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--amber); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px;">building now</div>
+        <div style="font-size: 14px; color: var(--text); font-weight: 600; margin-bottom: 4px;">CTG AI Platform</div>
+        <div style="font-size: 12px; color: var(--dim); line-height: 1.6; max-width: 540px; margin: 0 auto;">
+          Production AI implementation work for Cloud Tech Gurus clients. FastAPI-backed
+          platform for contact center and BPO AI deployments. Public case studies and demos
+          when client agreements allow.
+        </div>
+      </div>
+    </div>
+
+    <!-- HIRING CTA -->
+    <div class="section">
+      <div class="hiring-block">
+        <div class="htitle">Looking for someone to ship AI in a CX organization?</div>
+        <div class="hsub">
+          Open to CX Director, AI leadership, and senior consulting engagements.
+          DFW or remote, full-time or fractional.
+        </div>
+        <div class="hbuttons">
+          <a href="https://www.linkedin.com/in/peteconnor" target="_blank" rel="noopener" class="hbtn">
+            connect on linkedin →
+          </a>
+          <a href="/career-content/" class="hbtn alt">
+            about the practice →
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- STATS BAR -->
+    <div class="stats-bar">
+      2 live demos &nbsp;•&nbsp; 2 open-source repos &nbsp;•&nbsp; 1 platform in production &nbsp;•&nbsp; comp tied to outcomes
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+      <div class="org">AI Reality Check &nbsp;•&nbsp; Connor Advisors LLC</div>
+      <div class="by">Built by <span class="name">C. Pete Connor</span> &nbsp;•&nbsp; AI/ML CX Consultant</div>
+      <div class="quote">"Turning theory into operational reality."</div>
+      <div class="social">
+        <a href="https://www.linkedin.com/in/peteconnor" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/UsernameTron" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://substack.com/@cpconnor" target="_blank" rel="noopener">Substack</a>
+        <a href="https://medium.com/@cpeteconnor" target="_blank" rel="noopener">Medium</a>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
