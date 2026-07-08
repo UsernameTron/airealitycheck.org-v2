@@ -66,7 +66,7 @@
       --surface-2: #18181b;
       --border: #27272a;
       --text: #e4e4e7;
-      --muted: #71717a;
+      --muted: #82828b;
       --dim: #a1a1aa;
       --green: #34d399;
       --green-dim: rgba(52,211,153,0.12);
@@ -227,6 +227,10 @@
       100% { stroke-dashoffset: 0; }
     }
     .flow-line-animated { stroke-dasharray: 4 4; animation: flowRight 0.8s linear infinite; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .pulse-dot, .flow-line-animated { animation: none; }
+    }
 
     /* THREE DOORS — large route cards */
     .doors-grid {

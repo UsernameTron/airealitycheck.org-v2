@@ -55,7 +55,7 @@
       --surface-2: #18181b;
       --border: #27272a;
       --text: #e4e4e7;
-      --muted: #71717a;
+      --muted: #82828b;
       --dim: #a1a1aa;
       --green: #34d399;
       --green-dim: rgba(52,211,153,0.12);
@@ -485,6 +485,10 @@
       background: var(--green);
       animation: pulse 2s infinite;
       flex-shrink: 0;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .pulse-dot, .flow-line-animated { animation: none; }
     }
 
     /* ---------- Footer ---------- */
