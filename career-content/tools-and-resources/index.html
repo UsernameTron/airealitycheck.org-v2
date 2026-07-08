@@ -199,21 +199,6 @@
     .resource-card .rcta .arrow { transition: transform 0.18s; display: inline-block; }
     .resource-card:hover .rcta .arrow { transform: translateX(4px); }
 
-    /* COMING SOON CARD */
-    .placeholder-card {
-      background: var(--surface);
-      border: 1.5px dashed var(--border);
-      border-radius: 10px;
-      padding: 18px 20px;
-      display: flex;
-      flex-direction: column;
-      min-height: 200px;
-      opacity: 0.6;
-    }
-    .placeholder-card .resource-meta .type { color: var(--muted); }
-    .placeholder-card .rname { color: var(--muted); }
-    .placeholder-card .rdesc { color: var(--muted); }
-
     /* STATS BAR */
     .stats-bar {
       background: var(--surface); border: 1px solid var(--border);
@@ -236,7 +221,7 @@
 
     @media (max-width: 720px) {
       .resource-grid { grid-template-columns: 1fr; }
-      .resource-card, .placeholder-card { min-height: auto; }
+      .resource-card { min-height: auto; }
     }
     @media (max-width: 600px) {
       body { padding: 12px 14px 18px; }
@@ -304,18 +289,6 @@
           <div class="rcta">launch tool <span class="arrow">→</span></div>
         </a>
 
-        <!-- Placeholder slot — replace with next tool when ready -->
-        <div class="placeholder-card">
-          <div class="resource-meta">
-            <span class="type">Coming Soon</span>
-          </div>
-          <div class="rname">More tools shipping soon</div>
-          <div class="rdesc">
-            Drop a new HTML file in this directory and copy the template card
-            block above to publish it here.
-          </div>
-        </div>
-
       </div>
     </div>
 
@@ -350,46 +323,12 @@
           <div class="rcta">download pdf <span class="arrow">↓</span></div>
         </a>
 
-        <!-- Placeholder slot — replace with next download when ready -->
-        <div class="placeholder-card">
-          <div class="resource-meta">
-            <span class="type">Coming Soon</span>
-          </div>
-          <div class="rname">More downloads in the queue</div>
-          <div class="rdesc">
-            Drop a file into <code style="color:var(--cyan); background:var(--surface-2); padding:0 4px; border-radius:3px; font-family:'JetBrains Mono',monospace; font-size:11px;">/downloads/</code> at the
-            site root and copy the template card block above.
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- HOW TO ADD MORE -->
-    <div class="section">
-      <div class="section-label">
-        <span class="tag cyan">Adding New Items</span>
-        <span class="note">— scaffold reference</span>
-      </div>
-      <div style="background: var(--surface-2); border: 1px solid var(--border); border-radius: 10px; padding: 18px 22px;">
-        <div style="font-size: 13px; color: var(--text); font-weight: 600; margin-bottom: 12px;">
-          To publish a new resource:
-        </div>
-        <ol style="font-size: 12.5px; color: var(--dim); line-height: 1.8; padding-left: 22px;">
-          <li><strong style="color: var(--text);">For a download</strong> — drop the file (PDF, ZIP, etc.) into <code style="color:var(--cyan); background:var(--surface); padding:1px 6px; border-radius:3px; font-family:'JetBrains Mono',monospace; font-size:11.5px;">/downloads/</code> at the repo root.</li>
-          <li><strong style="color: var(--text);">For an interactive tool</strong> — drop the HTML file into <code style="color:var(--cyan); background:var(--surface); padding:1px 6px; border-radius:3px; font-family:'JetBrains Mono',monospace; font-size:11.5px;">/career-content/tools-and-resources/</code>.</li>
-          <li>Open this page (<code style="color:var(--cyan); background:var(--surface); padding:1px 6px; border-radius:3px; font-family:'JetBrains Mono',monospace; font-size:11.5px;">index.html</code>) in your editor.</li>
-          <li>Find the comment block labeled <em>TEMPLATE — INTERACTIVE TOOL CARD</em> or <em>TEMPLATE — DOWNLOAD CARD</em>.</li>
-          <li>Copy the matching <code style="color:var(--cyan); background:var(--surface); padding:1px 6px; border-radius:3px; font-family:'JetBrains Mono',monospace; font-size:11.5px;">&lt;a class="resource-card"&gt;</code> block, paste it directly above its placeholder, and edit href, name, description, file size.</li>
-          <li>Replace the matching placeholder card with another fresh one (or remove the placeholder once the section is full).</li>
-          <li>Commit and push. GitHub Pages auto-deploys.</li>
-        </ol>
       </div>
     </div>
 
     <!-- STATS BAR -->
     <div class="stats-bar">
-      1 interactive tool &nbsp;•&nbsp; 1 download &nbsp;•&nbsp; scaffolded for more &nbsp;•&nbsp; free, no signup
+      1 interactive tool &nbsp;•&nbsp; 1 download &nbsp;•&nbsp; free, no signup
     </div>
 
     <!-- FOOTER -->
