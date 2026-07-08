@@ -3,9 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; object-src 'none'">
+
   <title>Prompt Engineering Workspace | AI Reality Check</title>
   <meta name="description" content="Interactive prompt engineering workspace for crafting, testing, and refining LLM prompts. Save templates, compare outputs, and iterate on AI workflows.">
   <meta name="author" content="C. Pete Connor">
+  <meta name="robots" content="index, follow">
 
   <!-- Canonical URL -->
   <link rel="canonical" href="https://airealitycheck.org/career-content/tools-and-resources/prompt-workspace.html">
@@ -44,8 +48,8 @@
       --bg-hover: #37373d;
       --text-primary: #cccccc;
       --text-secondary: #808080;
-      --accent: #007acc;
-      --accent-hover: #0098ff;
+      --accent: #34d399;
+      --accent-hover: #6ee7b7;
       --border: #3e3e42;
       --variable: #ce9178;
       --success: #4ec9b0;
@@ -139,7 +143,7 @@
 
     .category-btn.active {
       background: var(--accent);
-      color: white;
+      color: #09090b;
       border-color: var(--accent);
     }
 
@@ -213,7 +217,7 @@
 
     .mode-btn.active {
       background: var(--accent);
-      color: white;
+      color: #09090b;
     }
 
     .model-selector {
@@ -246,7 +250,7 @@
     .action-btn.primary {
       background: var(--accent);
       border-color: var(--accent);
-      color: white;
+      color: #09090b;
     }
 
     .action-btn.primary:hover {
@@ -256,7 +260,7 @@
     .action-btn.success {
       background: var(--success);
       border-color: var(--success);
-      color: white;
+      color: #09090b;
     }
 
     .content-area {
@@ -439,9 +443,6 @@
       background: var(--bg-hover);
     }
 
-    /* Hide WordPress-leftover skip-link and site-bridge — replaced by our top-nav */
-    .skip-link, .site-bridge { display: none !important; }
-
     /* Top nav matching the rest of the site (uses page accent vars) */
     .arc-top-nav {
       display: flex; justify-content: space-between; align-items: center;
@@ -450,10 +451,10 @@
       background: var(--bg-secondary);
       position: relative; z-index: 100;
     }
-    .arc-top-nav .brand { color: #34d399; font-weight: 600; letter-spacing: 0.5px; text-decoration: none; }
+    .arc-top-nav .brand { color: var(--accent); font-weight: 600; letter-spacing: 0.5px; text-decoration: none; }
     .arc-top-nav nav { display: flex; gap: 14px; }
     .arc-top-nav nav a { color: var(--text-secondary); text-decoration: none; transition: color 0.15s; }
-    .arc-top-nav nav a:hover { color: #34d399; }
+    .arc-top-nav nav a:hover { color: var(--accent); }
     .arc-top-nav nav a.active { color: var(--text-primary); }
 
     /* Mobile gate — shown only on narrow viewports */
@@ -475,7 +476,7 @@
       }
       .mobile-gate .mg-icon {
         width: 56px; height: 56px;
-        border: 2px solid #34d399; border-radius: 50%;
+        border: 2px solid var(--accent); border-radius: 50%;
         display: flex; align-items: center; justify-content: center;
         margin-bottom: 18px;
         background: rgba(52,211,153,0.08);
@@ -502,7 +503,7 @@
       }
       .mobile-gate .mg-btn {
         display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-        background: rgba(52,211,153,0.12); border: 1.5px solid #34d399; color: #34d399;
+        background: rgba(52,211,153,0.12); border: 1.5px solid var(--accent); color: var(--accent);
         font-family: var(--font-mono); font-size: 12px; font-weight: 600;
         padding: 11px 18px; border-radius: 6px;
         text-decoration: none;
