@@ -22,14 +22,16 @@ Built as static HTML with the Obsidian Showcase design system. No build step, no
 │   │   ├── ml-bpo-turnover.html
 │   │   └── linkedin-visibility-google-style.html
 │   ├── /portfolio/
-│   │   └── index.html                         # Live demos + repos
+│   │   └── index.html                         # Live demos
+│   ├── /creativity/
+│   │   └── index.html                         # YouTube video hub
 │   └── /tools-and-resources/
 │       ├── index.html                         # Tools hub
 │       └── prompt-workspace.html              # Interactive tool
 ├── /downloads/
 │   └── crushin-claude.pdf
 ├── /images/
-│   └── profile.jpeg                           # (add this — see notes)
+│   └── og-card.png                            # 1200×630 social share card
 └── /_template/
     └── skeleton.html                          # Page template reference
 ```
