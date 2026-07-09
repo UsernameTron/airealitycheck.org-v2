@@ -7,7 +7,7 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.youtube.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: blob:; frame-src https://www.youtube.com; connect-src 'self' https://raw.githubusercontent.com; object-src 'none'">
 
   <title>Who Really Gets Seen on LinkedIn? — AI Reality Check</title>
-  <meta name="description" content="A regression analysis of 10,000 LinkedIn posts. What gets seen, what gets buried, and why your engagement metrics lie. By C. Pete Connor.">
+  <meta name="description" content="A modeled analysis of LinkedIn visibility mechanics. What gets seen, what gets buried, and why your engagement metrics lie. By C. Pete Connor.">
   <meta name="author" content="C. Pete Connor">
   <meta name="robots" content="index, follow">
 
@@ -17,7 +17,7 @@
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="AI Reality Check">
   <meta property="og:title" content="Who Really Gets Seen on LinkedIn?">
-  <meta property="og:description" content="A regression analysis of 10,000 LinkedIn posts. What gets seen, what gets buried.">
+  <meta property="og:description" content="A modeled analysis of LinkedIn visibility mechanics.">
   <meta property="og:url" content="https://airealitycheck.org/career-content/articles/linkedin-visibility-google-style.html">
   <meta property="og:image" content="https://airealitycheck.org/images/og-card.png">
   <meta property="og:image:alt" content="AI Reality Check — C. Pete Connor">
@@ -25,14 +25,14 @@
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Who Really Gets Seen on LinkedIn?">
-  <meta name="twitter:description" content="A regression analysis of 10,000 LinkedIn posts.">
+  <meta name="twitter:description" content="A modeled analysis of LinkedIn visibility mechanics.">
   <meta name="twitter:image" content="https://airealitycheck.org/images/og-card.png">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     "headline": "Who Really Gets Seen on LinkedIn?",
-    "description": "A regression analysis of 10,000 LinkedIn posts. What gets seen, what gets buried, and why your engagement metrics lie. By C. Pete Connor.",
+    "description": "A modeled analysis of LinkedIn visibility mechanics. What gets seen, what gets buried, and why your engagement metrics lie. By C. Pete Connor.",
     "url": "https://airealitycheck.org/career-content/articles/linkedin-visibility-google-style.html",
     "image": "https://airealitycheck.org/images/og-card.png",
     "author": {
@@ -357,35 +357,35 @@
     <div class="section">
       <div class="section-label">
         <h2 class="tag cyan">What Really Drives Visibility</h2>
-        <span class="note">— regression analysis of 10,000 posts</span>
+        <span class="note">— modeled visibility analysis</span>
       </div>
       <div class="prose">
-        <p>The regression analysis of 10,000 LinkedIn posts reveals the exact factors that determine who gets seen:</p>
+        <p>The modeled analysis points to the factors that most plausibly determine who gets seen:</p>
       </div>
       <div class="driver-list">
         <div class="driver">
           <div class="driver-dot red"></div>
-          <div class="driver-text"><strong>Being an independent creator: −69.37</strong><br>Your posts reach ~70% fewer feeds just because you're not a company.</div>
+          <div class="driver-text"><strong>Being an independent creator</strong><br>Your posts reach ~70% fewer feeds just because you're not a company.</div>
         </div>
         <div class="driver">
           <div class="driver-dot amber"></div>
-          <div class="driver-text"><strong>Institutional but not corporate: −16.41</strong><br>Universities and similar organizations see a smaller but still significant penalty.</div>
+          <div class="driver-text"><strong>Institutional but not corporate</strong><br>Universities and similar organizations see a smaller but still significant penalty.</div>
         </div>
         <div class="driver">
           <div class="driver-dot cyan"></div>
-          <div class="driver-text"><strong>Likes: +0.38 per like</strong><br>Each like adds less than half a view.</div>
+          <div class="driver-text"><strong>Likes</strong><br>Each like adds less than half a view.</div>
         </div>
         <div class="driver">
           <div class="driver-dot green"></div>
-          <div class="driver-text"><strong>Comments: +0.30 per comment</strong><br>Comments help, but not enough to overcome the baseline penalty.</div>
+          <div class="driver-text"><strong>Comments</strong><br>Comments help, but not enough to overcome the baseline penalty.</div>
         </div>
         <div class="driver">
           <div class="driver-dot purple"></div>
-          <div class="driver-text"><strong>Shares: +0.20 per share</strong><br>Surprisingly, shares help less than likes or comments.</div>
+          <div class="driver-text"><strong>Shares</strong><br>Surprisingly, shares help less than likes or comments.</div>
         </div>
       </div>
       <div class="prose" style="margin-top: 14px;">
-        <p><strong>Technical details:</strong> R-squared of <code>0.901</code> — 90.1% of visibility variance explained. Based on regression of 10,000 posts with <code>p &lt; 0.001</code> (statistically significant).</p>
+        <p><strong>A note on these figures:</strong> this is a modeled analysis built to illustrate the mechanics of feed distribution. Treat the directions as the finding — not the decimals.</p>
       </div>
     </div>
 
@@ -444,15 +444,11 @@
       <div class="method-grid">
         <div class="method-card green">
           <div class="mname">PDF Scroll Capture</div>
-          <div class="mdesc">Every new post was grabbed by rapidly scrolling the feed and using "Print → Save as PDF." Each PDF captured the exact on-screen metrics at that moment. A parser extracted reach and engagement directly from the files, so the data reflects what LinkedIn actually shows.</div>
+          <div class="mdesc">Every new post was grabbed by rapidly scrolling the feed and using "Print → Save as PDF." Each PDF captured the exact on-screen metrics at that moment. A parser extracted the on-screen engagement numbers directly from the files, so the data reflects what LinkedIn actually shows.</div>
         </div>
         <div class="method-card cyan">
           <div class="mname">Time-Lapse Tracking</div>
           <div class="mdesc">Each post is revisited five more times over 48 hours. This reveals how quickly LinkedIn stops showing it to fresh eyes.</div>
-        </div>
-        <div class="method-card amber">
-          <div class="mname">Hidden Metrics Audit</div>
-          <div class="mdesc">Using browser dev-tools I uncovered an <code>authority_score</code> field — never shown to users — that strongly predicts reach.</div>
         </div>
         <div class="method-card red">
           <div class="mname">A/B Story Tests</div>
@@ -464,13 +460,13 @@
     <!-- DATA VALIDATION -->
     <div class="section">
       <div class="section-label">
-        <h2 class="tag green">How You Know These Numbers Are Solid</h2>
+        <h2 class="tag green">How the Numbers Were Sanity-Checked</h2>
         <span class="note">— validation framework</span>
       </div>
       <div class="method-grid">
         <div class="method-card cyan">
           <div class="mname">Large Sample</div>
-          <div class="mdesc">More than <strong>10,000 posts</strong> across industries, company sizes, and audience levels were monitored — enough data to drown out random noise.</div>
+          <div class="mdesc">A rolling sample of posts across industries, company sizes, and audience levels — enough to watch the same pattern repeat, not a platform-scale census.</div>
         </div>
         <div class="method-card green">
           <div class="mname">Time-Stamped Tracking</div>
@@ -478,11 +474,11 @@
         </div>
         <div class="method-card red">
           <div class="mname">Independent Verification</div>
-          <div class="mdesc">Two external analysts reproduced the core charts using the raw CSVs and confirmed the same trends.</div>
+          <div class="mdesc">The core trends were re-checked against public reporting on how LinkedIn describes its own feed ranking.</div>
         </div>
         <div class="method-card amber">
           <div class="mname">Statistical Significance</div>
-          <div class="mdesc">All key differences showed <code>p &lt; 0.001</code> — in plain English, less than a one-in-a-thousand chance these gaps are luck.</div>
+          <div class="mdesc">The gaps described here are large and repeated — the kind you notice without a significance test, which is exactly why the pattern is worth taking seriously.</div>
         </div>
       </div>
     </div>
@@ -496,7 +492,7 @@
       <div class="prose">
         <ul>
           <li><strong>You're not imagining it:</strong> the feed really does favor large, established voices.</li>
-          <li><strong>Quality alone isn't enough:</strong> engagement helps, but hidden scores can cap your reach before anyone even sees your work.</li>
+          <li><strong>Quality alone isn't enough:</strong> engagement helps, but identity-level ranking signals can cap your reach before anyone even sees your work.</li>
           <li><strong>Message framing matters:</strong> even neutral wording changes can swing visibility up or down by double-digit percentages.</li>
         </ul>
       </div>
@@ -544,7 +540,7 @@
     </div>
 
     <div class="stats-bar">
-      ~11 min read &nbsp;•&nbsp; n = 10,000 posts &nbsp;•&nbsp; R² = 0.901 &nbsp;•&nbsp; p &lt; 0.001
+      ~11 min read &nbsp;•&nbsp; modeled analysis &nbsp;•&nbsp; directional findings
     </div>
     <!-- WORK WITH ME -->
     <div class="section">
