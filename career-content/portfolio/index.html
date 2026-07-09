@@ -261,12 +261,29 @@
     @media (max-width: 600px) {
       body { padding: 12px 14px 18px; }
       .header h1 { font-size: 24px; }
-      .top-nav { font-size: 10px; }
-      .top-nav nav { gap: 12px; }
+      .top-nav { font-size: 11px; }
+      .top-nav nav { gap: 12px; flex-wrap: wrap; }
+      .top-nav nav a { padding: 6px 2px; }
+      .top-nav nav a { padding: 6px 2px; }
     }
+  
+    /* Keyboard accessibility */
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid var(--green);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+    .skip-link {
+      position: absolute; left: -9999px; top: 0; z-index: 100;
+      background: var(--green); color: #09090b;
+      font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 600;
+      padding: 10px 16px; border-radius: 0 0 6px 0; text-decoration: none;
+    }
+    .skip-link:focus { left: 0; }
   </style>
 </head>
 <body>
+  <a class="skip-link" href="#main">skip to content</a>
   <div class="wrapper">
 
     <!-- TOP NAV -->
@@ -281,6 +298,8 @@
         <a href="/career-content/tools-and-resources/">Tools &amp; Resources</a>
       </nav>
     </div>
+
+    <main id="main">
 
     <!-- HEADER -->
     <div class="header">
@@ -360,6 +379,7 @@
     <div class="stats-bar">
       2 live demos &nbsp;•&nbsp; ai/ml · cx · workforce ops &nbsp;•&nbsp; built and shipped
     </div>
+    </main>
 
     <!-- FOOTER -->
     <div class="footer">
