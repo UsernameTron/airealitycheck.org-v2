@@ -197,13 +197,15 @@
     .stat-card.amber .num { color: var(--amber); }
     .stat-card.red   .num { color: var(--red); }
     .stat-card .lbl {
-      font-size: 9.5px; color: var(--dim);
+      font-size: 10.5px; color: var(--dim);
       margin-top: 6px; line-height: 1.4;
       font-family: 'Plus Jakarta Sans', sans-serif;
     }
 
     /* Comparison table */
+    .table-scroll { overflow-x: auto; }
     .compare-table {
+      min-width: 560px;
       width: 100%; border-collapse: collapse; margin: 8px 0;
       font-size: 12px;
     }
@@ -241,16 +243,16 @@
       background: var(--surface); border: 1px solid var(--border);
       border-radius: 8px; padding: 12px 20px;
       text-align: center;
-      font-family: 'JetBrains Mono', monospace; font-size: 10.5px;
+      font-family: 'JetBrains Mono', monospace; font-size: 11.5px;
       color: var(--cyan); letter-spacing: 0.4px; margin-top: 14px;
     }
 
     /* Footer */
     .footer { text-align: center; margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--border); }
-    .footer .org { font-size: 11px; color: var(--muted); margin-bottom: 4px; }
-    .footer .by { font-size: 10px; color: var(--muted); }
+    .footer .org { font-size: 12px; color: var(--muted); margin-bottom: 4px; }
+    .footer .by { font-size: 11px; color: var(--muted); }
     .footer .by .name { color: var(--text); font-weight: 600; }
-    .footer .quote { font-size: 9px; color: var(--muted); margin-top: 8px; font-family: 'JetBrains Mono', monospace; }
+    .footer .quote { font-size: 10px; color: var(--muted); margin-top: 8px; font-family: 'JetBrains Mono', monospace; }
     .footer .social { margin-top: 14px; display: flex; gap: 18px; justify-content: center; font-family: 'JetBrains Mono', monospace; font-size: 10px; }
     .footer .social a { color: var(--muted); text-decoration: none; transition: color 0.15s; }
     .footer .social a:hover { color: var(--green); }
@@ -286,7 +288,9 @@
       .top-nav nav { gap: 12px; flex-wrap: wrap; }
       .top-nav nav a { padding: 6px 2px; }
       .top-nav nav a { padding: 6px 2px; }
-      .compare-table { font-size: 11px; }
+      .table-scroll { overflow-x: auto; }
+    .compare-table {
+      min-width: 560px; font-size: 11px; }
       .compare-table th, .compare-table td { padding: 8px 8px; }
     }
   
@@ -438,7 +442,7 @@
         <span class="tag purple">Counterfactual A</span>
         <span class="note">— if the claim had never circulated</span>
       </div>
-      <table class="compare-table">
+      <div class="table-scroll"><table class="compare-table">
         <thead>
           <tr><th>Domain</th><th>Plausible Trajectory</th><th>Grounding in Data</th></tr>
         </thead>
@@ -469,7 +473,7 @@
             <td>Professionals need a status narrative; hashtag clusters serve that role today.</td>
           </tr>
         </tbody>
-      </table>
+      </table></div>
       <div class="prose" style="margin-top: 14px;">
         <p>Without the human-detector claim, professional discourse would likely have evolved toward more constructive frameworks centered on transparency and collaboration, rather than detection and conflict.</p>
       </div>
@@ -481,7 +485,7 @@
         <span class="tag green">Counterfactual B</span>
         <span class="note">— if the claim were debunked at scale</span>
       </div>
-      <table class="compare-table">
+      <div class="table-scroll"><table class="compare-table">
         <thead>
           <tr><th>Domain</th><th>Expected Effect</th><th>Why This Follows</th></tr>
         </thead>
@@ -512,7 +516,7 @@
             <td>Both automated and human detection are unreliable; disclosure is the logical fallback.</td>
           </tr>
         </tbody>
-      </table>
+      </table></div>
       <div class="prose" style="margin-top: 14px;">
         <p>An authoritative debunking would accelerate disclosure mechanisms and provenance solutions, redirecting attention from detection to transparency.</p>
       </div>
