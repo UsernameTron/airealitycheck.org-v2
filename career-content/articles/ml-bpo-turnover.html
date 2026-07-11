@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.youtube.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: blob:; frame-src https://www.youtube.com; connect-src 'self' https://raw.githubusercontent.com; object-src 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.youtube.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: blob:; frame-src https://www.youtube.com; connect-src 'self' https://raw.githubusercontent.com; object-src 'none'">
 
   <title>ML-Driven Turnover Prediction in BPO — AI Reality Check</title>
   <meta name="description" content="Modeled case study of machine learning for employee turnover prediction in BPO environments. Random Forest, XGBoost, SHAP, and what to do with the prediction.">
@@ -35,6 +35,7 @@
     "description": "Modeled case study of machine learning for employee turnover prediction in BPO environments. Random Forest, XGBoost, SHAP, and what to do with the prediction.",
     "url": "https://airealitycheck.org/career-content/articles/ml-bpo-turnover.html",
     "image": "https://airealitycheck.org/images/og-card.png",
+    "datePublished": "2026-04-26",
     "author": {
       "@type": "Person",
       "name": "C. Pete Connor",
@@ -97,7 +98,7 @@
       margin-bottom: 24px; position: relative;
     }
     .article-hero .glow-orb {
-      position: absolute; width: 380px; height: 140px;
+      position: absolute; width: 380px; height: 140px; max-width: 100%;
       background: radial-gradient(ellipse at center, rgba(245,158,11,0.1) 0%, transparent 70%);
       top: 0; left: 50%; transform: translateX(-50%); pointer-events: none;
     }
@@ -233,6 +234,10 @@
     }
     .flow-line-animated { stroke-dasharray: 4 4; animation: flowRight 0.8s linear infinite; }
 
+    @media (prefers-reduced-motion: reduce) {
+      .flow-line-animated { animation: none; }
+    }
+
     .stats-bar {
       background: var(--surface); border: 1px solid var(--border);
       border-radius: 8px; padding: 12px 20px;
@@ -266,8 +271,7 @@
       .section { padding: 18px 18px; }
       .top-nav { font-size: 11px; }
       .top-nav nav { gap: 12px; flex-wrap: wrap; }
-      .top-nav nav a { padding: 6px 2px; }
-      .top-nav nav a { padding: 6px 2px; }
+      .top-nav nav a { padding: 10px 6px; }
     }
   
     /* Keyboard accessibility */
@@ -294,7 +298,7 @@
       <nav>
         <a href="/">Home</a>
         <a href="/career-content/">About</a>
-        <a href="/career-content/articles/" class="active">Articles</a>
+        <a href="/career-content/articles/" class="active" aria-current="page">Articles</a>
         <a href="/career-content/portfolio/">Portfolio</a>
         <a href="/career-content/creativity/">Creativity</a>
         <a href="/career-content/tools-and-resources/">Tools &amp; Resources</a>
@@ -314,7 +318,7 @@
         Where the data lives, what features actually predict, and what to do with the prediction.
       </div>
       <div class="meta">
-        by <span class="author">C. Pete Connor</span> &nbsp;•&nbsp; ~10 min read
+        by <span class="author">C. Pete Connor</span> &nbsp;•&nbsp; April 2026 &nbsp;•&nbsp; ~10 min read
       </div>
     </div>
 

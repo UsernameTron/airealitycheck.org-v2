@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.youtube.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: blob: https://img.youtube.com https://i.ytimg.com; frame-src https://www.youtube.com; connect-src 'self' https://raw.githubusercontent.com; object-src 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.youtube.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: blob: https://img.youtube.com https://i.ytimg.com; frame-src https://www.youtube.com; connect-src 'self' https://raw.githubusercontent.com; object-src 'none'">
 
   <title>Creativity — AI Reality Check</title>
   <meta name="description" content="Video, visual, and creative work by C. Pete Connor. AI-assisted production, generative experiments, and other things worth watching.">
@@ -95,7 +95,7 @@
     }
 
     .glow-orb {
-      position: absolute; width: 380px; height: 140px;
+      position: absolute; width: 380px; height: 140px; max-width: 100%;
       background: radial-gradient(ellipse at center, rgba(245,158,11,0.08) 0%, transparent 70%);
       top: 0; left: 50%; transform: translateX(-50%); pointer-events: none;
     }
@@ -136,7 +136,7 @@
     .video-card:hover {
       transform: translateY(-2px);
       border-color: var(--amber);
-      box-shadow: 0 0 18px rgba(245,158,11,0.25);
+      box-shadow: 0 0 18px rgba(245,158,11,0.18);
       text-decoration: none;
     }
     .video-thumb {
@@ -234,9 +234,16 @@
       .header h1 { font-size: 24px; }
       .top-nav { font-size: 11px; }
       .top-nav nav { gap: 12px; flex-wrap: wrap; }
-      .top-nav nav a { padding: 6px 2px; }
+      .top-nav nav a { padding: 10px 6px; }
     }
   
+    @media (prefers-reduced-motion: reduce) {
+      .video-thumb img,
+      .video-card:hover .video-thumb img { transition: none; transform: none; }
+      .play-icon,
+      .video-card:hover .play-icon { transition: none; transform: translate(-50%, -50%); }
+    }
+
     /* Keyboard accessibility */
     a:focus-visible, button:focus-visible {
       outline: 2px solid var(--green);
@@ -264,7 +271,7 @@
         <a href="/career-content/">About</a>
         <a href="/career-content/articles/">Articles</a>
         <a href="/career-content/portfolio/">Portfolio</a>
-        <a href="/career-content/creativity/" class="active">Creativity</a>
+        <a href="/career-content/creativity/" class="active" aria-current="page">Creativity</a>
         <a href="/career-content/tools-and-resources/">Tools &amp; Resources</a>
       </nav>
     </div>

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.youtube.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: blob:; frame-src https://www.youtube.com; connect-src 'self' https://raw.githubusercontent.com; object-src 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.youtube.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: blob:; frame-src https://www.youtube.com; connect-src 'self' https://raw.githubusercontent.com; object-src 'none'">
 
   <title>Unlocking What Didn't Happen — AI Reality Check</title>
   <meta name="description" content="Applying counterfactual reasoning to fix your customer and employee experience. Why journey maps and VOC dashboards only show half the picture.">
@@ -35,6 +35,7 @@
     "description": "Applying counterfactual reasoning to fix your customer and employee experience. Why journey maps and VOC dashboards only show half the picture.",
     "url": "https://airealitycheck.org/career-content/articles/counterfactual-reasoning-html.html",
     "image": "https://airealitycheck.org/images/og-card.png",
+    "datePublished": "2026-04-26",
     "author": {
       "@type": "Person",
       "name": "C. Pete Connor",
@@ -97,7 +98,7 @@
       margin-bottom: 24px; position: relative;
     }
     .article-hero .glow-orb {
-      position: absolute; width: 380px; height: 140px;
+      position: absolute; width: 380px; height: 140px; max-width: 100%;
       background: radial-gradient(ellipse at center, rgba(52,211,153,0.1) 0%, transparent 70%);
       top: 0; left: 50%; transform: translateX(-50%); pointer-events: none;
     }
@@ -219,8 +220,7 @@
       .article-hero h1 { font-size: 24px; }
       .top-nav { font-size: 11px; }
       .top-nav nav { gap: 12px; flex-wrap: wrap; }
-      .top-nav nav a { padding: 6px 2px; }
-      .top-nav nav a { padding: 6px 2px; }
+      .top-nav nav a { padding: 10px 6px; }
     }
   
     /* Keyboard accessibility */
@@ -248,7 +248,7 @@
       <nav>
         <a href="/">Home</a>
         <a href="/career-content/">About</a>
-        <a href="/career-content/articles/" class="active">Articles</a>
+        <a href="/career-content/articles/" class="active" aria-current="page">Articles</a>
         <a href="/career-content/portfolio/">Portfolio</a>
         <a href="/career-content/creativity/">Creativity</a>
         <a href="/career-content/tools-and-resources/">Tools &amp; Resources</a>
@@ -270,14 +270,14 @@
         you never see.
       </div>
       <div class="meta">
-        by <span class="author">C. Pete Connor</span> &nbsp;•&nbsp; ~14 min read
+        by <span class="author">C. Pete Connor</span> &nbsp;•&nbsp; April 2026 &nbsp;•&nbsp; ~14 min read
       </div>
     </div>
 
     <!-- EXEC SUMMARY -->
     <div class="section">
       <div class="section-label">
-        <span class="tag">Executive Summary</span>
+        <h2 class="tag">Executive Summary</h2>
         <span class="note">— you're not seeing the whole story</span>
       </div>
       <div class="prose">
@@ -294,7 +294,7 @@
     <!-- INTRODUCTION -->
     <div class="section">
       <div class="section-label">
-        <span class="tag cyan">Introduction</span>
+        <h2 class="tag cyan">Introduction</h2>
         <span class="note">— what if you could rewind the tape?</span>
       </div>
       <div class="prose">
@@ -311,7 +311,7 @@
     <!-- THE PROBLEM -->
     <div class="section">
       <div class="section-label">
-        <span class="tag amber">The Problem</span>
+        <h2 class="tag amber">The Problem</h2>
         <span class="note">— managing what you can see, missing what matters</span>
       </div>
       <div class="prose">
@@ -333,7 +333,7 @@
     <!-- WHAT IT IS -->
     <div class="section">
       <div class="section-label">
-        <span class="tag green">What Counterfactual Reasoning Is</span>
+        <h2 class="tag green">What Counterfactual Reasoning Is</h2>
         <span class="note">— no buzzwords</span>
       </div>
       <div class="prose">
@@ -354,7 +354,7 @@
     <!-- CX SIDE -->
     <div class="section">
       <div class="section-label">
-        <span class="tag green">Customer Experience</span>
+        <h2 class="tag green">Customer Experience</h2>
         <span class="note">— fixing churn before it happens</span>
       </div>
       <div class="prose">
@@ -376,7 +376,7 @@
     <!-- EX SIDE -->
     <div class="section">
       <div class="section-label">
-        <span class="tag purple">Employee Experience</span>
+        <h2 class="tag purple">Employee Experience</h2>
         <span class="note">— preventing regret-letters</span>
       </div>
       <div class="prose">
@@ -399,7 +399,7 @@
     <!-- AI/ML READINESS -->
     <div class="section">
       <div class="section-label">
-        <span class="tag red">AI/ML Readiness Isn't Optional</span>
+        <h2 class="tag red">AI/ML Readiness Isn't Optional</h2>
         <span class="note">— and never was</span>
       </div>
       <div class="prose">
@@ -421,7 +421,7 @@
     <!-- HOW TO USE -->
     <div class="section">
       <div class="section-label">
-        <span class="tag cyan">How To Actually Use This</span>
+        <h2 class="tag cyan">How To Actually Use This</h2>
         <span class="note">— without crying</span>
       </div>
       <div class="prose">
@@ -445,7 +445,7 @@
     <!-- ACADEMIC -->
     <div class="section">
       <div class="section-label">
-        <span class="tag purple">Academic Analysis</span>
+        <h2 class="tag purple">Academic Analysis</h2>
         <span class="note">— deep dive on the methodology</span>
       </div>
       <div class="prose">
@@ -487,7 +487,7 @@
     <!-- CONCLUSION -->
     <div class="section" style="background: linear-gradient(135deg, rgba(52,211,153,0.04), rgba(34,211,238,0.02)); border-color: rgba(52,211,153,0.25);">
       <div class="section-label">
-        <span class="tag">Conclusion</span>
+        <h2 class="tag">Conclusion</h2>
         <span class="note">— the real risk is what you missed</span>
       </div>
       <div class="prose">

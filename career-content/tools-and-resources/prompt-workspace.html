@@ -524,6 +524,11 @@
         grid-template-columns: 280px 1fr;
         min-width: 980px;
       }
+      /* 16px keeps iOS Safari from zooming on focus when the workspace is
+         forced open on a phone; desktop keeps the tighter IDE sizing. */
+      body.force-mobile .search-box input,
+      body.force-mobile .model-selector,
+      body.force-mobile .editor { font-size: 16px; }
     }
   
     /* Keyboard accessibility */
@@ -551,7 +556,7 @@
         <a href="/career-content/articles/">Articles</a>
         <a href="/career-content/portfolio/">Portfolio</a>
         <a href="/career-content/creativity/">Creativity</a>
-        <a href="/career-content/tools-and-resources/" class="active">Tools &amp; Resources</a>
+        <a href="/career-content/tools-and-resources/" class="active" aria-current="page">Tools &amp; Resources</a>
       </nav>
     </div>
 
@@ -581,7 +586,7 @@
         <p>Pre-built prompt patterns</p>
       </div>
       <div class="search-box">
-        <input type="text" id="searchInput" placeholder="Search templates...">
+        <input type="text" id="searchInput" placeholder="Search templates..." aria-label="Search templates">
       </div>
       <div class="category-filters">
         <button class="category-btn active" data-category="all">All</button>
@@ -618,7 +623,7 @@
             <span class="stats" id="stats1">0 chars | ~0 tokens</span>
           </div>
           <div class="editor-wrapper">
-            <textarea class="editor" id="editor1" placeholder="Start typing your prompt... Use {{variable_name}} for dynamic values."></textarea>
+            <textarea class="editor" id="editor1" placeholder="Start typing your prompt... Use {{variable_name}} for dynamic values." aria-label="Prompt editor"></textarea>
           </div>
         </div>
 
@@ -629,7 +634,7 @@
             <span class="stats" id="stats2">0 chars | ~0 tokens</span>
           </div>
           <div class="editor-wrapper">
-            <textarea class="editor" id="editor2" placeholder="Alternative version for A/B testing..."></textarea>
+            <textarea class="editor" id="editor2" placeholder="Alternative version for A/B testing..." aria-label="Prompt editor variant B"></textarea>
           </div>
         </div>
 
@@ -984,6 +989,9 @@ Format for easy scanning and follow-up.`
       updateModelTips();
     });
 
+    // HTML-escape helper (shared by template list + variable inputs)
+    const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
     // Render Templates
     function renderTemplates(filter = '') {
       const container = document.getElementById('templatesList');
@@ -1002,7 +1010,6 @@ Format for easy scanning and follow-up.`
         );
       }
 
-      const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
       container.innerHTML = filtered.map(template => `
         <button type="button" class="template-item" data-id="${template.id}">
           <div class="template-name">${esc(template.name)}</div>
@@ -1054,11 +1061,11 @@ Format for easy scanning and follow-up.`
 
       container.innerHTML = uniqueVars.map(varName => `
         <div class="variable-input">
-          <label>{{${varName}}}</label>
+          <label>{{${esc(varName)}}}</label>
           <textarea
-            data-var="${varName}"
-            placeholder="Enter value for ${varName}..."
-          >${variables[varName] || ''}</textarea>
+            data-var="${esc(varName)}"
+            placeholder="Enter value for ${esc(varName)}..."
+          >${esc(variables[varName] || '')}</textarea>
         </div>
       `).join('');
 
@@ -1242,9 +1249,13 @@ Format for easy scanning and follow-up.`
       document.getElementById('saveTemplateBtn').addEventListener('click', saveTemplate);
       document.getElementById('clearBtn').addEventListener('click', clearEditor);
 
-      // Load custom templates from localStorage
-      const saved = JSON.parse(localStorage.getItem('customTemplates') || '[]');
+      // Load custom templates from localStorage, then re-render so they show
+      // (renderTemplates already ran on load, before these were appended)
+      const saved = JSON.parse(localStorage.getItem('customTemplates') || '[]')
+        .map(t => ({ ...t, id: parseInt(t.id, 10) }))
+        .filter(t => Number.isFinite(t.id));
       TEMPLATES.push(...saved);
+      renderTemplates();
     }
   </script>
 </body>

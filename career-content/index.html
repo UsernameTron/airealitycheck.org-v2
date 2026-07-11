@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.youtube.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: blob:; frame-src https://www.youtube.com; connect-src 'self' https://raw.githubusercontent.com; object-src 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.youtube.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: blob:; frame-src https://www.youtube.com; connect-src 'self' https://raw.githubusercontent.com; object-src 'none'">
 
   <title>About — AI Reality Check</title>
   <meta name="description" content="C. Pete Connor — practice pillars, engagement model, and how to work with Connor Advisors. AI/ML CX consulting that ships.">
@@ -46,6 +46,8 @@
       --green-glow: rgba(52,211,153,0.25);
       --cyan: #22d3ee;
       --cyan-dim: rgba(34,211,238,0.1);
+      --red: #f87171;
+      --red-dim: rgba(248,113,113,0.1);
       --amber: #f59e0b;
       --amber-dim: rgba(245,158,11,0.1);
       --purple: #a78bfa;
@@ -136,7 +138,7 @@
     }
 
     .glow-orb {
-      position: absolute; width: 380px; height: 140px;
+      position: absolute; width: 380px; height: 140px; max-width: 100%;
       background: radial-gradient(ellipse at center, rgba(52,211,153,0.08) 0%, transparent 70%);
       top: 0; left: 50%; transform: translateX(-50%); pointer-events: none;
     }
@@ -224,7 +226,6 @@
       padding: 12px 14px;
       flex: 1;
       min-width: 150px;
-      transition: transform 0.15s, box-shadow 0.15s;
     }
     .flow-card.cyan   { border-color: var(--cyan); }
     .flow-card.amber  { border-color: var(--amber); }
@@ -381,8 +382,7 @@
       .header h1 { font-size: 24px; }
       .top-nav { font-size: 11px; }
       .top-nav nav { gap: 12px; flex-wrap: wrap; }
-      .top-nav nav a { padding: 6px 2px; }
-      .top-nav nav a { padding: 6px 2px; }
+      .top-nav nav a { padding: 10px 6px; }
     }
   
     /* Keyboard accessibility */
@@ -409,7 +409,7 @@
       <a href="/" class="brand">ARC // AI REALITY CHECK</a>
       <nav>
         <a href="/">Home</a>
-        <a href="/career-content/" class="active">About</a>
+        <a href="/career-content/" class="active" aria-current="page">About</a>
         <a href="/career-content/articles/">Articles</a>
         <a href="/career-content/portfolio/">Portfolio</a>
         <a href="/career-content/creativity/">Creativity</a>
