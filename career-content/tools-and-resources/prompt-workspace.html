@@ -524,6 +524,11 @@
         grid-template-columns: 280px 1fr;
         min-width: 980px;
       }
+      /* 16px keeps iOS Safari from zooming on focus when the workspace is
+         forced open on a phone; desktop keeps the tighter IDE sizing. */
+      body.force-mobile .search-box input,
+      body.force-mobile .model-selector,
+      body.force-mobile .editor { font-size: 16px; }
     }
   
     /* Keyboard accessibility */
