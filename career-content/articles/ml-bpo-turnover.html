@@ -233,6 +233,10 @@
     }
     .flow-line-animated { stroke-dasharray: 4 4; animation: flowRight 0.8s linear infinite; }
 
+    @media (prefers-reduced-motion: reduce) {
+      .flow-line-animated { animation: none; }
+    }
+
     .stats-bar {
       background: var(--surface); border: 1px solid var(--border);
       border-radius: 8px; padding: 12px 20px;
@@ -266,8 +270,7 @@
       .section { padding: 18px 18px; }
       .top-nav { font-size: 11px; }
       .top-nav nav { gap: 12px; flex-wrap: wrap; }
-      .top-nav nav a { padding: 6px 2px; }
-      .top-nav nav a { padding: 6px 2px; }
+      .top-nav nav a { padding: 10px 6px; }
     }
   
     /* Keyboard accessibility */
@@ -294,7 +297,7 @@
       <nav>
         <a href="/">Home</a>
         <a href="/career-content/">About</a>
-        <a href="/career-content/articles/" class="active">Articles</a>
+        <a href="/career-content/articles/" class="active" aria-current="page">Articles</a>
         <a href="/career-content/portfolio/">Portfolio</a>
         <a href="/career-content/creativity/">Creativity</a>
         <a href="/career-content/tools-and-resources/">Tools &amp; Resources</a>
