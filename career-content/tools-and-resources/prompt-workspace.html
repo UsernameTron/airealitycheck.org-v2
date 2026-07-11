@@ -1249,11 +1249,13 @@ Format for easy scanning and follow-up.`
       document.getElementById('saveTemplateBtn').addEventListener('click', saveTemplate);
       document.getElementById('clearBtn').addEventListener('click', clearEditor);
 
-      // Load custom templates from localStorage
+      // Load custom templates from localStorage, then re-render so they show
+      // (renderTemplates already ran on load, before these were appended)
       const saved = JSON.parse(localStorage.getItem('customTemplates') || '[]')
         .map(t => ({ ...t, id: parseInt(t.id, 10) }))
         .filter(t => Number.isFinite(t.id));
       TEMPLATES.push(...saved);
+      renderTemplates();
     }
   </script>
 </body>
