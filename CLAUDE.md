@@ -41,4 +41,6 @@ GitHub Pages from `main` (CNAME → airealitycheck.org). Push to main = live. Wo
 
 ## Tests / coverage
 
+> Last verified: 2026-07-17 <!-- no test framework applies; marker present so the staleness guard stays quiet. Guarded by ~/.claude/hooks/claude-md-staleness.js -->
+
 None — static HTML site with one small inline JS app (prompt workspace). Verification is manual browser click-through; no test framework applies.
