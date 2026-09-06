@@ -1,669 +1,62 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+
+<html data-theme="dark" lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; object-src 'none'">
-
-  <title>Prompt Engineering Workspace | AI Reality Check</title>
-  <meta name="description" content="Interactive prompt engineering workspace for crafting, testing, and refining LLM prompts. Save templates, compare outputs, and iterate on AI workflows.">
-  <meta name="author" content="C. Pete Connor">
-  <meta name="robots" content="index, follow">
-
-  <!-- Canonical URL -->
-  <link rel="canonical" href="https://airealitycheck.org/career-content/tools-and-resources/prompt-workspace.html">
-
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="AI Reality Check">
-  <meta property="og:title" content="AI Reality Check | Prompt Engineering Workspace">
-  <meta property="og:description" content="Interactive prompt engineering workspace for crafting, testing, and refining LLM prompts. Save templates, compare outputs, and iterate on AI workflows.">
-  <meta property="og:url" content="https://airealitycheck.org/career-content/tools-and-resources/prompt-workspace.html">
-  <meta property="og:image" content="https://airealitycheck.org/images/og-card.png">
-  <meta property="og:image:alt" content="AI Reality Check — C. Pete Connor">
-  <meta property="og:locale" content="en_US">
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="AI Reality Check | Prompt Engineering Workspace">
-  <meta name="twitter:description" content="Interactive prompt engineering workspace for crafting, testing, and refining LLM prompts. Save templates, compare outputs, and iterate on AI workflows.">
-  <meta name="twitter:image" content="https://airealitycheck.org/images/og-card.png">
-
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    :root {
-      --bg-primary: #1e1e1e;
-      --bg-secondary: #252526;
-      --bg-tertiary: #2d2d30;
-      --bg-hover: #37373d;
-      --text-primary: #cccccc;
-      --text-secondary: #808080;
-      --accent: #34d399;
-      --accent-hover: #6ee7b7;
-      --border: #3e3e42;
-      --variable: #ce9178;
-      --success: #4ec9b0;
-      --warning: #dcdcaa;
-      --font-mono: 'JetBrains Mono', monospace;
-      --font-sans: 'Inter', sans-serif;
-    }
-
-    body {
-      font-family: var(--font-sans);
-      background: var(--bg-primary);
-      color: var(--text-primary);
-      line-height: 1.6;
-      overflow: hidden;
-    }
-
-    .workspace-container {
-      display: grid;
-      grid-template-columns: 280px 1fr;
-      height: 100vh;
-    }
-
-    /* Sidebar */
-    .sidebar {
-      background: var(--bg-secondary);
-      border-right: 1px solid var(--border);
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-    }
-
-    .sidebar-header {
-      padding: 20px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .sidebar-header h1 {
-      font-size: 16px;
-      font-weight: 600;
-      margin-bottom: 4px;
-    }
-
-    .sidebar-header p {
-      font-size: 12px;
-      color: var(--text-secondary);
-    }
-
-    .search-box {
-      padding: 12px 20px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .search-box input {
-      width: 100%;
-      padding: 8px 12px;
-      background: var(--bg-tertiary);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      color: var(--text-primary);
-      font-family: var(--font-sans);
-      font-size: 13px;
-    }
-
-    .search-box input:focus {
-      outline: none;
-      border-color: var(--accent);
-    }
-
-    .category-filters {
-      padding: 12px 20px;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
-
-    .category-btn {
-      padding: 4px 10px;
-      background: var(--bg-tertiary);
-      border: 1px solid var(--border);
-      border-radius: 3px;
-      color: var(--text-secondary);
-      font-size: 11px;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-
-    .category-btn:hover {
-      background: var(--bg-hover);
-    }
-
-    .category-btn.active {
-      background: var(--accent);
-      color: #09090b;
-      border-color: var(--accent);
-    }
-
-    .templates-list {
-      flex: 1;
-      overflow-y: auto;
-      padding: 8px 0;
-    }
-
-    .template-item {
-      display: block; width: 100%; text-align: left;
-      background: none; border: none; color: inherit; font: inherit;
-      padding: 12px 20px;
-      cursor: pointer;
-      border-left: 3px solid transparent;
-      transition: all 0.2s;
-    }
-
-    .template-item:hover {
-      background: var(--bg-hover);
-      border-left-color: var(--accent);
-    }
-
-    .template-item.active {
-      background: var(--bg-tertiary);
-      border-left-color: var(--accent);
-    }
-
-    .template-name {
-      font-size: 13px;
-      font-weight: 500;
-      margin-bottom: 2px;
-    }
-
-    .template-category {
-      font-size: 11px;
-      color: var(--text-secondary);
-    }
-
-    /* Main Area */
-    .main-area {
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-    }
-
-    .toolbar {
-      padding: 12px 20px;
-      background: var(--bg-secondary);
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .mode-toggle {
-      display: flex;
-      gap: 0;
-      background: var(--bg-tertiary);
-      border-radius: 4px;
-      overflow: hidden;
-    }
-
-    .mode-btn {
-      padding: 6px 14px;
-      background: transparent;
-      border: none;
-      color: var(--text-secondary);
-      font-size: 12px;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-
-    .mode-btn.active {
-      background: var(--accent);
-      color: #09090b;
-    }
-
-    .model-selector {
-      padding: 6px 12px;
-      background: var(--bg-tertiary);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      color: var(--text-primary);
-      font-size: 12px;
-      cursor: pointer;
-    }
-
-    .action-btn {
-      padding: 6px 14px;
-      background: var(--bg-tertiary);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      color: var(--text-primary);
-      font-size: 12px;
-      cursor: pointer;
-      transition: all 0.2s;
-      margin-left: auto;
-    }
-
-    .action-btn:hover {
-      background: var(--bg-hover);
-      border-color: var(--accent);
-    }
-
-    .action-btn.primary {
-      background: var(--accent);
-      border-color: var(--accent);
-      color: #09090b;
-    }
-
-    .action-btn.primary:hover {
-      background: var(--accent-hover);
-    }
-
-    .action-btn.success {
-      background: var(--success);
-      border-color: var(--success);
-      color: #09090b;
-    }
-
-    .content-area {
-      flex: 1;
-      display: grid;
-      grid-template-columns: 1fr 300px;
-      overflow: hidden;
-    }
-
-    .content-area.single-mode {
-      grid-template-columns: 1fr 300px;
-    }
-
-    .content-area.compare-mode {
-      grid-template-columns: 1fr 1fr 300px;
-    }
-
-    .editor-panel {
-      display: flex;
-      flex-direction: column;
-      border-right: 1px solid var(--border);
-      overflow: hidden;
-    }
-
-    .editor-header {
-      padding: 8px 16px;
-      background: var(--bg-secondary);
-      border-bottom: 1px solid var(--border);
-      font-size: 11px;
-      color: var(--text-secondary);
-      display: flex;
-      justify-content: space-between;
-    }
-
-    .editor-wrapper {
-      flex: 1;
-      position: relative;
-      overflow: auto;
-    }
-
-    .editor {
-      width: 100%;
-      height: 100%;
-      padding: 16px;
-      background: var(--bg-primary);
-      border: none;
-      color: var(--text-primary);
-      font-family: var(--font-mono);
-      font-size: 13px;
-      line-height: 1.8;
-      resize: none;
-      outline: none;
-    }
-
-    .editor:focus {
-      box-shadow: inset 0 0 0 1px var(--accent);
-    }
-
-    .variables-panel {
-      padding: 20px;
-      overflow-y: auto;
-    }
-
-    .variables-panel h3 {
-      font-size: 13px;
-      font-weight: 600;
-      margin-bottom: 12px;
-      color: var(--warning);
-    }
-
-    .variable-input {
-      margin-bottom: 16px;
-    }
-
-    .variable-input label {
-      display: block;
-      font-size: 11px;
-      color: var(--text-secondary);
-      margin-bottom: 6px;
-      font-family: var(--font-mono);
-    }
-
-    .variable-input input,
-    .variable-input textarea {
-      width: 100%;
-      padding: 8px;
-      background: var(--bg-tertiary);
-      border: 1px solid var(--border);
-      border-radius: 3px;
-      color: var(--text-primary);
-      font-family: var(--font-sans);
-      font-size: 12px;
-    }
-
-    .variable-input textarea {
-      min-height: 60px;
-      resize: vertical;
-      font-family: var(--font-mono);
-    }
-
-    .variable-input input:focus,
-    .variable-input textarea:focus {
-      outline: none;
-      border-color: var(--accent);
-    }
-
-    .preview-section {
-      margin-top: 24px;
-      padding-top: 24px;
-      border-top: 1px solid var(--border);
-    }
-
-    .preview-section h3 {
-      font-size: 13px;
-      font-weight: 600;
-      margin-bottom: 12px;
-      color: var(--success);
-    }
-
-    .preview-box {
-      padding: 12px;
-      background: var(--bg-tertiary);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      font-family: var(--font-mono);
-      font-size: 12px;
-      line-height: 1.6;
-      max-height: 200px;
-      overflow-y: auto;
-      white-space: pre-wrap;
-    }
-
-    .tips-section {
-      margin-top: 24px;
-      padding-top: 24px;
-      border-top: 1px solid var(--border);
-    }
-
-    .tips-section h3 {
-      font-size: 13px;
-      font-weight: 600;
-      margin-bottom: 12px;
-      color: var(--accent);
-    }
-
-    .tip-item {
-      padding: 8px 12px;
-      background: var(--bg-tertiary);
-      border-left: 3px solid var(--accent);
-      margin-bottom: 8px;
-      font-size: 11px;
-      line-height: 1.5;
-    }
-
-    .stats {
-      font-size: 11px;
-      color: var(--text-secondary);
-    }
-
-    .hidden {
-      display: none;
-    }
-
-    /* Scrollbar */
-    ::-webkit-scrollbar {
-      width: 10px;
-      height: 10px;
-    }
-
-    ::-webkit-scrollbar-track {
-      background: var(--bg-secondary);
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background: var(--bg-tertiary);
-      border-radius: 5px;
-    }
-
-    ::-webkit-scrollbar-thumb:hover {
-      background: var(--bg-hover);
-    }
-
-    /* Top nav matching the rest of the site (uses page accent vars) */
-    .arc-top-nav {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 10px 16px; border-bottom: 1px solid var(--border);
-      font-family: var(--font-mono); font-size: 11px;
-      background: var(--bg-secondary);
-      position: relative; z-index: 100;
-    }
-    .arc-top-nav .brand { color: var(--accent); font-weight: 600; letter-spacing: 0.5px; text-decoration: none; }
-    .arc-top-nav nav { display: flex; gap: 14px; }
-    .arc-top-nav nav a { color: var(--text-secondary); text-decoration: none; transition: color 0.15s; }
-    .arc-top-nav nav a:hover { color: var(--accent); }
-    .arc-top-nav nav a.active { color: var(--text-primary); }
-
-    /* Mobile gate — shown only on narrow viewports */
-    .mobile-gate { display: none; }
-    @media (max-width: 900px) {
-      body { overflow: auto; }
-      .workspace-container { display: none !important; }
-      .arc-top-nav { padding: 10px 14px; flex-wrap: wrap; gap: 10px; }
-      .arc-top-nav nav { gap: 12px; flex-wrap: wrap; font-size: 10px; }
-
-      .mobile-gate {
-        display: flex !important;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        min-height: calc(100vh - 60px);
-        padding: 40px 28px;
-        text-align: center;
-      }
-      .mobile-gate .mg-icon {
-        width: 56px; height: 56px;
-        border: 2px solid var(--accent); border-radius: 50%;
-        display: flex; align-items: center; justify-content: center;
-        margin-bottom: 18px;
-        background: rgba(52,211,153,0.08);
-      }
-      .mobile-gate .mg-icon svg { width: 28px; height: 28px; }
-      .mobile-gate h2 {
-        font-size: 20px; font-weight: 700; color: var(--text-primary);
-        margin-bottom: 10px; letter-spacing: -0.3px;
-        font-family: var(--font-sans);
-      }
-      .mobile-gate p {
-        font-size: 14px; color: var(--text-secondary);
-        line-height: 1.6; max-width: 320px; margin-bottom: 20px;
-      }
-      .mobile-gate .mg-detail {
-        font-family: var(--font-mono); font-size: 11px;
-        color: var(--text-secondary); margin-bottom: 26px;
-        padding: 10px 14px; background: var(--bg-secondary);
-        border: 1px solid var(--border); border-radius: 6px;
-      }
-      .mobile-gate .mg-buttons {
-        display: flex; flex-direction: column; gap: 10px; width: 100%;
-        max-width: 280px;
-      }
-      .mobile-gate .mg-btn {
-        display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-        background: rgba(52,211,153,0.12); border: 1.5px solid var(--accent); color: var(--accent);
-        font-family: var(--font-mono); font-size: 12px; font-weight: 600;
-        padding: 11px 18px; border-radius: 6px;
-        text-decoration: none;
-        cursor: pointer;
-      }
-      .mobile-gate .mg-btn.alt {
-        background: transparent; border-color: var(--border); color: var(--text-primary);
-      }
-    }
-    /* Override: if user clicks "Continue anyway" we hide the gate via class */
-    body.force-mobile .mobile-gate { display: none !important; }
-    body.force-mobile .workspace-container { display: grid !important; }
-    body.force-mobile { overflow-x: auto; }
-    @media (max-width: 900px) {
-      body.force-mobile .workspace-container {
-        grid-template-columns: 280px 1fr;
-        min-width: 980px;
-      }
-      /* 16px keeps iOS Safari from zooming on focus when the workspace is
-         forced open on a phone; desktop keeps the tighter IDE sizing. */
-      body.force-mobile .search-box input,
-      body.force-mobile .model-selector,
-      body.force-mobile .editor { font-size: 16px; }
-    }
-  
-    /* Keyboard accessibility */
-    a:focus-visible, button:focus-visible, select:focus-visible {
-      outline: 2px solid var(--accent);
-      outline-offset: 2px;
-    }
-    .skip-link {
-      position: absolute; left: -9999px; top: 0; z-index: 1000;
-      background: var(--accent); color: #09090b;
-      font-family: var(--font-mono); font-size: 12px; font-weight: 600;
-      padding: 10px 16px; border-radius: 0 0 6px 0; text-decoration: none;
-    }
-    .skip-link:focus { left: 0; }
-  </style>
-</head>
-<body>
-  <a class="skip-link" href="#main-content">skip to content</a>
-    <!-- Top nav — keeps user oriented inside the larger site -->
-    <div class="arc-top-nav">
-      <a href="/" class="brand">ARC // AI REALITY CHECK</a>
-      <nav>
-        <a href="/">Home</a>
-        <a href="/career-content/">About</a>
-        <a href="/career-content/articles/">Articles</a>
-        <a href="/career-content/portfolio/">Portfolio</a>
-        <a href="/career-content/creativity/">Creativity</a>
-        <a href="/career-content/tools-and-resources/" class="active" aria-current="page">Tools &amp; Resources</a>
-      </nav>
-    </div>
-
-    <!-- Mobile gate — only shown on narrow viewports -->
-    <div class="mobile-gate">
-      <div class="mg-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-          <line x1="8" y1="21" x2="16" y2="21"></line>
-          <line x1="12" y1="17" x2="12" y2="21"></line>
-        </svg>
-      </div>
-      <h2>Best on desktop</h2>
-      <p>The Prompt Workspace is a two-pane editor that needs more screen than your phone has. Open it on a laptop or larger tablet for the full experience.</p>
-      <div class="mg-detail">airealitycheck.org/career-content/tools-and-resources/prompt-workspace.html</div>
-      <div class="mg-buttons">
-        <a href="/career-content/tools-and-resources/" class="mg-btn">← back to tools</a>
-        <button type="button" class="mg-btn alt" onclick="document.body.classList.add('force-mobile')">continue anyway →</button>
-      </div>
-    </div>
-
-  <div id="main-content" class="workspace-container" role="main">
-    <!-- Sidebar -->
-    <div class="sidebar">
-      <div class="sidebar-header">
-        <h1>Templates</h1>
-        <p>Pre-built prompt patterns</p>
-      </div>
-      <div class="search-box">
-        <input type="text" id="searchInput" placeholder="Search templates..." aria-label="Search templates">
-      </div>
-      <div class="category-filters">
-        <button class="category-btn active" data-category="all">All</button>
-        <button class="category-btn" data-category="analysis">Analysis</button>
-        <button class="category-btn" data-category="generation">Generate</button>
-        <button class="category-btn" data-category="code">Code</button>
-        <button class="category-btn" data-category="data">Data</button>
-      </div>
-      <div class="templates-list" id="templatesList"></div>
-    </div>
-
-    <!-- Main Area -->
-    <div class="main-area">
-      <div class="toolbar">
-        <div class="mode-toggle">
-          <button class="mode-btn active" data-mode="single">Single</button>
-          <button class="mode-btn" data-mode="compare">Compare</button>
-        </div>
-        <select class="model-selector" id="modelSelector">
-          <option value="claude">Claude (Anthropic)</option>
-          <option value="gpt">ChatGPT (OpenAI)</option>
-          <option value="gemini">Gemini (Google)</option>
-        </select>
-        <button class="action-btn" id="clearBtn">Clear</button>
-        <button class="action-btn" id="saveTemplateBtn">Save Template</button>
-        <button class="action-btn primary" id="copyBtn">Copy to Clipboard</button>
-      </div>
-
-      <div class="content-area single-mode" id="contentArea">
-        <!-- Editor Panel 1 -->
-        <div class="editor-panel" id="editorPanel1">
-          <div class="editor-header">
-            <span>Prompt Editor</span>
-            <span class="stats" id="stats1">0 chars | ~0 tokens</span>
-          </div>
-          <div class="editor-wrapper">
-            <textarea class="editor" id="editor1" placeholder="Start typing your prompt... Use {{variable_name}} for dynamic values." aria-label="Prompt editor"></textarea>
-          </div>
-        </div>
-
-        <!-- Editor Panel 2 (Compare Mode) -->
-        <div class="editor-panel hidden" id="editorPanel2">
-          <div class="editor-header">
-            <span>Variant B</span>
-            <span class="stats" id="stats2">0 chars | ~0 tokens</span>
-          </div>
-          <div class="editor-wrapper">
-            <textarea class="editor" id="editor2" placeholder="Alternative version for A/B testing..." aria-label="Prompt editor variant B"></textarea>
-          </div>
-        </div>
-
-        <!-- Variables & Tips Panel -->
-        <div class="variables-panel">
-          <div id="variablesSection">
-            <h3>Variables</h3>
-            <div id="variableInputs">
-              <p style="font-size: 12px; color: var(--text-secondary);">Use {{variable_name}} in your prompt to create dynamic inputs.</p>
-            </div>
-          </div>
-
-          <div class="preview-section" id="previewSection">
-            <h3>Preview</h3>
-            <div class="preview-box" id="previewBox">Variables will be substituted here...</div>
-          </div>
-
-          <div class="tips-section">
-            <h3 id="tipsTitle">Model Tips</h3>
-            <div id="tipsContainer"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    // Templates Database
-    const TEMPLATES = [
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; object-src 'none'" http-equiv="Content-Security-Policy"/>
+<title>Prompt Workspace — AI Reality Check</title>
+<meta content="Build reusable prompts on mobile or desktop. Fill variables, compare prompt variants, and copy into your AI app. No account or model connection." name="description"/>
+<meta content="C. Pete Connor" name="author"/>
+<meta content="index, follow" name="robots"/>
+<!-- Canonical URL -->
+<link href="https://airealitycheck.org/career-content/tools-and-resources/prompt-workspace.html" rel="canonical"/>
+<!-- Open Graph / Facebook -->
+<meta content="website" property="og:type"/>
+<meta content="AI Reality Check" property="og:site_name"/>
+<meta content="Prompt Workspace — AI Reality Check" property="og:title"/>
+<meta content="Build reusable prompts on mobile or desktop. Fill variables, compare prompt variants, and copy into your AI app. No account or model connection." property="og:description"/>
+<meta content="https://airealitycheck.org/career-content/tools-and-resources/prompt-workspace.html" property="og:url"/>
+<meta content="https://airealitycheck.org/images/og-card.png" property="og:image"/>
+<meta content="AI Reality Check — C. Pete Connor" property="og:image:alt"/>
+<meta content="en_US" property="og:locale"/>
+<!-- Twitter Card -->
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Prompt Workspace — AI Reality Check" name="twitter:title"/>
+<meta content="Build reusable prompts on mobile or desktop. Fill variables, compare prompt variants, and copy into your AI app. No account or model connection." name="twitter:description"/>
+<meta content="https://airealitycheck.org/images/og-card.png" name="twitter:image"/>
+<link href="/favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<style>
+:root{color-scheme:dark;--bg:#1e1e1e;--surface:#252526;--border:#454549;--text:#e4e4e7;--muted:#b1b1bb;--accent:#34d399}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 'Plus Jakarta Sans',sans-serif}a{color:var(--accent)}button,input,select,textarea{font:inherit}button,summary{cursor:pointer}button,.button{min-height:44px;padding:10px 16px;border:1px solid var(--border);border-radius:7px;color:var(--text);background:#303034}button:hover{border-color:var(--accent)}button[aria-pressed=true],.primary{background:var(--accent);color:#09090b;border-color:var(--accent)}button:disabled{opacity:.5;cursor:not-allowed}a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px}input,select,textarea{background:#18181b;color:var(--text);border:1px solid var(--border);border-radius:6px;padding:10px;width:100%;min-width:0}textarea{resize:vertical}a{overflow-wrap:anywhere}.skip-link{position:absolute;left:-9999px;background:var(--accent);color:#09090b;padding:12px;z-index:5}.skip-link:focus{left:0}.top-nav{display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:12px 20px;border-bottom:1px solid var(--border)}.brand{font:600 12px 'JetBrains Mono',monospace;text-decoration:none}.site-menu{margin-left:auto}.site-menu summary{padding:10px 16px;min-height:44px;border:1px solid var(--border);border-radius:7px;list-style:none}.site-menu summary::-webkit-details-marker{display:none}.site-menu nav{display:flex;flex-wrap:wrap;gap:4px}.site-menu nav a{padding:10px;min-height:44px;color:var(--muted);text-decoration:none;font-size:14px}.site-menu nav a.active{color:var(--accent)}.nav-contact{padding:10px;min-height:44px;font-size:14px}.workspace{max-width:1440px;margin:auto;padding:24px}.intro h1{font-size:clamp(26px,4vw,36px);line-height:1.2;margin:0 0 10px}.intro p{color:var(--muted);margin:0;max-width:760px}.notice{font-size:14px;color:var(--muted)}.view-controls{display:flex;gap:8px;margin:20px 0;flex-wrap:wrap}.layout{display:grid;grid-template-columns:260px minmax(0,1fr) 300px;gap:20px;align-items:start}.panel{min-width:0;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:18px}.panel h2{font-size:20px;margin:0 0 12px}.filters{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0}.filters button{padding:8px 10px;font-size:14px}.templates{max-height:65vh;overflow:auto}.template-item{display:block;width:100%;text-align:left;margin:8px 0;background:transparent}.template-item small{display:block;color:var(--muted)}.template-item[aria-pressed=true]{color:#09090b;background:var(--accent)}.template-item[aria-pressed=true] small{color:#153d31}.editor-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}.editor{min-height:380px;line-height:1.6;font-family:'JetBrains Mono',monospace;font-size:16px}.editor-label{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-bottom:8px}.stats{font-size:13px;color:var(--muted)}.actions{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}.actions button{flex:1;white-space:nowrap}.variable-field{margin:16px 0}.variable-field label{display:block;overflow-wrap:anywhere;margin-bottom:6px}.variable-field textarea{min-height:90px}.preview{white-space:pre-wrap;overflow-wrap:anywhere;font:15px/1.7 'JetBrains Mono',monospace;background:#18181b;padding:14px;border-radius:7px;min-height:100px;margin-top:12px}.tips{margin-top:18px}.tips summary{min-height:44px;padding:10px 0;font-weight:700}.tips li{margin:10px 0}.status{font-size:14px;min-height:24px;color:var(--accent)}.footer{padding:24px;border-top:1px solid var(--border);font-size:14px;color:var(--muted);margin-top:32px}.footer nav{display:flex;gap:12px;flex-wrap:wrap}.footer a{padding:10px 0;min-height:44px}dialog{max-width:440px;width:calc(100% - 32px);background:var(--surface);color:var(--text);border:1px solid var(--border);border-radius:12px;padding:24px}dialog::backdrop{background:#0009}dialog h2{margin-top:0}dialog label{display:block;margin-top:14px}.view-controls{display:none}[hidden]{display:none!important}
+@media(min-width:901px){.site-menu summary{display:none}.site-menu:not([open]) nav{display:flex}}
+@media(max-width:1100px){.layout{grid-template-columns:220px minmax(0,1fr)}#preview-panel{grid-column:1/-1}}
+@media(max-width:900px){.workspace{padding:20px 16px}.top-nav{padding:10px 16px;gap:8px}.nav-contact{display:none}.site-menu[open]{flex-basis:100%;order:3}.site-menu nav{flex-direction:column}.site-menu:not([open]) nav{display:none}.site-menu[open] summary{width:max-content;margin-left:auto}.layout{display:block}.view-controls{display:flex}.view-controls button{flex:1;padding:10px 8px}.workspace[data-view=templates] #editor-panel,.workspace[data-view=templates] #preview-panel,.workspace[data-view=editor] #templates-panel,.workspace[data-view=editor] #preview-panel,.workspace[data-view=preview] #templates-panel,.workspace[data-view=preview] #editor-panel{display:none}.panel{padding:16px}.editor{min-height:42dvh}.templates{max-height:none}.actions{padding-bottom:env(safe-area-inset-bottom,0)}.intro p{font-size:16px}.intro h1{font-size:28px}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+</style>
+<style>.evidence-note a{ text-decoration:underline; text-underline-offset:3px; }.pipeline-card .pdesc{font-size:16px}.pipeline-card .pname{font-size:18px}@media(max-width:600px){.pipeline{flex-direction:column;align-items:stretch;overflow:visible}.pipeline-card{min-width:0}.pipeline .flow-arrow{display:none}}</style><style>@media(min-width:901px){.site-menu nav a[href="/career-content/#contact"]{display:none}}</style></head>
+<body><a class="skip-link" href="#main">Skip to content</a><div class="top-nav">
+<a class="brand" href="/">ARC // AI REALITY CHECK</a>
+<details class="site-menu" open=""><summary>Menu</summary><nav aria-label="Main navigation">
+<a aria-current="page" class="active" href="/">Home</a>
+<a href="/career-content/">About</a>
+<a href="/career-content/articles/">Articles</a>
+<a href="/career-content/portfolio/">Portfolio</a>
+<a href="/career-content/creativity/">Studio</a>
+<a href="/career-content/tools-and-resources/">Tools</a>
+<a href="/career-content/#contact">Work with me</a></nav></details>
+<a class="nav-contact" href="/career-content/#contact">Work with me</a></div><main class="workspace" data-view="editor" id="main"><header class="intro"><h1>Prompt Workspace</h1><p>Build a prompt, fill the details, and copy it into your AI app. Compare prompt text here; run and evaluate model responses in your AI app.</p><p class="notice">Drafts and saved templates stay in this browser. No account or model connection.</p></header>
+<div aria-label="Workspace views" class="view-controls" role="group"><button aria-controls="templates-panel" aria-pressed="false" data-view="templates">Templates</button><button aria-controls="editor-panel" aria-pressed="true" data-view="editor">Edit</button><button aria-controls="preview-panel" aria-pressed="false" data-view="preview">Preview</button></div>
+<div class="layout"><section aria-labelledby="templates-title" class="panel" id="templates-panel"><h2 id="templates-title" tabindex="-1">Templates</h2><label for="searchInput">Find a starting point</label><input id="searchInput" placeholder="Search templates" type="search"/><div aria-label="Template categories" class="filters" role="group"><button aria-pressed="true" data-category="all">All</button><button aria-pressed="false" data-category="analysis">Analysis</button><button aria-pressed="false" data-category="generation">Writing</button><button aria-pressed="false" data-category="code">Code</button><button aria-pressed="false" data-category="data">Data</button></div><div class="templates" id="templatesList"></div></section>
+<section aria-labelledby="editor-title" class="panel" id="editor-panel"><h2 id="editor-title" tabindex="-1">Edit your prompt</h2><div aria-label="Prompt variant" class="editor-tabs" role="group"><button aria-pressed="true" data-variant="a">Variant A</button><button aria-pressed="false" data-variant="b">Variant B</button><button id="duplicateBtn">Duplicate to B</button></div><div class="editor-label"><label for="editor" id="editorLabel">Prompt · Variant A</label><span class="stats" id="stats">0 characters</span></div><textarea class="editor" id="editor" placeholder="What do you need the model to do? Use {{variable_name}} for reusable details." spellcheck="false"></textarea><div class="actions"><button class="primary" id="copyBtn">Copy A</button><button id="saveBtn">Save template</button><button id="clearBtn">Clear A</button></div><p aria-live="polite" class="status" id="status" role="status"></p><p class="notice">Approximate token count is a rough character-based estimate, not a tokenizer result.</p></section>
+<section aria-labelledby="preview-title" class="panel" id="preview-panel"><h2 id="preview-title" tabindex="-1">Variables &amp; preview</h2><div id="variableInputs"></div><h3>Ready to copy</h3><div class="preview" id="previewBox"></div><div class="actions"><button class="primary" id="previewCopyBtn">Copy A</button></div><p aria-live="polite" class="status" id="previewStatus" role="status"></p><details class="tips"><summary>Prompting notes</summary><label for="modelSelector">AI app</label><select id="modelSelector"><option value="claude">Claude</option><option value="gpt">ChatGPT</option><option value="gemini">Gemini</option></select><ul id="tipsList"></ul><a id="tipsSource" rel="noopener" target="_blank">Read the provider’s guidance ↗</a><p class="notice">Reviewed 6 September 2026. Test prompts against examples from your own task.</p></details></section></div><noscript><p>This editor needs JavaScript. You can still read the <a href="/career-content/tools-and-resources/claude-guide.html">prompting guide</a>.</p></noscript></main>
+<dialog aria-labelledby="saveTitle" id="saveDialog"><form id="saveForm"><h2 id="saveTitle">Save a reusable template</h2><p>Stored only in this browser.</p><label for="templateName">Template name</label><input autocomplete="off" id="templateName" maxlength="80" required=""/><label for="templateCategory">Category</label><select id="templateCategory"><option value="analysis">Analysis</option><option value="generation">Writing</option><option value="code">Code</option><option value="data">Data</option></select><div class="actions"><button class="primary" type="submit">Save</button><button id="cancelSave" type="button">Cancel</button></div></form></dialog>
+<footer class="footer"><p>AI Reality Check · C. Pete Connor · Connor Advisors LLC</p><nav aria-label="Footer"><a href="/career-content/tools-and-resources/">All tools</a><a href="/career-content/#contact">Work with me</a><a href="mailto:cpeteconnor@gmail.com">Email</a><a href="https://www.linkedin.com/in/petecconnor">LinkedIn</a></nav></footer><script>
+'use strict';
+const TEMPLATES = [
       {
         id: 1,
         name: 'Document Analysis',
@@ -950,313 +343,63 @@ Create structured summary:
 Format for easy scanning and follow-up.`
       }
     ];
-
-    // Model Tips Database
-    const MODEL_TIPS = {
-      claude: [
-        'Use XML tags like <document>, <instructions> for structured sections',
-        'Be explicit about output format and structure',
-        'Provide examples for complex tasks to guide responses',
-        'Use "Think step-by-step" for complex reasoning tasks',
-        'Chain-of-thought prompting improves accuracy'
-      ],
-      gpt: [
-        'Use markdown formatting for clear structure',
-        'System prompts effectively set behavior and tone',
-        'Temperature affects creativity (0=focused, 2=creative)',
-        'Break complex tasks into smaller steps',
-        'Use "Let\'s work this out step by step" for reasoning'
-      ],
-      gemini: [
-        'Supports multimodal inputs (text, images, video)',
-        'Chain-of-thought prompting enhances performance',
-        'Be specific about constraints and requirements',
-        'Use examples to demonstrate desired output',
-        'Explicitly request structured formats (JSON, tables)'
-      ]
-    };
-
-    // State Management
-    let currentMode = 'single';
-    let currentModel = 'claude';
-    let currentTemplate = null;
-    let variables = {};
-
-    // Initialize
-    document.addEventListener('DOMContentLoaded', () => {
-      renderTemplates();
-      setupEventListeners();
-      updateModelTips();
-    });
-
-    // HTML-escape helper (shared by template list + variable inputs)
-    const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-
-    // Render Templates
-    function renderTemplates(filter = '') {
-      const container = document.getElementById('templatesList');
-      const activeCategory = document.querySelector('.category-btn.active').dataset.category;
-
-      let filtered = TEMPLATES;
-
-      if (activeCategory !== 'all') {
-        filtered = filtered.filter(t => t.category === activeCategory);
-      }
-
-      if (filter) {
-        filtered = filtered.filter(t =>
-          t.name.toLowerCase().includes(filter.toLowerCase()) ||
-          t.category.toLowerCase().includes(filter.toLowerCase())
-        );
-      }
-
-      container.innerHTML = filtered.map(template => `
-        <button type="button" class="template-item" data-id="${template.id}">
-          <div class="template-name">${esc(template.name)}</div>
-          <div class="template-category">${esc(template.category)}</div>
-        </button>
-      `).join('');
-
-      // Add click listeners
-      document.querySelectorAll('.template-item').forEach(item => {
-        item.addEventListener('click', () => loadTemplate(parseInt(item.dataset.id)));
-      });
-    }
-
-    // Load Template
-    function loadTemplate(id) {
-      const template = TEMPLATES.find(t => t.id === id);
-      if (!template) return;
-
-      currentTemplate = template;
-      document.getElementById('editor1').value = template.content;
-
-      // Remove active class from all templates
-      document.querySelectorAll('.template-item').forEach(item => {
-        item.classList.remove('active');
-      });
-
-      // Add active class to selected template
-      document.querySelector(`.template-item[data-id="${id}"]`).classList.add('active');
-
-      updateStats('editor1');
-      detectVariables();
-    }
-
-    // Detect Variables
-    function detectVariables() {
-      const editor1 = document.getElementById('editor1');
-      const text = editor1.value;
-      const regex = /\{\{(\w+)\}\}/g;
-      const matches = [...text.matchAll(regex)];
-      const uniqueVars = [...new Set(matches.map(m => m[1]))];
-
-      const container = document.getElementById('variableInputs');
-
-      if (uniqueVars.length === 0) {
-        container.innerHTML = '<p style="font-size: 12px; color: var(--text-secondary);">Use {{variable_name}} in your prompt to create dynamic inputs.</p>';
-        document.getElementById('previewSection').classList.add('hidden');
-        return;
-      }
-
-      container.innerHTML = uniqueVars.map(varName => `
-        <div class="variable-input">
-          <label>{{${esc(varName)}}}</label>
-          <textarea
-            data-var="${esc(varName)}"
-            placeholder="Enter value for ${esc(varName)}..."
-          >${esc(variables[varName] || '')}</textarea>
-        </div>
-      `).join('');
-
-      // Add input listeners
-      document.querySelectorAll('.variable-input textarea').forEach(input => {
-        input.addEventListener('input', (e) => {
-          variables[e.target.dataset.var] = e.target.value;
-          updatePreview();
-        });
-      });
-
-      document.getElementById('previewSection').classList.remove('hidden');
-      updatePreview();
-    }
-
-    // Update Preview
-    function updatePreview() {
-      const editor1 = document.getElementById('editor1');
-      let text = editor1.value;
-
-      Object.keys(variables).forEach(varName => {
-        const regex = new RegExp(`\\{\\{${varName}\\}\\}`, 'g');
-        text = text.replace(regex, variables[varName] || `{{${varName}}}`);
-      });
-
-      document.getElementById('previewBox').textContent = text;
-    }
-
-    // Update Stats
-    function updateStats(editorId) {
-      const editor = document.getElementById(editorId);
-      const text = editor.value;
-      const chars = text.length;
-      const tokens = Math.ceil(chars / 4); // Rough estimate
-
-      const statsId = editorId === 'editor1' ? 'stats1' : 'stats2';
-      document.getElementById(statsId).textContent = `${chars.toLocaleString()} chars | ~${tokens.toLocaleString()} tokens`;
-    }
-
-    // Update Model Tips
-    function updateModelTips() {
-      const tips = MODEL_TIPS[currentModel];
-      const container = document.getElementById('tipsContainer');
-      const modelNames = { claude: 'Claude', gpt: 'ChatGPT', gemini: 'Gemini' };
-
-      document.getElementById('tipsTitle').textContent = `${modelNames[currentModel]} Tips`;
-
-      container.innerHTML = tips.map(tip => `
-        <div class="tip-item">${tip}</div>
-      `).join('');
-    }
-
-    // Copy to Clipboard
-    async function copyToClipboard() {
-      const editor1 = document.getElementById('editor1');
-      const text = currentMode === 'single'
-        ? document.getElementById('previewBox').textContent
-        : editor1.value;
-
-      try {
-        await navigator.clipboard.writeText(text);
-        const btn = document.getElementById('copyBtn');
-        const originalText = btn.textContent;
-        btn.textContent = '✓ Copied!';
-        btn.classList.add('success');
-
-        setTimeout(() => {
-          btn.textContent = originalText;
-          btn.classList.remove('success');
-        }, 2000);
-      } catch (err) {
-        alert('Failed to copy to clipboard');
-      }
-    }
-
-    // Save Template
-    function saveTemplate() {
-      const name = prompt('Enter template name:');
-      if (!name) return;
-
-      const category = prompt('Enter category (analysis/generation/code/data):');
-      if (!category) return;
-
-      const editor1 = document.getElementById('editor1');
-
-      const newTemplate = {
-        id: Date.now(),
-        name,
-        category,
-        content: editor1.value
-      };
-
-      TEMPLATES.push(newTemplate);
-
-      // Save to localStorage
-      const saved = JSON.parse(localStorage.getItem('customTemplates') || '[]');
-      saved.push(newTemplate);
-      localStorage.setItem('customTemplates', JSON.stringify(saved));
-
-      renderTemplates();
-      alert('Template saved successfully!');
-    }
-
-    // Clear Editor
-    function clearEditor() {
-      if (confirm('Clear current content?')) {
-        document.getElementById('editor1').value = '';
-        document.getElementById('editor2').value = '';
-        variables = {};
-        updateStats('editor1');
-        updateStats('editor2');
-        detectVariables();
-
-        // Remove active class from templates
-        document.querySelectorAll('.template-item').forEach(item => {
-          item.classList.remove('active');
-        });
-      }
-    }
-
-    // Toggle Mode
-    function toggleMode(mode) {
-      currentMode = mode;
-      const contentArea = document.getElementById('contentArea');
-      const editorPanel2 = document.getElementById('editorPanel2');
-
-      if (mode === 'compare') {
-        contentArea.classList.remove('single-mode');
-        contentArea.classList.add('compare-mode');
-        editorPanel2.classList.remove('hidden');
-      } else {
-        contentArea.classList.add('single-mode');
-        contentArea.classList.remove('compare-mode');
-        editorPanel2.classList.add('hidden');
-      }
-    }
-
-    // Event Listeners
-    function setupEventListeners() {
-      // Search
-      document.getElementById('searchInput').addEventListener('input', (e) => {
-        renderTemplates(e.target.value);
-      });
-
-      // Category Filters
-      document.querySelectorAll('.category-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-          document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
-          renderTemplates();
-        });
-      });
-
-      // Mode Toggle
-      document.querySelectorAll('.mode-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-          document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
-          toggleMode(btn.dataset.mode);
-        });
-      });
-
-      // Model Selector
-      document.getElementById('modelSelector').addEventListener('change', (e) => {
-        currentModel = e.target.value;
-        updateModelTips();
-      });
-
-      // Editor Input
-      document.getElementById('editor1').addEventListener('input', () => {
-        updateStats('editor1');
-        detectVariables();
-      });
-
-      document.getElementById('editor2').addEventListener('input', () => {
-        updateStats('editor2');
-      });
-
-      // Action Buttons
-      document.getElementById('copyBtn').addEventListener('click', copyToClipboard);
-      document.getElementById('saveTemplateBtn').addEventListener('click', saveTemplate);
-      document.getElementById('clearBtn').addEventListener('click', clearEditor);
-
-      // Load custom templates from localStorage, then re-render so they show
-      // (renderTemplates already ran on load, before these were appended)
-      const saved = JSON.parse(localStorage.getItem('customTemplates') || '[]')
-        .map(t => ({ ...t, id: parseInt(t.id, 10) }))
-        .filter(t => Number.isFinite(t.id));
-      TEMPLATES.push(...saved);
-      renderTemplates();
-    }
-  </script>
-</body>
+const $ = id => document.getElementById(id);
+const categories = ['analysis','generation','code','data'];
+const esc = s => String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let state={a:'',b:'',variant:'a',variables:{a:{},b:{}}};
+let category='all',custom=[],storageAvailable=true;
+function status(message){$('status').textContent=message;$('previewStatus').textContent=message;}
+function readSaved(key,fallback){try{return JSON.parse(localStorage.getItem(key)) ?? fallback;}catch(e){storageAvailable=false;return fallback;}}
+const saved=readSaved('arc.promptDraft.v1',null);
+if(saved && typeof saved.a==='string' && typeof saved.b==='string'){
+ state.a=saved.a;state.b=saved.b;state.variant=saved.variant==='b'?'b':'a';
+ for(const v of ['a','b']) if(saved.variables && saved.variables[v] && typeof saved.variables[v]==='object'){
+   for(const [key,value] of Object.entries(saved.variables[v])) if(/^\w+$/.test(key)&&typeof value==='string') Object.defineProperty(state.variables[v],key,{value,writable:true,enumerable:true,configurable:true});
+ }
+}
+const savedTemplates=readSaved('customTemplates',[]);
+custom=(Array.isArray(savedTemplates)?savedTemplates:[]).filter(t=>t&&typeof t.name==='string'&&typeof t.content==='string'&&categories.includes(t.category)).map((t,i)=>({...t,id:'saved-'+i}));
+function persist(){try{localStorage.setItem('arc.promptDraft.v1',JSON.stringify(state));status('Draft saved in this browser.');}catch(e){storageAvailable=false;status('Browser storage is unavailable. Copy your work before closing this page.');}}
+function resolvePrompt(text,values){return text.replace(/\{\{(\w+)\}\}/g,(match,key)=>Object.prototype.hasOwnProperty.call(values,key)?values[key]:match);}
+function currentText(){return resolvePrompt(state[state.variant],state.variables[state.variant]);}
+function updatePreview(){const text=currentText();$('previewBox').textContent=text||'Your completed prompt will appear here.';for(const id of ['copyBtn','previewCopyBtn']) $(id).disabled=!text.trim();}
+function updateStats(){const n=state[state.variant].length;$('stats').textContent=`${n.toLocaleString()} characters · ~${Math.ceil(n/4).toLocaleString()} tokens`;}
+function renderVariables(){
+ const keys=[...new Set([...state[state.variant].matchAll(/\{\{(\w+)\}\}/g)].map(m=>m[1]))];
+ $('variableInputs').innerHTML=keys.length?keys.map((key,i)=>`<div class="variable-field"><label for="variable-${i}">${esc(key.replace(/_/g,' '))}</label><textarea id="variable-${i}" data-variable="${esc(key)}" placeholder="Enter ${esc(key.replace(/_/g,' '))}">${esc(Object.prototype.hasOwnProperty.call(state.variables[state.variant],key)?state.variables[state.variant][key]:'')}</textarea></div>`).join(''):'<p class="notice">Use {{variable_name}} in the editor to add reusable details.</p>';
+ $('variableInputs').querySelectorAll('textarea').forEach(input=>input.addEventListener('input',()=>{Object.defineProperty(state.variables[state.variant],input.dataset.variable,{value:input.value,writable:true,enumerable:true,configurable:true});updatePreview();persist();}));
+ updatePreview();
+}
+function setView(view,focus=false){$('main').dataset.view=view;document.querySelectorAll('[data-view][aria-controls]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.view===view)));if(focus&&matchMedia('(max-width:900px)').matches) $(view==='templates'?'templates-title':view==='editor'?'editor-title':'preview-title').focus();}
+function renderEditor(){const v=state.variant.toUpperCase();$('editor').value=state[state.variant];$('editorLabel').textContent=`Prompt · Variant ${v}`;for(const id of ['copyBtn','previewCopyBtn']) $(id).textContent=`Copy ${v}`;$('clearBtn').textContent=`Clear ${v}`;document.querySelectorAll('[data-variant]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.variant===state.variant)));updateStats();renderVariables();}
+function renderTemplates(){
+ const query=$('searchInput').value.toLowerCase();const items=[...TEMPLATES,...custom].filter(t=>(category==='all'||t.category===category)&&`${t.name} ${t.category}`.toLowerCase().includes(query));
+ $('templatesList').innerHTML=items.length?items.map(t=>`<button class="template-item" data-template="${esc(t.id)}"><strong>${esc(t.name)}</strong><small>${esc(t.category)}</small></button>`).join(''):'<p role="status">No templates match. Try another search or category.</p>';
+ $('templatesList').querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{
+ const t=items.find(x=>String(x.id)===b.dataset.template);if(state[state.variant].trim()&&!confirm('Replace this variant with the selected template?'))return;
+ state[state.variant]=t.content;state.variables[state.variant]={};renderEditor();persist();setView('editor',true);
+ }));
+}
+async function copyPrompt(){const text=currentText();if(!text.trim())return;try{await navigator.clipboard.writeText(text);status(`Variant ${state.variant.toUpperCase()} copied. Paste it into your AI app.`);}catch(e){status('Clipboard unavailable. Select and copy the completed text from Preview.');setView('preview',true);}}
+const tips={
+ claude:{url:'https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices',items:['State the task, constraints, and output format clearly.','Separate context and instructions with descriptive XML tags such as <context> and <instructions>.','Include representative examples and check performance on your own tasks.']},
+ gpt:{url:'https://platform.openai.com/docs/guides/prompt-engineering',items:['Describe the desired result and provide the context needed to produce it.','Use examples to make your preferred output format concrete.','Evaluate prompts with representative inputs; model behavior can differ.']},
+ gemini:{url:'https://ai.google.dev/gemini-api/docs/prompting-strategies',items:['Give specific instructions and a clear output format.','Supply examples that reflect the task you actually need to perform.','Iterate and test; avoid assuming one prompt works equally across models.']}
+};
+function renderTips(){const t=tips[$('modelSelector').value];$('tipsList').innerHTML=t.items.map(x=>`<li>${esc(x)}</li>`).join('');$('tipsSource').href=t.url;}
+$('editor').addEventListener('input',()=>{state[state.variant]=$('editor').value;updateStats();renderVariables();persist();});
+document.querySelectorAll('[data-variant]').forEach(b=>b.addEventListener('click',()=>{state.variant=b.dataset.variant;renderEditor();persist();}));
+document.querySelectorAll('[data-view][aria-controls]').forEach(b=>b.addEventListener('click',()=>setView(b.dataset.view,true)));
+document.querySelectorAll('[data-category]').forEach(b=>b.addEventListener('click',()=>{category=b.dataset.category;document.querySelectorAll('[data-category]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));renderTemplates();}));
+$('searchInput').addEventListener('input',renderTemplates);
+$('copyBtn').addEventListener('click',copyPrompt);$('previewCopyBtn').addEventListener('click',copyPrompt);
+$('duplicateBtn').addEventListener('click',()=>{if(state.b.trim()&&!confirm('Replace Variant B with Variant A?'))return;state.b=state.a;state.variables.b={...state.variables.a};state.variant='b';renderEditor();persist();});
+$('clearBtn').addEventListener('click',()=>{if(!state[state.variant]||confirm(`Clear Variant ${state.variant.toUpperCase()}?`)){state[state.variant]='';state.variables[state.variant]={};renderEditor();persist();}});
+$('saveBtn').addEventListener('click',()=>{if(!state[state.variant].trim()){status('Write a prompt before saving a template.');return;}$('saveDialog').showModal();});
+$('cancelSave').addEventListener('click',()=>$('saveDialog').close());
+$('saveForm').addEventListener('submit',e=>{e.preventDefault();const name=$('templateName').value.trim();if(!name){$('templateName').setCustomValidity('Enter a template name.');$('templateName').reportValidity();return;}const t={id:'saved-'+Date.now(),name,category:$('templateCategory').value,content:state[state.variant]};try{localStorage.setItem('customTemplates',JSON.stringify([...custom,t]));custom.push(t);renderTemplates();$('saveDialog').close();$('saveForm').reset();status('Template saved in this browser.');}catch(e){status('Template could not be saved. Copy your prompt before leaving.');$('saveDialog').close();}});
+$('templateName').addEventListener('input',()=>$('templateName').setCustomValidity(''));
+$('modelSelector').addEventListener('change',renderTips);
+renderTemplates();renderEditor();renderTips();status(storageAvailable?(saved?'Draft restored from this browser.':'Ready. Your draft saves in this browser as you type.'):'Browser storage is unavailable. Copy your work before leaving.');
+</script><script>(()=>{const menu=document.querySelector('.site-menu');if(!menu)return;const wide=matchMedia('(min-width:901px)');const sync=()=>{menu.open=wide.matches;};sync();wide.addEventListener('change',sync);menu.addEventListener('keydown',e=>{if(e.key==='Escape'&&!wide.matches){menu.open=false;menu.querySelector('summary').focus();}});})();</script></body>
 </html>

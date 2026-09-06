@@ -1,0 +1,1 @@
+{"name":"ai-reality-check","private":true,"scripts":{"dev":"node scripts/preview.mjs","check":"python3 scripts/check_site.py","test":"node --test scripts/workspace.test.mjs"}}

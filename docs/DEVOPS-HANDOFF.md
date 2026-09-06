@@ -1,44 +1,21 @@
-# DevOps Handoff — airealitycheck.org
+# Deployment handoff
 
-## Summary
+## Runtime
+GitHub Pages serves the root of main at airealitycheck.org. CNAME and existing content URLs are preserved. Optional Node development scripts do not participate in production hosting. No runtime environment variables or secrets are required.
 
-Static personal site (hand-authored HTML, zero build step, zero dependencies) served by **GitHub Pages** from the `main` branch of this repo. Custom domain via `CNAME` file (`airealitycheck.org`); HTTPS/HSTS handled by GitHub Pages.
+## Release
+1. Run `python3 scripts/check_site.py` and `node --test scripts/workspace.test.mjs`.
+2. Inspect 320–901px responsive widths and a desktop view. Check navigation and no page-level horizontal scrolling.
+3. Exercise plain prompt copy, variable substitution, A/B switching, save/restore, and unavailable-storage feedback.
+4. Merge the verified branch; watch both checks and the Pages build/deployment.
+5. Confirm the custom domain serves the new home, articles, tool, guide, images and PDF. Test a nonexistent URL for the custom 404.
+6. Revert the release merge commit if a production regression is confirmed.
 
-## Environment requirements
+## Content and performance
+The site loads HTML and fonts; portfolio screenshots include intrinsic dimensions and load lazily. No analytics was installed. Establish field performance and conversion baselines before attributing improvements. Proposed goals are LCP ≤2.5s and CLS ≤0.1 under a documented mobile test profile; these are not claimed measurements.
 
-None. No runtime, no package manager, no CI pipeline. Any static file server can host the repo root.
+## Data and security
+Prompt drafts and templates are localStorage only. The app does not call a model. No submitted form sends user content to a server. Clipboard and localStorage errors are surfaced with recovery guidance. The save dialog stores only a name, category, and prompt text in the current browser.
 
-## How to run locally
-
-```bash
-python3 -m http.server   # from repo root, then open http://localhost:8000
-```
-
-## Deploy
-
-Push/merge to `main` → GitHub Pages auto-deploys (typically <1 min). No secrets, no environment variables, no infrastructure to manage.
-
-## Configuration reference
-
-| File | Purpose |
-|---|---|
-| `CNAME` | Custom domain binding for GitHub Pages |
-| `robots.txt` | Allows all; points to sitemap |
-| `sitemap.xml` | Hand-maintained; update `lastmod` + entries when pages change |
-| `favicon.svg` | Site icon, referenced by every page |
-| `images/og-card.png` | 1200×630 social share image, referenced by every page's OG tags |
-
-## Security notes
-
-- Every page ships a CSP `<meta>` tag (self + Google Fonts; creativity page additionally allows YouTube thumbnail hosts).
-- No forms, no cookies, no server-side code, no stored data. Attack surface is static content only.
-- The prompt workspace runs entirely client-side (localStorage only).
-
-## Deployment maturity
-
-Production, live. Manual verification (browser click-through + link check) before merge; no automated tests — appropriate for a static site of this size.
-
-## Known tech debt
-
-- Inline CSS duplicated per page (~10–14KB each) — deliberate trade-off for the drop-a-file publishing model; revisit only on a full redesign.
-- Card radius/hover metrics drift slightly between components (8/10/12px) — cosmetic, invisible across page boundaries.
+## Editorial changes
+Detection commentary now distinguishes evidence from authorship guesses. The LinkedIn visibility article is explicitly a conceptual scenario model; unsupported observational-study claims and exact penalty figures were removed. BPO and counterfactual examples are labeled illustrative. Keep those limits next to future metric cards.

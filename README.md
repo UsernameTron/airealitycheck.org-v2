@@ -1,59 +1,48 @@
-# airealitycheck.org
+# AI Reality Check
 
-Source for [airealitycheck.org](https://airealitycheck.org) — the public face of Connor Advisors LLC and the AI/ML CX consulting practice of C. Pete Connor.
+Public site for C. Pete Connor / Connor Advisors LLC at https://airealitycheck.org.
 
-Built as static HTML with the Obsidian Showcase design system. No build step, no framework dependencies. Hosted on GitHub Pages.
+## Architecture
 
-## Structure
+GitHub Pages serves self-contained HTML from main. No production build, backend, API keys, or framework dependencies. Each page retains inline CSS; `_template/skeleton.html` is the canonical starting point. The prompt workspace is a local browser editor, not a model execution service.
 
-```
-/
-├── index.html                                 # Homepage — three doors
-├── CNAME                                      # GitHub Pages custom domain
-├── sitemap.xml
-├── robots.txt
-├── favicon.svg
-├── /career-content/
-│   ├── index.html                             # About / the practice
-│   ├── /articles/
-│   │   ├── index.html                         # Articles hub
-│   │   ├── detection.html
-│   │   ├── counterfactual-reasoning-html.html
-│   │   ├── ml-bpo-turnover.html
-│   │   └── linkedin-visibility-google-style.html
-│   ├── /portfolio/
-│   │   └── index.html                         # Live demos
-│   ├── /creativity/
-│   │   └── index.html                         # YouTube video hub
-│   └── /tools-and-resources/
-│       ├── index.html                         # Tools hub
-│       └── prompt-workspace.html              # Interactive tool
-├── /downloads/
-│   └── crushin-claude.pdf
-├── /images/
-│   └── og-card.png                            # 1200×630 social share card
-└── /_template/
-    └── skeleton.html                          # Page template reference
-```
+## Develop and check
 
-## Adding new content
+- `npm run dev` — optional dependency-free Node static preview on port 8000.
+- `python3 -m http.server` — alternative plain static server.
+- `python3 scripts/check_site.py` — internal links, sitemap, metadata, headings, image and navigation checks.
+- `node --test scripts/workspace.test.mjs` — regression checks for copying, substitutions, variants, and empty input.
 
-**A new article:** copy any file from `/career-content/articles/`, rename it, replace the prose. Then add a card to `/career-content/articles/index.html` and a `<url>` block to `sitemap.xml`.
+GitHub Actions runs checks on pull requests and pushes. Its purpose is validation; GitHub Pages continues to publish the main branch with the custom CNAME.
 
-**A new download:** drop the file into `/downloads/`, then in `/career-content/tools-and-resources/index.html` find the `<!-- TEMPLATE — DOWNLOAD CARD -->` comment and copy that card pattern. Add the URL to `sitemap.xml`.
+## Publishing checklist
 
-**A new interactive tool:** drop the HTML file into `/career-content/tools-and-resources/`, then in that hub's `index.html` copy the `<!-- TEMPLATE — INTERACTIVE TOOL CARD -->` block. Update `sitemap.xml`.
+1. Copy the canonical template and fill every placeholder.
+2. Keep the existing mobile menu, semantic headings, footer, and focus states.
+3. Add a concise summary, relevant sources, publication and actual modification dates, and a useful next link.
+4. Label modeled outcomes next to the figures. Never imply example data is a client result.
+5. Add a card to the appropriate hub, with visible date and reading time. Sort article cards by publication date.
+6. Update canonical/social metadata, the share image if applicable, and sitemap.xml.
+7. Run checks, inspect phone/tablet/desktop layouts, and verify the main task.
+8. Work on a feat/ or fix/ branch; merge only after verification. Main publishes live.
 
-## Design system
+## Content
 
-The visual aesthetic is locked to the obsidian-showcase-page skill: dark mode (#09090b), Plus Jakarta Sans + JetBrains Mono, green accent (#34d399), cyan secondary (#22d3ee). Every page imports the same CSS variable set.
+- `/career-content/`: About and contact
+- `/career-content/articles/`: analysis and labeled conceptual/model examples
+- `/career-content/portfolio/`: live demo descriptions, screenshots, and limitations
+- `/career-content/creativity/`: Studio / YouTube collection
+- `/career-content/tools-and-resources/`: tools and downloads
+- `/career-content/tools-and-resources/prompt-workspace.html`: mobile prompt editor
+- `/career-content/tools-and-resources/claude-guide.html`: concise web companion
+- `/downloads/crushin-claude.pdf`: full guide
 
-`/_template/skeleton.html` is the canonical reference. New pages should start from a copy.
+## Workspace storage
 
-## Deployment
+Drafts and custom templates stay in localStorage in the current browser. No analytics or model request is sent. Private browsing, storage clearing, and browser restrictions can prevent persistence. Copy essential work out before leaving; errors are surfaced in the editor.
 
-GitHub Pages auto-deploys from `main`. Custom domain (airealitycheck.org) is set in repo Settings → Pages.
+## Rollback
 
-## License
+Revert the release merge commit and let Pages redeploy. Preserve existing URLs and CNAME. See docs/DEVOPS-HANDOFF.md for release checks.
 
 Content © C. Pete Connor / Connor Advisors LLC. Code MIT.
